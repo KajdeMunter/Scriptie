@@ -18,9 +18,9 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------
 
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
@@ -29,29 +29,31 @@ english, % ngerman for German
 singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
 %draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
 %nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
-%liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
+liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
 %toctotoc, % Uncomment to add the main table of contents to the table of contents
 %parskip, % Uncomment to add space between paragraphs
 %nohyperref, % Uncomment to not load the hyperref package
 headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
-]{MastersDoctoralThesis} % The class file specifying the document structure
+]{formatting} % The class file specifying the document structure
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 
 \usepackage{mathpazo} % Use the Palatino font by default
 
-\usepackage[backend=bibtex,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[ddmmyyyy]{datetime}
+
+\usepackage[backend=bibtex,style=ieee]{biblatex} % Use bibtext and IEEE reference style
 
 \addbibresource{example.bib} % The filename of the bibliography
 
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
-%----------------------------------------------------------------------------------------
+%----------------------------
 %	MARGIN SETTINGS
-%----------------------------------------------------------------------------------------
+%----------------------------
 
 \geometry{
 	paper=a4paper, % Change to letterpaper for US letter
@@ -63,23 +65,25 @@ headsepline, % Uncomment to get a line under the header
 	%showframe, % Uncomment to show how the type block is set on the page
 }
 
-%----------------------------------------------------------------------------------------
+%----------------------------
 %	THESIS INFORMATION
-%----------------------------------------------------------------------------------------
+%----------------------------
 
-\thesistitle{Thesis Title} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
-\supervisor{Dr. James \textsc{Smith}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
+\thesistitle{Schaalbaarheid Developers.nl} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
+\technicalSupervisor{Tanja Ubert} % Your supervisor's name, this is used in the title page, print it elsewhere with \techsupname
+\skillsSupervisor{Judith Lemmens} % skillssupname
+
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
-\degree{Doctor of Philosophy} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
-\author{John \textsc{Smith}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\degree{Informatica} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\author{Kaj de Munter} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
-\subject{Biological Sciences} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
+\subject{} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
-\university{\href{http://www.university.com}{University Name}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
-\department{\href{http://department.university.com}{Department or School Name}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
-\group{\href{http://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
-\faculty{\href{http://faculty.university.com}{Faculty Name}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+\university{Hogeschool Rotterdam} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{Communicatie, Media, en Informatietechnologie} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\group{} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
+\faculty{} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
 
 \AtBeginDocument{
 \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
@@ -93,16 +97,16 @@ headsepline, % Uncomment to get a line under the header
 
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
 
-%----------------------------------------------------------------------------------------
+%----------------------------
 %	TITLE PAGE
-%----------------------------------------------------------------------------------------
+%----------------------------
 
 \begin{titlepage}
 \begin{center}
 
 \vspace*{.06\textheight}
 {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
-\textsc{\Large Doctoral Thesis}\\[0.5cm] % Thesis type
+\textsc{\Large Bachelor scriptie}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
 {\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
@@ -110,67 +114,32 @@ headsepline, % Uncomment to get a line under the header
  
 \begin{minipage}[t]{0.4\textwidth}
 \begin{flushleft} \large
-\emph{Author:}\\
-\href{http://www.johnsmith.com}{\authorname} % Author name - remove the \href bracket to remove the link
+\emph{Auteur:}\\\authorname
+
 \end{flushleft}
 \end{minipage}
 \begin{minipage}[t]{0.4\textwidth}
 \begin{flushright} \large
-\emph{Supervisor:} \\
-\href{http://www.jamessmith.com}{\supname} % Supervisor name - remove the \href bracket to remove the link  
+\emph{Begeleiders:} \\
+\techsupname\\
+\skillssupname
 \end{flushright}
 \end{minipage}\\[3cm]
  
 \vfill
 
-\large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-\textit{in the}\\[0.4cm]
-\groupname\\\deptname\\[2cm] % Research group name and department name
+\large \textit{Een scriptie ingediend ter voldoening aan de\\ vereiste competenties voor de opleiding \degreename}\\[0.3cm]
+
+\deptname % Research group name and department name
  
 \vfill
 
 {\large \today}\\[4cm] % Date
-%\includegraphics{Logo} % University/department logo - uncomment to place it
+\includegraphics{logo} % University/department logo
  
 \vfill
 \end{center}
 \end{titlepage}
-
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE
-%----------------------------------------------------------------------------------------
-
-\begin{declaration}
-\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-\noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
-
-\begin{itemize} 
-\item This work was done wholly or mainly while in candidature for a research degree at this University.
-\item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-\item Where I have consulted the published work of others, this is always clearly attributed.
-\item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-\item I have acknowledged all main sources of help.
-\item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
-\end{itemize}
- 
-\noindent Signed:\\
-\rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
- 
-\noindent Date:\\
-\rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
-\end{declaration}
-
-\cleardoublepage
-
-%----------------------------------------------------------------------------------------
-%	QUOTATION PAGE
-%----------------------------------------------------------------------------------------
-
-\vspace*{0.2\textheight}
-
-\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
-
-\hfill Dave Barry
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
@@ -178,17 +147,8 @@ headsepline, % Uncomment to get a line under the header
 
 \begin{abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
+Samenvatting van de scriptie die ik als laatst pas ga schrijven\ldots Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 \end{abstract}
-
-%----------------------------------------------------------------------------------------
-%	ACKNOWLEDGEMENTS
-%----------------------------------------------------------------------------------------
-
-\begin{acknowledgements}
-\addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
-\end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
@@ -196,8 +156,10 @@ The acknowledgments and the people to thank go here, don't forget to include you
 
 \tableofcontents % Prints the main table of contents
 
+\renewcommand{\listfigurename}{Figurenlijst}
 \listoffigures % Prints the list of figures
 
+\renewcommand{\listtablename}{Tabellenlijst}
 \listoftables % Prints the list of tables
 
 %----------------------------------------------------------------------------------------
@@ -210,41 +172,6 @@ The acknowledgments and the people to thank go here, don't forget to include you
 \textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
 
 \end{abbreviations}
-
-%----------------------------------------------------------------------------------------
-%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
-%----------------------------------------------------------------------------------------
-
-\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
-
-% The \SI{}{} command is provided by the siunitx package, see its documentation for instructions on how to use it
-
-Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
-%Constant Name & $Symbol$ & $Constant Value$ with units\\
-
-\end{constants}
-
-%----------------------------------------------------------------------------------------
-%	SYMBOLS
-%----------------------------------------------------------------------------------------
-
-\begin{symbols}{lll} % Include a list of Symbols (a three column table)
-
-$a$ & distance & \si{\meter} \\
-$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
-%Symbol & Name & Unit \\
-
-\addlinespace % Gap to separate the Roman symbols from the Greek
-
-$\omega$ & angular frequency & \si{\radian} \\
-
-\end{symbols}
-
-%----------------------------------------------------------------------------------------
-%	DEDICATION
-%----------------------------------------------------------------------------------------
-
-\dedicatory{For/Dedicated to/To my\ldots} 
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -272,6 +199,7 @@ $\omega$ & angular frequency & \si{\radian} \\
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
+\renewcommand{\appendixname}{Bijlage}
 \include{Appendices/AppendixA}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
@@ -280,6 +208,7 @@ $\omega$ & angular frequency & \si{\radian} \\
 %	BIBLIOGRAPHY
 %----------------------------------------------------------------------------------------
 
+\renewcommand{\bibname}{Literatuurlijst}
 \printbibliography[heading=bibintoc]
 
 %----------------------------------------------------------------------------------------
