@@ -98,47 +98,99 @@ headsepline, % Uncomment to get a line under the header
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
 
 %----------------------------
-%	TITLE PAGE
+%	OMSLAG
 %----------------------------
 
 \begin{titlepage}
-\begin{center}
+	\begin{center}
+		
+		\vspace*{.06\textheight}
+		{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
+		\textsc{\Large Bachelor scriptie}\\[0.5cm] % Thesis type
+		
+		\HRule \\[0.4cm] % Horizontal line
+		{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
+		\HRule \\[1.5cm] % Horizontal line
+		
+		\begin{minipage}[t]{0.4\textwidth}
+			\begin{flushleft} \large
+				\emph{Auteur:}\\\authorname\\0911825
+				
+			\end{flushleft}
+		\end{minipage}
+		\begin{minipage}[t]{0.4\textwidth}
+			\begin{flushright} \large
+				\emph{Begeleiders:} \\
+				\techsupname\\
+				\skillssupname
+			\end{flushright}
+		\end{minipage}\\[3cm]
+		
+		{\large \today}\\[1cm] % Date
+		{\Large \texttt{v1.0}}
+		
+		\vfill
+		
+		\includegraphics{HRO} % University/department logo
+		
+		\vfill
+	\end{center}
+\end{titlepage}
 
-\vspace*{.06\textheight}
-{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
-\textsc{\Large Bachelor scriptie}\\[0.5cm] % Thesis type
+%----------------------------
+%	TITELBLAD
+%----------------------------
 
-\HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
-\HRule \\[1.5cm] % Horizontal line
- 
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Auteur:}\\\authorname
+\begin{titlepage}
+	\begin{center}
+		{\scshape\LARGE Developers.nl\par}\vspace{0.5cm}
+		{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
+		\textsc{\Large Bachelor scriptie}\\[0.5cm] % Thesis type
+		
+		\HRule \\[0.4cm] % Horizontal line
+		{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
+		\HRule \\[1.5cm] % Horizontal line
+		
+		\begin{minipage}[t]{0.4\textwidth}
+			\begin{flushleft} \large
+				\emph{Auteur:}\\\textbf{\authorname}\\
+				0911825@hr.nl\\
+				k.demunter@developers.nl\\
+				0681019142\\
+			\end{flushleft}
+		\end{minipage}
+		\begin{minipage}[t]{0.4\textwidth}
+			\begin{flushright} \large
+				\emph{Schoolbegeleiders:}\\
+				\textbf{\techsupname}\\
+				t.ubert@hr.nl\\
+				\textbf{\skillssupname}\\
+				j.h.i.lemmens@hr.nl\\[0.3cm]
+				
+				\emph{Bedrijfsbegeleiders:}\\
+				\textbf{Maarten de Boer}\\
+				m.deboer@developers.nl\\
+				\textbf{Jelle van de Hatert}\\
+				j.vandehatert@developers.nl
+			\end{flushright}
+		\end{minipage}\\[2cm]
+		
+		\vfill
+		
+		\large \textit{Een scriptie ingediend ter voldoening aan de\\ vereiste competenties voor de opleiding \degreename}\\[0.3cm]
+		
+		\deptname % Research group name and department name
+		
+		\vfill
+		
+		{\large \today}\\[0.5cm] % Date
+		{\Large \texttt{v1.0}}\\[1cm]
+		
+		\includegraphics[height=2cm]{Developers} \hspace{3cm}
+		\includegraphics[height=2cm]{HRO}
 
-\end{flushleft}
-\end{minipage}
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushright} \large
-\emph{Begeleiders:} \\
-\techsupname\\
-\skillssupname
-\end{flushright}
-\end{minipage}\\[3cm]
- 
-\vfill
-
-\large \textit{Een scriptie ingediend ter voldoening aan de\\ vereiste competenties voor de opleiding \degreename}\\[0.3cm]
-
-\deptname % Research group name and department name
- 
-\vfill
-
-{\large \today}\\[4cm] % Date
-\includegraphics{logo} % University/department logo
- 
-\vfill
-\end{center}
+		\vfill
+	\end{center}
 \end{titlepage}
 
 %----------------------------------------------------------------------------------------
