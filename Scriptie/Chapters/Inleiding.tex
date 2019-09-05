@@ -4,33 +4,60 @@
 
 
 \section{Aanleiding}
+\enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt wanneer interne software bij Developers.nl wordt ontwikkeld. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethodes in topconditie zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+Dit betekent dat er veel onderzoek moet worden uitgevoerd op de kwaliteit van de huidige website. Met name de infrastructuur, het \enquote{Continuous Integration/Continuous Deployment} (CI/CD) en het horizontaal en verticaal schalen hebben nog veel ruimte voor verbetering.
 
 
 \section{Belang}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
+Het open-source maken van de website betekent dat elke potentiële klant en/of nieuwe medewerker de mogelijkheid heeft om te bekijken wat Developers.nl qua kennis in huis heeft. Het is dus van hoog belang dat de kwaliteit gewaarborgd wordt, en dat er zo veel mogelijk nieuwe en opkomende technieken worden gebruikt.
 
+Bovendien heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source software voordelen heeft als:
+\begin{itemize}
+	\item Betere beveiliging
+	\item Betere betrouwbaarheid 
+	\item Betere performance
+	\item Betere schaalbaarheid
+	\item Mindere onderhoudskosten
+\end{itemize}
+Ook al is de website op eerste gezicht van de buitenkant vrij eenvoudig, er moet (om indruk te wekken op potentiële klanten en nieuwe medewerkers) onder water een stevige applicatie draaien dat eigenlijk iets te \enquote{over-engineered} is. Kortom, er is nog veel te verbeteren en toe te voegen.
+
+\pagebreak
 
 \section{Opdrachtgever}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut.
+Deze scriptie is geschreven in opdracht van:\\[0.3cm]
+\textbf{Developers.nl}\\
+Stadionweg 57C\\
+3077AS Rotterdam\\
+info@developers.nl\\
+010-3035929\\
+
+Developers.nl neemt developers in dienst. De developers die worden aangenomen zullen voornamelijk gespecialiseerd zijn in PHP, Python, Java of front-end. Deze developers worden uitgezet naar een klant (een extern bedrijf) die naar een developer zoekt. Developers.nl kiest voor de beste developer voor de taak en zal deze inzetten bij een klant. De opdrachten van de developers zijn op locatie van de klant en duren voornamelijk langer dan een jaar, maar op uitzondering zijn er ook regelmatig kortere opdrachten. Zodra de developer klaar is met zijn of haar taak zal Developers.nl zo snel mogelijk een nieuwe opdracht toewijzen \parencite{Stageplan}. Concreet zegt \parencite{Positioneringsprofiel}: \enquote{Detachering van developers die software applicaties bouwen voor verschillende klanten.}
+
 
 \subsection{Werkomgeving}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut.
+Developers.nl heeft rond de 60 software engineers. Deze zijn voornamelijk op een externe opdracht bij ene klant. Elke vrijdag zullen 5 van de zogenaamde \enquote{kennisambassadeurs} op kantoor zijn. Dit zijn de meest senior ontwikkelaars per team. Deze zijn dan in staat om stagiairs en/of andere medewerkers persoonlijk te helpen, maar ze zijn altijd bereikbaar via Slack of telefonisch.
+
+De bedrijfsbegeleider voor deze stage is \textbf{Maarten de Boer}. Dit is de algemene directeur van Developers.nl en is in 2003 afgestudeerd aan de hogeschool Inholland met Strategic marketing. Aangezien Maarten zelf geen technische kennis heeft is er ook een technische begeleider aangewezen: \textbf{Jelle van de Haterd}. Jelle is senior developer, DevOps engineer en kennisambassadeur bij Developers.nl. Hij is in 2006 afgestudeerd op de Hogeschool Rotterdam met als opleiding Grafimediatechnologie \parencite{Afstudeervoorstel}.
+
+% TODO: Vragen hoeveel er mag gekopieerd worden uit mijn oude stageplan
+
 
 \subsection{Taken}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut.
+Tijdens de stageperiode zal de stagiair een lead rol aannemen in een team van 2 part-time studenten en een stagiair. De stagiair gaat onderzoeken hoe Developers.nl haar website beter schaalbaar en onderhoudbaar kan maken. Dit omtrent onderzoek over technieken als Kubernetes, Docker Swarm, cloud services als AWS, Azure, \enquote{Infrastructure-as-code} (IaC) tools als Ansible, Chef, Puppet etc. Ook moet de gekozen oplossing automatisch gedeployed worden met een CI/CD tool als Jenkins, CircleCI, Travis of door middel van de huidige Bitbucket Pipeline. Door het gehele proces moet er extra rekening gehouden worden met de security van de gekozen oplossing in verband met de gevoeligheid van een aantal systemen \parencite{Afstudeervoorstel}.
 
+\pagebreak
 
 \section{Doelstelling}
+% TODO: Doelstelling
 
 Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
 
 
 \section{Probleemstelling}
-
+% TODO: Probleemstelling
 Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
 
 \subsection{Hoofd- en Deelvragen}
@@ -40,7 +67,6 @@ Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum an
 \end{itemize}
 
 \section{Leeswijzer}
-
-Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
+% TODO: Leeswijzer
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut.

@@ -40,16 +40,12 @@ headsepline, % Uncomment to get a line under the header
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
-
 \usepackage{mathpazo} % Use the Palatino font by default
-
 \usepackage[ddmmyyyy]{datetime}
-
-\usepackage[backend=bibtex,style=ieee]{biblatex} % Use bibtext and IEEE reference style
-
-\addbibresource{example.bib} % The filename of the bibliography
-
+\usepackage[backend=biber,style=ieee]{biblatex} % Use bibtext and IEEE reference style
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+
+\addbibresource{literatuurlijst.bib} % The filename of the bibliography
 
 %----------------------------
 %	MARGIN SETTINGS
@@ -76,6 +72,8 @@ headsepline, % Uncomment to get a line under the header
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
 \degree{Informatica} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
 \author{Kaj de Munter} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
+\version{v0.2} % Version number, used in omslag and titelblad, print it with \versionnr
+
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
 \subject{} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
@@ -127,7 +125,7 @@ headsepline, % Uncomment to get a line under the header
 		\end{minipage}\\[3cm]
 		
 		{\large \today}\\[1cm] % Date
-		{\Large \texttt{v1.0}}
+		{\Large \texttt{\versionnr}}
 		
 		\vfill
 		
@@ -170,8 +168,8 @@ headsepline, % Uncomment to get a line under the header
 				\emph{Bedrijfsbegeleiders:}\\
 				\textbf{Maarten de Boer}\\
 				m.deboer@developers.nl\\
-				\textbf{Jelle van de Hatert}\\
-				j.vandehatert@developers.nl
+				\textbf{Jelle van de Haterd}\\
+				j.vandehaterd@developers.nl
 			\end{flushright}
 		\end{minipage}\\[2cm]
 		
@@ -184,7 +182,7 @@ headsepline, % Uncomment to get a line under the header
 		\vfill
 		
 		{\large \today}\\[0.5cm] % Date
-		{\Large \texttt{v1.0}}\\[1cm]
+		{\Large \texttt{\versionnr}}\\[1cm]
 		
 		\includegraphics[height=2cm]{Developers} \hspace{3cm}
 		\includegraphics[height=2cm]{HRO}
@@ -193,19 +191,20 @@ headsepline, % Uncomment to get a line under the header
 	\end{center}
 \end{titlepage}
 
-%----------------------------------------------------------------------------------------
+%----------------------------
 %	ABSTRACT PAGE
-%----------------------------------------------------------------------------------------
+%----------------------------
 
 \begin{abstract}
 \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
 Samenvatting van de scriptie die ik als laatst pas ga schrijven\ldots Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 \end{abstract}
 
-%----------------------------------------------------------------------------------------
+%------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
-%----------------------------------------------------------------------------------------
+%------------------------------------------------
 
+\renewcommand{\contentsname}{Inhoud}
 \tableofcontents % Prints the main table of contents
 
 \renewcommand{\listfigurename}{Figurenlijst}
@@ -214,14 +213,64 @@ Samenvatting van de scriptie die ik als laatst pas ga schrijven\ldots Lorem ipsu
 \renewcommand{\listtablename}{Tabellenlijst}
 \listoftables % Prints the list of tables
 
+%----------------------------
+%	GLOSSARY
+%----------------------------
+\begin{begrippen}{p{3cm}|p{10cm}} % Include a list of abbreviations (a table of two columns)
+	\textbf{Kubernetes} & Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications \parencite{Kubernetes}.\\
+	
+	\textbf{Docker} & Docker is a tool designed to make it easier to create, deploy, and run applications by using containers \parencite{Docker}.\\
+	
+	\textbf{Ansible} & Ansible is a radically simple IT automation engine that automates cloud provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs \parencite{Ansible}.\\
+	
+	\textbf{Docker Swarm} & Docker Swarm provides native clustering functionality for Docker containers, which lets you turn a group of Docker engines into a single, virtual Docker engine \parencite{DockerSwarm}.\\
+	
+	\textbf{Infrastructure as Code} & Infrastructure as code describes the idea of using a high-level programming language to
+	control IT systems \parencite{IaC}.\\
+	
+	\textbf{Ansible Tower} & Red Hat Ansible Tower helps you scale IT automation, manage complex deployments and speed productivity. Centralize and control your IT infrastructure with a visual dashboard, role-based access control, job scheduling, integrated notifications and graphical inventory management \parencite{AnsibleTower}.\\
+	
+	\textbf{Chef} & Deploy new code faster and more efficiently. Automate infrastructure and applications \parencite{Chef}.\\
+	
+	\textbf{Puppet} & Powerful infrastructure automation and delivery \parencite{Puppet}.\\
+	
+	\textbf{Terraform} &
+	Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions \parencite{Terraform}.\\
+	
+	\textbf{Cloud computing providers} & Cloud computing is a model for enabling ubiquitous, convenient, on-demand network
+	access to a shared pool of configurable computing resources (e.g., networks, servers,
+	storage, applications, and services) that can be rapidly provisioned and released with
+	minimal management effort or service provider interaction \parencite{CloudComputing}.
+	
+	Er bestaan veel cloud computing providers, waaronder bijvoorbeeld:
+	\begin{itemize}
+		\item Amazon web services
+		\item DigitalOcean
+		\item Microsoft Azure
+		\item Google Cloud Platform
+	\end{itemize}\\
+	
+	\textbf{12-factor app} & Een methodologie voor het bouwen van Software as a Service (SaaS) applications \parencite{12Factor}. \\
+	
+	\textbf{The Open Group Architecture Framework} & A generic framework to build different IT architectures frameworks \parencite{TOGAF}.\\
+	
+	\textbf{4+1 architectural view model} & A model for describing the architecture of software-intensive systems, based on the use of multiple, concurrent views \parencite{4plus1}. \\
+\end{begrippen}
+
+
 %----------------------------------------------------------------------------------------
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
 
-\textbf{LAH} & \textbf{L}ist \textbf{A}bbreviations \textbf{H}ere\\
-\textbf{WSF} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or\\
+\textbf{CI} & \textbf{C}ontinuous \textbf{I}ntegration\\
+\textbf{CD} & \textbf{C}ontinuous \textbf{D}eployment\\
+\textbf{IT} & \textbf{I}nformation {T}echnology\\
+\textbf{IaC} & \textbf{I}nfrastructure \textbf{A}s \textbf{C}ode\\
+\textbf{K8s} & \textbf{K}ubernete\textbf{s}\\
+\textbf{SaaS} & \textbf{S}oftware \textbf{a}s \textbf{a} \textbf{S}ervice\\
+\textbf{TOGAF} & \textbf{T}he \textbf{O}pen \textbf{G}roup \textbf{A}rchitecture \textbf{F}ramework
 
 \end{abbreviations}
 

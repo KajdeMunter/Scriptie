@@ -26,7 +26,7 @@
 %------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}[1996/12/01]
-\newcommand{\classname}{BachelorThesis}
+\newcommand{\classname}{formatting}
 \ProvidesClass{\classname}[2017/08/27 v1.6]
 \providecommand{\baseclass}{book}
 \RequirePackage{etoolbox}
@@ -210,6 +210,7 @@
 \DeclareDocumentCommand{\author}{m}{\newcommand{\authorname}{#1}\renewcommand{\@author}{#1}}
 \NewDocumentCommand{\technicalSupervisor}{m}{\newcommand{\techsupname}{#1}}
 \NewDocumentCommand{\skillsSupervisor}{m}{\newcommand{\skillssupname}{#1}}
+\NewDocumentCommand{\version}{m}{\newcommand{\versionnr}{#1}}
 \NewDocumentCommand{\examiner}{m}{\newcommand{\examname}{#1}}
 \NewDocumentCommand{\degree}{m}{\newcommand{\degreename}{#1}}
 \NewDocumentCommand{\addresses}{m}{\newcommand{\addressname}{#1}}
@@ -310,6 +311,21 @@ KOMA-script documentation for details.}]{fancyhdr}
 	\thispagestyle{\blank@p@gestyle}
 	\newpage
 	\if@twocolumn\hbox{}\newpage\fi\fi\fi%
+}
+
+%----------------------------
+%	GLOSSARY PAGE DESIGN
+%----------------------------
+
+\newcommand{\begripname}{Begrippenlijst}
+\NewDocumentEnvironment{begrippen}{ m }{%
+	\ifbool{nolistspace}{\begingroup\singlespacing}{}
+	\ifbool{listtoc}{\addchap{\begripname}}{\addchap*{\begripname}}
+	\begin{longtable}{#1}
+	}{%
+	\end{longtable}
+	\addtocounter{table}{-1}% Don't count this table as one of the document tables
+	\ifbool{nolistspace}{\endgroup}{}
 }
 
 %----------------------------
