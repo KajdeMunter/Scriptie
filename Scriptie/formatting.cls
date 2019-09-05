@@ -343,6 +343,32 @@ KOMA-script documentation for details.}]{fancyhdr}
 	\ifbool{nolistspace}{\endgroup}{}
 }
 
+%---------------------------
+%	VOORWOORD
+%---------------------------
+
+\usepackage{xcolor}
+\colorlet{mdtRed}{red!50!black}
+\newcommand{\voorwoordname}{Voorwoord}
+
+\ifbool{consistentlayout}{
+	\DeclareDocumentEnvironment{acknowledgements}{}{%
+		\tttypeout{\voorwoordname}
+		\addchap*{\voorwoordname}
+	}
+}
+{
+	\DeclareDocumentEnvironment{voorwoord}{}{%
+		\checktoopen
+		\tttypeout{\voorwoordname}
+		\thispagestyle{plain}
+		\begin{center}{\huge\textit{\voorwoordname}\par}\end{center}
+	}
+	{
+		\vfil\vfil\null
+	}
+}
+
 %----------------------------
 %	ABSTRACT PAGE DESIGN
 %----------------------------
