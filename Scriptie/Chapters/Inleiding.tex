@@ -4,10 +4,11 @@
 
 
 \section{Aanleiding}
-\enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt wanneer interne software bij Developers.nl wordt ontwikkeld. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethodes in topconditie zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage.
+\enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt wanneer interne software bij Developers.nl wordt ontwikkeld. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethode in topconditie zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage.
 
 Dit betekent dat er veel onderzoek moet worden uitgevoerd op de kwaliteit van de huidige website. Met name de infrastructuur, het \enquote{Continuous Integration/Continuous Deployment} (CI/CD) en het horizontaal en verticaal schalen hebben nog veel ruimte voor verbetering.
 
+Bovendien zijn er meerdere interne systemen dan alleen de website. Het onderhouden van (binnenkort) 5 systemen vereist veel tijd en moeite, dus moet dit makkelijker worden.
 
 \section{Belang}
 
@@ -21,7 +22,9 @@ Bovendien heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source 
 	\item Betere schaalbaarheid
 	\item Mindere onderhoudskosten
 \end{itemize}
-Ook al is de website op eerste gezicht van de buitenkant vrij eenvoudig, er moet (om indruk te wekken op potentiële klanten en nieuwe medewerkers) onder water een stevige applicatie draaien dat eigenlijk iets te \enquote{over-engineered} is. Kortom, er is nog veel te verbeteren en toe te voegen.
+Ook al is de website op eerste gezicht van de buitenkant vrij eenvoudig, er moet (om indruk te wekken op potentiële klanten en nieuwe medewerkers) onder water een stevige applicatie draaien dat eigenlijk iets \enquote{te complex} is. Kortom, er is nog veel te verbeteren en toe te voegen.
+
+Het onderhouden van (binnenkort) 5 interne systemen betekent dat er veel werk dubbel wordt uitgevoerd. Dit kost geld, en kan beter.
 
 \pagebreak
 
@@ -35,10 +38,10 @@ info@developers.nl\\
 010-3035929\\
 
 \subsection{Core business}
-Developers.nl neemt developers in dienst. De developers die worden aangenomen zullen voornamelijk gespecialiseerd zijn in PHP, Python, Java of front-end. Deze developers worden uitgezet naar een klant (een extern bedrijf) die naar een developer zoekt. Developers.nl kiest voor de beste developer voor de taak en zal deze inzetten bij een klant. De opdrachten van de developers zijn op locatie van de klant en duren voornamelijk langer dan een jaar, maar op uitzondering zijn er ook regelmatig kortere opdrachten. Zodra de developer klaar is met zijn of haar taak zal Developers.nl zo snel mogelijk een nieuwe opdracht toewijzen \parencite{Stageplan}. Concreet zegt \parencite{Positioneringsprofiel}: \enquote{Detachering van developers die software applicaties bouwen voor verschillende klanten.}
+Developers.nl neemt software ontwikkelaars in dienst. De ontwikkelaars die worden aangenomen zullen voornamelijk gespecialiseerd zijn in PHP, Python, Java of front-end. Ze worden uitgezet naar een klant (een extern bedrijf) die naar een ontwikkelaar zoekt, Developers.nl kiest hier voor de beste ontwikkelaar voor de taak en zal deze inzetten bij een klant. De opdrachten van de ontwikkelaars zijn op locatie van de klant en duren voornamelijk langer dan een jaar, maar op uitzondering zijn er ook regelmatig kortere opdrachten. Zodra de ontwikkelaar klaar is met zijn of haar taak zal Developers.nl zo snel mogelijk een nieuwe opdracht toewijzen \parencite{Stageplan}. Concreet zegt het positioneringsprofiel \parencite{Positioneringsprofiel}: \enquote{Detachering van developers die software applicaties bouwen voor verschillende klanten.}
 
 \subsection{Geschiedenis}
-Mark Smit heeft altijd al in de detacherings hoek gewerkt. Hieruit is de inspiratie begonnen om een detacheringsbedrijf voor zichzelf op te richten in 2012. Het bedrijf heette \enquote{JC Capacity} en was onderdeel van \enquote{JC Groep}. Mark Smit was mede eigenaar met 2 anderen binnen JC Groep. Er was op dit moment alleen nog een kleine groep PHP developers. In 2013 kwamen er Java en Python developers bij. In februari 2014 is Mark Smit samen met een andere eigenaar binnen JC Group als JC Capacity afgesplitst in verband met meningsverschillen over welke kant het bedrijf op moest doordat JC Groep meer op de zorg gefocussed was. Gelijk hierna is een naamsverandering plaatsgevonden en heette het bedrijf \enquote{Developers.nl}.
+Mark Smit heeft altijd al in de detacheringshoek gewerkt. Hieruit is de inspiratie begonnen om een detacheringsbedrijf voor zichzelf op te richten in 2012. Het bedrijf heette \enquote{JC Capacity} en was onderdeel van \enquote{JC Groep}. Mark Smit was mede eigenaar met 2 anderen binnen JC Groep. Er was op dit moment alleen nog een kleine groep PHP ontwikkelaars, totdat in 2013 een aantal Java en Python ontwikkelaars zijn aangenomen. In februari 2014 is Mark Smit samen met een andere eigenaar binnen JC Group als JC Capacity afgesplitst. Dit gebeurde in verband met meningsverschillen over welke kant het bedrijf op moest doordat JC Groep meer op de zorg gefocust was. Gelijk hierna is een naamsverandering plaatsgevonden en heette het bedrijf \enquote{Developers.nl}.
 
 Kort na de naamsverandering is het bedrijf exponentieel gegroeid, de teams PHP, Java en Python zijn individueel gegroeid, maar ook is er een nieuwe Front-End tak bijgekomen.  vanaf 2015 is heeft de andere eigenaar het bedrijf verlaten en was Mark Smit de enige eigenaar van Developers.nl De naamsverandering en de splitsing van JC Groep heeft ervoor gezorgd dat Developers.nl meer vrijheid had om veranderingen aan te brengen en naamsbekendheid op te krikken. 
 
@@ -46,18 +49,18 @@ In 2016 heeft Mark Smit een tweede bedrijf opgericht met de naam \enquote{Gemvis
 
 \subsection{Werkomgeving}
 \subsubsection{Cultuur}
-Developers.nl is een jonge en ambitieuze club mensen met een sterke onderlinge samenhang. Developers is een platte organisatie. Er heerst een sfeer van vrijheid, verantwoordelijkheid en \enquote{work hard, play hard}. De omgang met elkaar is informeel en persoonlijk, met het gevoel van een vriendenclub. De organisatie wordt gerund vanuit het besef dat plezier in het werk belangrijk is. De dresscode is business casual zodat klanten hetzelfde gevoel hebben van vrijheid en verantwoordelijkheid bij de developers. Op het kantoor luncht iedereen gezamenlijk en wordt er regelmatig geborreld na werktijd. Drinken is inbegrepen en lunch moet zelf meegebracht worden. Volgens het Competing Values Framework van Robert Quinn en Rohrbaug (1983) valt de cultuur onder mensgericht, de medewerkers staan centraal \parencite{Bedrijfscultuur}.
+Developers.nl is een jonge en ambitieuze club mensen met een sterke onderlinge samenhang. Developers is een platte organisatie. Er heerst een sfeer van vrijheid, verantwoordelijkheid en \enquote{work hard, play hard}. De omgang met elkaar is informeel en persoonlijk, met het gevoel van een vriendenclub. De organisatie wordt gerund vanuit het besef dat plezier in het werk belangrijk is. De dresscode is business casual zodat klanten hetzelfde gevoel hebben van vrijheid en verantwoordelijkheid bij de ontwikkelaars. Op het kantoor luncht iedereen gezamenlijk en wordt er regelmatig geborreld na werktijd. Drinken is inbegrepen en lunch moet zelf meegebracht worden. Volgens het Competing Values Framework van Robert Quinn en Rohrbaug (1983) valt de cultuur onder mensgericht, de medewerkers staan centraal \parencite{Bedrijfscultuur}.
 
-Er is veel aandacht voor de medewerker als mens en zijn of haar persoonlijke leven, ook buiten werktijd. De open cultuur biedt ruimte voor het inbrengen van ambities, ideeën, vragen en wensen, op welk gebied dan ook. Vanuit het principe van wederkerigheid spant de organisatie zich in de medewerker zoveel mogelijk te helpen en een goede werkgever te zijn, zodat medewerkers zich inspannen voor hun werkgever, collega’s en klanten.
+Er is veel aandacht voor de medewerker als mens en zijn of haar persoonlijke leven, ook buiten werktijd. De open cultuur biedt ruimte voor het inbrengen van ambities, ideeën, vragen en wensen, op welk gebied dan ook. Vanuit het principe van wederkerigheid spant de organisatie zich in om de medewerker zoveel mogelijk te helpen en een goede werkgever te zijn, zodat medewerkers zich inspannen voor hun werkgever, collega’s en klanten.
 
 Ontwikkeling staat in alle opzichten centraal en strekt zich uit in twee richtingen: De ontwikkeling van medewerkers, zowel persoonlijk als professioneel, en de ontwikkeling van individuele en collectieve vakinhoudelijke kennis.
 
-Developers.nl faciliteert kennis aan haar eigen developers in de vorm van onder andere \enquote{TechNights}, kennissessies en gezamenlijke deelname aan conferenties in het buitenland. Het zijn van een kennisorganisatie werkt twee kanten op: klanten met uitdagende opdrachten weten Developers hiervoor te vinden en dat maakt de werksituatie compleet om medewerkers blijvend te boeien.
+Developers.nl faciliteert kennis aan haar eigen ontwikkelaars in de vorm van onder andere \enquote{TechNights}, kennissessies en gezamenlijke deelname aan conferenties in het buitenland. Het zijn van een kennisorganisatie werkt twee kanten op: klanten met uitdagende opdrachten weten Developers.nl hiervoor te vinden en dat maakt de werksituatie compleet om medewerkers blijvend te boeien.
 
 Klanten ervaren Developers.nl als oprecht geïnteresseerd, persoonlijk, analytisch, flexibel en vlot schakelend. Medewerkers zijn eerlijk en open, communicatief sterk, professioneel, betrouwbaar en intelligent. Het feit dat ze kunnen terugvallen op de collectieve kennis van de groep en dat ze bereid zijn om ook met de klant deze kennis te delen maakt ze extra waardevol. Fieldmanagers zijn erg sterk in het doorgeven van de opdracht naar uitvoerenden. 
 
 \subsubsection{Eigen omgeving}
-Developers.nl heeft rond de 60 software engineers. Deze zijn voornamelijk op een externe opdracht bij ene klant. Elke vrijdag zullen 5 van de zogenaamde \enquote{kennisambassadeurs} op kantoor zijn. Dit zijn de meest senior ontwikkelaars per team. Deze zijn dan in staat om stagiairs en/of andere medewerkers persoonlijk te helpen, maar ze zijn altijd bereikbaar via Slack of telefonisch.
+Developers.nl heeft rond de 60 software ontwikkelaars. Deze zijn voornamelijk op een externe opdracht bij ene klant. Elke vrijdag zullen 5 van de zogenaamde \enquote{kennisambassadeurs} op kantoor zijn. Dit zijn de meest senior ontwikkelaars per team. Deze zijn dan in staat om stagiairs en/of andere medewerkers persoonlijk te helpen, maar ze zijn altijd bereikbaar via Slack of telefonisch.
 
 De bedrijfsbegeleider voor deze stage is \textbf{Maarten de Boer}. Dit is de algemene directeur van Developers.nl en is in 2003 afgestudeerd aan de hogeschool Inholland met Strategic marketing. Aangezien Maarten zelf geen technische kennis heeft is er ook een technische begeleider aangewezen: \textbf{Jelle van de Haterd}. Jelle is senior developer, DevOps engineer en kennisambassadeur bij Developers.nl. Hij is in 2006 afgestudeerd op de Hogeschool Rotterdam met als opleiding Grafimediatechnologie \parencite{Afstudeervoorstel}.
 
@@ -66,25 +69,28 @@ Binnen developers.nl word iedere stagiair behandeld als een daadwerkelijk sterke
 Voor technische vragen zijn de kennisambassadeurs altijd bereikbaar, bij een vraag zullen zij hun best doen om het zo duidelijk mogelijk over te brengen, en zorgen ervoor dat ik het ook daadwerkelijk begrijp. De kennisambassadeurs kijken code inhoudelijk na en geven hier feedback op.
 
 \subsection{Taken}
-Tijdens de stageperiode zal de stagiair een lead rol aannemen in een team van 2 part-time studenten en een stagiair. De stagiair gaat onderzoeken hoe Developers.nl haar website beter schaalbaar en onderhoudbaar kan maken. Dit omtrent onderzoek over technieken als Kubernetes, Docker Swarm, cloud services als AWS, Azure, \enquote{Infrastructure-as-code} (IaC) tools als Ansible, Chef, Puppet etc. Ook moet de gekozen oplossing automatisch gedeployed worden met een CI/CD tool als Jenkins, CircleCI, Travis of door middel van de huidige Bitbucket Pipeline. Door het gehele proces moet er extra rekening gehouden worden met de security van de gekozen oplossing in verband met de gevoeligheid van een aantal systemen \parencite{Afstudeervoorstel}.
-
-\pagebreak
+Tijdens de stageperiode zal de stagiair een leidende rol aannemen in een team van 2 part-time studenten en een stagiair. De stagiair gaat onderzoeken hoe Developers.nl haar websites beter schaalbaar en onderhoudbaar kan maken. Dit omtrent onderzoek over technieken als Kubernetes, Docker Swarm, cloud services als AWS, Azure, \enquote{Infrastructure-as-code} (IaC) tools als Ansible, Chef, Puppet etc. Ook moet de gekozen oplossing automatisch gedeployed worden met een CI/CD tool als Jenkins, CircleCI, Travis of door middel van de huidige Bitbucket Pipeline. Door het gehele proces moet er extra rekening gehouden worden met de security van de gekozen oplossing in verband met de gevoeligheid van een aantal systemen \parencite{Afstudeervoorstel}.
 
 \section{Doelstelling}
-% TODO: Doelstelling
 
-Het doel van dit onderzoek is het beter schaalbaar en onderhoudbaar maken van de websites die Developers.nl als interne projecten beheerd. Dit omtrent onderzoek over technieken als kubernetes, Docker Swarm, cloud services als AWS, Azure, \enquote{Infrastructure-as-code} tools als Ansible, Chef, Puppet etc. Ook moet de gekozen oplossing automatisch gedeployed worden met een continuous delivery tool als Jenkins, CircleCI, Travis of door middel van de huidige Bitbucket Pipeline. Door het gehele proces moet er extra rekening gehouden worden met de security van de gekozen oplossing.
+Dit onderzoek heeft tot doel het verkrijgen van kennis en inzicht over de schaal- en onderhoudbaarheid van de interne systemen die Developers.nl beheert om vervolgens deze twee factoren te verbeteren.
 
 
 \section{Probleemstelling}
-% TODO: Probleemstelling
 
-Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
+Bij Developers.nl zijn niet altijd voldoende interne medewerkers beschikbaar om haar eigen systemen te onderhouden. Dit wil zeggen dat zodra er iets moet worden aangepast aan één van die systemen het onaangenaam lang kan duren voordat dit wordt doorgevoerd. Dit kan grote impact hebben wanneer (bijvoorbeeld) de website van Developers.nl niet meer bereikbaar is.
 
 \subsection{Hoofd- en Deelvragen}
+\subsubsection{Hoofdvraag}
+Hoe kan Developers.nl hun huidige systemen beter schaalbaar en onderhoudbaar maken?
+
+\subsubsection{Deelvragen}
 \begin{itemize}
-	\item One entry in the list
-	\item Another entry in the list
+	\item Hoe goed is de schaalbaarheid van de huidige websites?
+	\item Wat voor technieken zijn er voor schaal- en onderhoudbaarheid?
+	\item Wat voor verbeteringen ten aanzien van schaalbaar- en onderhoudbaarheid kunnen worden toegepast op de huidige websites?
+	\item Hoe gaan deze verbeteringen geïmplementeerd worden?
+	\item Voldoen de verbeteringen aan de vereiste requirements?
 \end{itemize}
 
 \section{Leeswijzer}
