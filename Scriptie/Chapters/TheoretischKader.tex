@@ -1,9 +1,42 @@
 \chapter{Theoretisch Kader}
 \label{Chapter2}
 
+% TODO: Inleiding hoofdstuk
+In dit hoofdstuk gaan we Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
 \section{Schaalbaarheid}
 
-Het woord schaalbaarheid is op zichzelf een vrij nietszeggend woord.
+Mark D. Hill heeft in 1990 onderzoek gedaan naar een concrete definitie naar schaalbaarheid \parencite{WhatIsScalability}. In zijn onderzoek concludeert hij het volgende:
+\begin{quote}
+	\textit{
+		I examined aspects of scalability, but did not find a useful, rigorous definition of it. Without such a definition, I assert that calling a system ‘scalable’ is about as useful as calling it ‘modern’. I encourage the technical community to either rigorously define scalability or stop using it to describe systems.
+	}
+\end{quote}
+Ondertussen zijn er meerdere pogingen gedaan om schaalbaarheid te definiëren. zo zijn L. Duboc, D. S. Rosenblum en T. Wicks op deze conclusie ingegaan en hebben een poging gedaan om een framework te creëren voor karakterisering en analyse van software schaalbaarheid \parencite{ScalabilityFramework}. Zij definiëren schaalbaarheid als:
+\begin{quote}
+	\textit{quality of software systems characterized by the causal impact that scaling aspects of the system environment and design have on certain measured system qualities as these aspects are varied over expected operational ranges}
+\end{quote}
+
+% TODO: uitleggen scalability framework
+
+In een onderzoek over de kenmerken van schaalbaarheid en de impact op prestatie heeft A. B. Bondy \parencite{ScalabilityCharacteristics} verdeeld schaalbaarheid in een aantal verschillende aspecten, waaronder:
+\begin{itemize}
+	\item \textbf{Structural scalability} (het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur)
+	\item \textbf{Load scalability} (het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt)
+	\item \textbf{Space scalability} (Het geheugenvereiste groeit niet naar \enquote{ondraaglijke niveaus} naarmate het aantal items toeneemt)
+	\item \textbf{Space-time scalability} (Het systeem blijft naar verwachtingen functioneren naarmate het aantal items dat het omvat toeneemt)
+\end{itemize}
+Bondy definieert schaalbaarheid als het vermogen van een systeem om een toenemend aantal elementen, objecten en werk gracieus te verwerken en / of vatbaar te zijn voor uitbreiding.
+
+H. El-Rewini en M. Abd-El-Barr noemen in het boek Advanced computer architecture and parallel processing \parencite{AdvancedArchitecture} ook een aantal \enquote{onconventionele} definities:
+\begin{itemize}
+	\item \textbf{Size scalability} (Meet de maximale hoeveelheid processors dat een systeem kan accommoderen)
+	\item \textbf{Application scalability} (De mogelijkheid om applicatiesoftware te draaien met verbeterde prestaties op een opgeschaalde versie van het systeem)
+	\item \textbf{Generation scalbility} (De mogelijkheid om op te schalen door het gebruik van de volgende generatie (snelle) componenten)
+	\item \textbf{Heterogeneous scalability} (het vermogen van een systeem om op te schalen met behulp van hardware- en softwarecomponenten die door verschillende leveranciers zijn gemaakt)
+\end{itemize}
+
+
 
 \subsection{Horizontaal}
 
@@ -11,3 +44,8 @@ Het woord schaalbaarheid is op zichzelf een vrij nietszeggend woord.
 
 \section{Onderhoudbaarheid}
 kaas
+
+\section{Overlapping}
+Functional scalability: The ability to enhance the system by adding new functionality without disrupting existing activities.
+
+Ook onderhoudbaar
