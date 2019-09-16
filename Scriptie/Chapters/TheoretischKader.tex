@@ -19,7 +19,7 @@ Ondertussen zijn er meerdere pogingen gedaan om schaalbaarheid te definiëren. z
 
 % TODO: uitleggen scalability framework
 
-In een onderzoek over de kenmerken van schaalbaarheid en de impact op prestatie heeft A. B. Bondy \parencite{ScalabilityCharacteristics} verdeeld schaalbaarheid in een aantal verschillende aspecten, waaronder:
+In een onderzoek over de kenmerken van schaalbaarheid en de impact op prestatie heeft A. B. Bondy \parencite{ScalabilityCharacteristics} schaalbaarheid verdeeld in een aantal verschillende aspecten, waaronder:
 \begin{itemize}
 	\item \textbf{Structural scalability} (het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur)
 	\item \textbf{Load scalability} (het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt)
@@ -32,20 +32,58 @@ H. El-Rewini en M. Abd-El-Barr noemen in het boek Advanced computer architecture
 \begin{itemize}
 	\item \textbf{Size scalability} (Meet de maximale hoeveelheid processors dat een systeem kan accommoderen)
 	\item \textbf{Application scalability} (De mogelijkheid om applicatiesoftware te draaien met verbeterde prestaties op een opgeschaalde versie van het systeem)
-	\item \textbf{Generation scalbility} (De mogelijkheid om op te schalen door het gebruik van de volgende generatie (snelle) componenten)
+	\item \textbf{Generation scalability} (De mogelijkheid om op te schalen door het gebruik van de volgende generatie (snelle) componenten)
 	\item \textbf{Heterogeneous scalability} (het vermogen van een systeem om op te schalen met behulp van hardware- en softwarecomponenten die door verschillende leveranciers zijn gemaakt)
 \end{itemize}
 
+C.B. Weinstock en J. B. Goodenough hebben een algemeen onderzoek uitgevoerd naar schaalbaarheid \parencite{OnSystemScalability}. Zij noemen in hun conclusie dat er voornamelijk twee betekenissen van het woord schaalbaarheid zijn:
+\begin{enumerate}
+	\item De mogelijkheid om met verhoogde werkdruk om te gaan (zonder extra resources aan een systeem toe te voegen).
+	\item De mogelijkheid om met verhoogde werkdruk om te gaan door herhaaldelijk een kosteneffectieve strategie toe te passen om de mogelijkheden van een systeem uit te breiden.
+\end{enumerate}
+
+Het valt op dat een concrete definitie van schaalbaarheid alleen duidelijk te definiëren is wanneer het in meerdere verschillende soorten is opgesplitst. Daarom zal in dit onderzoek vanaf dit punt altijd worden gespecificeerd welke soort schaalbaarheid het betreft. In dit onderzoek wordt vooral de focus gelegd op de \enquote{structural scalability} en \enquote{load scalability} uit \parencite{ScalabilityCharacteristics}. \enquote{application scalability} uit \parencite{AdvancedArchitecture} heeft veel overlapping met de load scalability. Omdat load scalability iets generieker is en de twee definities van Weinstock en Goodenough \parencite{OnSystemScalability} omvat wordt deze geprefereerd boven application scalability. De overgebleven definities zijn minder relevant voor dit onderzoek aangezien het vooral te maken heeft met hardware.
+
+\subsection{Schaalbaarheid controleren}
+In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} zijn een aantal manieren genoemd om de schaalbaarheid van een systeem te controleren.
+
+\subsubsection{Knelpunten}
+Deze knelpunten hebben vooral te maken de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user interface en de complexiteitsgraad van algoritmen.
+
+\subsubsection{Onthullen van schaalbaarheids-aannames}
+Dit gaat over het onderzoeken hoe de uitbreiding van een systeem nieuwe problemen kan onthullen. Zodra een systeem zich uitbreidt is er een grotere kans op errors in de systeemconfiguratie, \enquote{zeldzame} errors komen vaker voor, is het belangrijk dat een probleem in het systeem gelokaliseerd blijft, en kan het een stuk complexer en lastiger worden om het systeem te begrijpen.
+
+\subsubsection{Schaalstrategieën}
+Hier wordt bekeken wat voor verschillende tekortkomingen een schaalstrategie heeft. Zodra een systeem een lange termijn leeft kan het zo zijn dat het systeem anders wordt gebruikt, hier moet de strategie op voorbereid zijn. Een strategie moet moet niet te afhankelijk zijn van het feit dat gebruikers weten hoe het systeem wordt geïmplementeerd. Ook moet de strategie voorbereid zijn op de vooruitgang van hardware.
+
+\subsubsection{Methoden voor schaalbaarheidsborging}
+In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om te testen of een systeem schaalbaar is. Wel zijn er methoden om de schaalbaarheid te waarborgen, zoals:
+\begin{itemize}
+	\item Onderzoek de \enquote{performance curves} en karakteriseer deze met een Big O notatie.
+	\item Identificeer mechanismen om knelpunten aan het licht brengen of waar aannames van het schaalbaarheids- ontwerp beginnen te worden geschonden.
+	\item Voer een SWOT analyse uit op de schaalbaarheids-strategie.
+	\begin{itemize}
+		\item \textbf{S}trengths (De soorten groei waar de strategie voor ontworpen is)
+		\item \textbf{W}eaknesses (De soorten groei waar de strategie niet voor ontworpen is)
+		\item \textbf{O}pportunities (mogelijke veranderingen in werklast of technologie die de strategie goed zou kunnen benutten)
+		\item \textbf{T}hreats (mogelijke veranderingen in de werklast of technologie die de strategie in twijfel zouden kunnen trekken)
+	\end{itemize}
+\end{itemize}
 
 
 \subsection{Horizontaal}
 
 \subsection{Verticaal}
 
+\subsection{Prestaties versus schaalbaarheid}
+
+\subsection{Kosten versus schaalbaarheid}
+
 \section{Onderhoudbaarheid}
 kaas
 
 \section{Overlapping}
 Functional scalability: The ability to enhance the system by adding new functionality without disrupting existing activities.
+
 
 Ook onderhoudbaar
