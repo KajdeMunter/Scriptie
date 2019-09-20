@@ -104,10 +104,23 @@ ISO 25010 \parencite{ISO25010} definieert onderhoudbaarheid als \enquote{The deg
 Een bekende manier om onderhoudbaarheid te meten is de zogenaamde Maintainability Index (MI). Hier is echter veel kritiek op \parencite{MaintainabilityLiteratureReview, WhyNoMI, WhyNoMI2}.
 
 \section{Infrastructuur}
-\enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them.} \parencite{ArchitectureStakeholders}.
+
+Infrastructuur vs architectuur
 
 
-\section{Overlapping}
+Rozanski, N. en Woods, E. definiëren de architectuur van software met de volgende definitie: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them.} \parencite{ArchitectureStakeholders}. Ook noemen zij vier verschillende aspecten die behoren bij software architectuur:
+\begin{itemize}
+	\item \textbf{Statische structuur} (interne design-time elementen zoals modules, classes, packages, services, of andere zelfstandige code-eenheden en hun opstelling.)
+	\item \textbf{Dynamische structuur} (de runtime-elementen zoals informatie-flows, parallelle of opeenvolgende uitvoering van interne taken, of de invloed die ze hebben op data en hun interacties)
+	\item \textbf{Extern zichtbaar gedrag} (de functionele interacties tussen het systeem en zijn omgeving. Denk aan Informatie-flows in en uit het systeem, of API's.)
+	\item \textbf{Kwaliteitseigenschappen} (externe zichtbare, niet-functionele eigenschappen van een systeem zoals prestaties, beveiliging of schaalbaarheid.)
+\end{itemize}
+
+
+
+\section{Onderhoudbaarheid \& Schaalbaarheid}
+
+
 Functional scalability: The ability to enhance the system by adding new functionality without disrupting existing activities.
 
 
