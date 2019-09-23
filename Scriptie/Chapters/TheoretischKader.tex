@@ -69,11 +69,10 @@ In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om 
 	\end{itemize}
 \end{itemize}
 
-Schalen kan op twee verschillende manieren, namelijk horizontaal en verticaal. Horizontaal wilt zeggen dat er geschaald wordt door meerdere machines toe te voegen, terwijl verticaal schalen betekent dat er  meer rekenkracht (als bijvoorbeeld een betere CPU of meer RAM) wordt toegevoegd aan een machine.
+Schalen kan op twee verschillende manieren, namelijk horizontaal en verticaal. Horizontaal wilt zeggen dat er geschaald wordt door meerdere machines toe te voegen, terwijl verticaal schalen betekent dat er  meer rekenkracht (als bijvoorbeeld een betere CPU of meer RAM) wordt toegevoegd aan een machine. Ook is bij het schaalbaar maken van systemen van belang dat het zo min mogelijk ten koste gaat van prestaties en niet meer kost dan nodig is.
 
-\subsection{Prestaties versus schaalbaarheid}
-
-\subsection{Kosten versus schaalbaarheid}
+\subsection{Functionele schaalbaarheid}
+Wat in de literatuur mist over schaalbaarheid is het schrijven van \enquote{schaalbare code}. Deze term wordt regelmatig gebruikt in informele bronnen als blogs of vacatures, maar is nooit concreet gedefinieerd. Schaalbare code betekend in welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem. In dit onderzoek refereren we naar deze definitie als \enquote{functionele schaalbaarheid}. Functionele schaalbaarheid ligt heel dicht bij de definitie van onderhoudbaarheid.
 
 \section{Onderhoudbaarheid}
 Grubb, P. en Takang, A. A. definiëren in hun boek \enquote{Software Maintenance: Concepts And Practice} onderhoudbaarheid als \enquote{The discipline concerned with changes related to a software system after delivery} \parencite{MaintenanceConcepts}. In 1993 heeft IEEE een \enquote{Standard Glossary of Software Engineering Terminology} opgesteld. Deze begrippenlijst definieert onderhoudbaarheid als \enquote{the ease with which a software system or component can be modified to correct faults, improve performance or other attributes, or adapt to a changed environment} \parencite{SENTerminology}. Deze twee definities komen uiteindelijk op hetzelfde neer. Grubb en Takang noemen het in de context van een discipline, terwijl IEEE het als een kwaliteitseigenschap definieert. Ook specificeren Grubb en Takang het feit dat het alleen ná het opleveren gebeurt. In dit onderzoek wordt uitgegaan van de definitie van IEEE.
@@ -115,15 +114,3 @@ Rozanski, N. en Woods, E. definiëren de architectuur van software met de volgen
 	\item \textbf{Extern zichtbaar gedrag} (de functionele interacties tussen het systeem en zijn omgeving. Denk aan Informatie-flows in en uit het systeem, of API's.)
 	\item \textbf{Kwaliteitseigenschappen} (externe zichtbare, niet-functionele eigenschappen van een systeem zoals prestaties, beveiliging of schaalbaarheid.)
 \end{itemize}
-
-
-
-\section{Onderhoudbaarheid \& Schaalbaarheid}
-
-
-Functional scalability: The ability to enhance the system by adding new functionality without disrupting existing activities.
-
-
-
-
-Ook onderhoudbaar
