@@ -2,7 +2,7 @@
 \label{Chapter2}
 
 % TODO: Inleiding hoofdstuk
-In dit hoofdstuk gaan we Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+In dit hoofdstuk worden drie belangrijk begrippen uit de onderzoeksvraag behandeld. Er wordt een literatuuronderzoek gedaan naar de bestaande definities van schaalbaarheid, onderhoudbaarheid en architectuur met betrekking tot software. Hierna wordt het begrip afgebakend tot een concrete definitie waar het onderzoek op terug kan vallen.
 
 \section{Schaalbaarheid}
 
@@ -17,7 +17,7 @@ Ondertussen zijn er meerdere pogingen gedaan om schaalbaarheid te definiëren. z
 	\textit{quality of software systems characterized by the causal impact that scaling aspects of the system environment and design have on certain measured system qualities as these aspects are varied over expected operational ranges}
 \end{quote}
 
-% TODO: uitleggen scalability framework
+% TODO: uitleggen scalability framework?
 
 In een onderzoek over de kenmerken van schaalbaarheid en de impact op prestatie heeft A. B. Bondy \parencite{ScalabilityCharacteristics} schaalbaarheid verdeeld in een aantal verschillende aspecten, waaronder:
 \begin{itemize}
@@ -41,7 +41,7 @@ C.B. Weinstock en J. B. Goodenough hebben een algemeen onderzoek uitgevoerd naar
 	\item De mogelijkheid om met verhoogde werkdruk om te gaan (zonder extra resources aan een systeem toe te voegen).
 	\item De mogelijkheid om met verhoogde werkdruk om te gaan door herhaaldelijk een kosteneffectieve strategie toe te passen om de mogelijkheden van een systeem uit te breiden.
 \end{enumerate}
-Het valt op dat een concrete definitie van schaalbaarheid alleen duidelijk te definiëren is wanneer het in meerdere verschillende soorten is opgesplitst. Daarom zal in dit onderzoek vanaf dit punt altijd worden gespecificeerd welke soort schaalbaarheid het betreft. In dit onderzoek wordt vooral de focus gelegd op de \enquote{structural scalability} en \enquote{load scalability} uit \parencite{ScalabilityCharacteristics}. \enquote{application scalability} uit \parencite{AdvancedArchitecture} heeft veel overlapping met de load scalability. Omdat load scalability iets generieker is en de twee definities van Weinstock en Goodenough \parencite{OnSystemScalability} omvat wordt deze geprefereerd boven application scalability. De overgebleven definities zijn minder relevant voor dit onderzoek aangezien ze te maken hebben met hardware, of niet volledig toepasselijk is op infrastructuur.
+Het valt op dat een concrete definitie van schaalbaarheid alleen duidelijk te definiëren is wanneer het in meerdere verschillende soorten is opgesplitst. Daarom zal in dit onderzoek vanaf dit punt altijd worden gespecificeerd welke soort schaalbaarheid het betreft. In dit onderzoek wordt vooral de focus gelegd op de \enquote{structural scalability} en \enquote{load scalability} uit \parencite{ScalabilityCharacteristics}. \enquote{application scalability} uit \parencite{AdvancedArchitecture} heeft veel overlapping met de load scalability. Omdat load scalability iets generieker is en de twee definities van Weinstock en Goodenough \parencite{OnSystemScalability} omvat wordt deze geprefereerd boven application scalability. De overgebleven definities zijn minder relevant voor dit onderzoek aangezien ze te maken hebben met hardware, of niet volledig toepasselijk is op de architectuur.
 
 \subsection{Schaalbaarheid controleren}
 In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} zijn een aantal manieren genoemd om de schaalbaarheid van een systeem te controleren.
@@ -102,12 +102,8 @@ ISO 25010 \parencite{ISO25010} definieert onderhoudbaarheid als \enquote{The deg
 
 Een bekende manier om onderhoudbaarheid te meten is de zogenaamde Maintainability Index (MI). Hier is echter veel kritiek op \parencite{MaintainabilityLiteratureReview, WhyNoMI, WhyNoMI2}.
 
-\section{Infrastructuur}
-
-Infrastructuur vs architectuur
-
-
-Rozanski, N. en Woods, E. definiëren de architectuur van software met de volgende definitie: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them.} \parencite{ArchitectureStakeholders}. Ook noemen zij vier verschillende aspecten die behoren bij software architectuur:
+\section{Architectuur}
+Bass, L. en Clements, P. definiëren de architectuur van software met de volgende definitie \parencite{ArchitectureInPractice}: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them.}. Ook noemen Bass en Clements vier verschillende aspecten die behoren bij software architectuur:
 \begin{itemize}
 	\item \textbf{Statische structuur} (interne design-time elementen zoals modules, classes, packages, services, of andere zelfstandige code-eenheden en hun opstelling.)
 	\item \textbf{Dynamische structuur} (de runtime-elementen zoals informatie-flows, parallelle of opeenvolgende uitvoering van interne taken, of de invloed die ze hebben op data en hun interacties)

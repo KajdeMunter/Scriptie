@@ -220,6 +220,12 @@
 \NewDocumentCommand{\faculty}{m}{\newcommand{\facname}{#1}}
 \NewDocumentCommand{\subject}{m}{\newcommand{\subjectname}{#1}}
 \NewDocumentCommand{\keywords}{m}{\newcommand{\keywordnames}{#1}}
+\NewDocumentCommand{\hoofdvraag}{m}{\newcommand{\hoofdvraagname}{#1}}
+\NewDocumentCommand{\deelvraaghuidig}{m}{\newcommand{\deelhuidig}{#1}}
+\NewDocumentCommand{\deelvraagtechnieken}{m}{\newcommand{\deeltechnieken}{#1}}
+\NewDocumentCommand{\deelvraagverbetering}{m}{\newcommand{\deelverbetering}{#1}}
+\NewDocumentCommand{\deelvraagimplementatie}{m}{\newcommand{\deelimplementatie}{#1}}
+\NewDocumentCommand{\deelvraagrequirements}{m}{\newcommand{\deelrequirements}{#1}}
 
 \newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active  
 	\if@openright\cleardoublepage\else\clearpage\fi
