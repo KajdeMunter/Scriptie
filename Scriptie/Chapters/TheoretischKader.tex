@@ -72,9 +72,9 @@ In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om 
 Schalen kan op twee verschillende manieren, namelijk horizontaal en verticaal. Horizontaal wilt zeggen dat er geschaald wordt door meerdere machines toe te voegen, terwijl verticaal schalen betekent dat er  meer rekenkracht (als bijvoorbeeld een betere CPU of meer RAM) wordt toegevoegd aan een machine. Ook is bij het schaalbaar maken van systemen van belang dat het zo min mogelijk ten koste gaat van prestaties en niet meer kost dan nodig is.
 
 \subsection{Functionele schaalbaarheid}
-Wat in de literatuur mist over schaalbaarheid is het schrijven van \enquote{schaalbare code}. Deze term wordt regelmatig gebruikt in informele bronnen als blogs of vacatures, maar is nooit concreet gedefinieerd. Schaalbare code betekend in welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem. In dit onderzoek refereren we naar deze definitie als \enquote{functionele schaalbaarheid}. Functionele schaalbaarheid ligt heel dicht bij de definitie van onderhoudbaarheid.
+Wat in de literatuur mist over schaalbaarheid is het schrijven van \enquote{schaalbare code}. Deze term wordt regelmatig gebruikt in informele bronnen als blogs of vacatures, maar is nooit concreet gedefinieerd. Schaalbare code betekent in welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem. In dit onderzoek refereren we naar deze definitie als \enquote{functionele schaalbaarheid}. Functionele schaalbaarheid ligt heel dicht bij de definitie van onderhoudbaarheid. Deze term zal verder worden uitgelicht in paragraaf \ref{onderhoudbaarheid}.
 
-\section{Onderhoudbaarheid}
+\section{Onderhoudbaarheid} \label{onderhoudbaarheid}
 Grubb, P. en Takang, A. A. definiëren in hun boek \enquote{Software Maintenance: Concepts And Practice} onderhoudbaarheid als \enquote{The discipline concerned with changes related to a software system after delivery} \parencite{MaintenanceConcepts}. In 1993 heeft IEEE een \enquote{Standard Glossary of Software Engineering Terminology} opgesteld. Deze begrippenlijst definieert onderhoudbaarheid als \enquote{the ease with which a software system or component can be modified to correct faults, improve performance or other attributes, or adapt to a changed environment} \parencite{SENTerminology}. Deze twee definities komen uiteindelijk op hetzelfde neer. Grubb en Takang noemen het in de context van een discipline, terwijl IEEE het als een kwaliteitseigenschap definieert. Ook specificeren Grubb en Takang het feit dat het alleen ná het opleveren gebeurt. In dit onderzoek wordt uitgegaan van de definitie van IEEE.
 
 Grubb en Takang noemen ook een aantal redenen waarom software moet worden onderhouden:
@@ -103,10 +103,19 @@ ISO 25010 \parencite{ISO25010} definieert onderhoudbaarheid als \enquote{The deg
 Een bekende manier om onderhoudbaarheid te meten is de zogenaamde Maintainability Index (MI). Hier is echter veel kritiek op \parencite{MaintainabilityLiteratureReview, WhyNoMI, WhyNoMI2}.
 
 \section{Architectuur}
-Bass, L. en Clements, P. definiëren de architectuur van software met de volgende definitie \parencite{ArchitectureInPractice}: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them.}. Ook noemen Bass en Clements vier verschillende aspecten die behoren bij software architectuur:
+Bass, L. en Clements, P. definiëren de architectuur van software met de volgende definitie \parencite{ArchitectureInPractice}: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them}. Ook noemen Bass en Clements vier verschillende aspecten die behoren bij software-architectuur:
 \begin{itemize}
 	\item \textbf{Statische structuur} (interne design-time elementen zoals modules, classes, packages, services, of andere zelfstandige code-eenheden en hun opstelling.)
 	\item \textbf{Dynamische structuur} (de runtime-elementen zoals informatie-flows, parallelle of opeenvolgende uitvoering van interne taken, of de invloed die ze hebben op data en hun interacties)
 	\item \textbf{Extern zichtbaar gedrag} (de functionele interacties tussen het systeem en zijn omgeving. Denk aan Informatie-flows in en uit het systeem, of API's.)
 	\item \textbf{Kwaliteitseigenschappen} (externe zichtbare, niet-functionele eigenschappen van een systeem zoals prestaties, beveiliging of schaalbaarheid.)
 \end{itemize}
+
+IEEE 1471 A software-intensive system is any system where software contributes essential influences to the design, construction, deployment, and evolution of the system as a whole
+
+IEEE 1471 The fundamental organization of a system embodied in its components, their relationships to each other, and to the environment, and the principles guiding its design and evolution.
+\parencite{IEEEArchitecture}
+
+Albin, S. T. definieert software-architectuur als \enquote{De waarneembare eigenschappen van een softwaresysteem} \parencite{ArtOfArchitecture}.Software-architectuur houdt zich bezig met het ontwerp en de implementatie van de structuur op hoog niveau \parencite{4plus1}.
+
+Meerdere boeken nemen de definitie van \parencite{ArchitectureInPractice} als uitgangspunt \parencite{ArchitectureStakeholders, DesigningArchitectures}. Daarom zal in dit onderzoek ook gebruik gemaakt worden van deze definitie.
