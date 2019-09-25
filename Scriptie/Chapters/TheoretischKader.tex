@@ -6,7 +6,7 @@ In dit hoofdstuk worden drie belangrijk begrippen uit de onderzoeksvraag behande
 
 \section{Schaalbaarheid}
 
-Mark D. Hill heeft in 1990 onderzoek gedaan naar een concrete definitie naar schaalbaarheid \parencite{WhatIsScalability}. In zijn onderzoek concludeert hij het volgende:
+M. D. Hill heeft in 1990 onderzoek gedaan naar een concrete definitie naar schaalbaarheid \parencite{WhatIsScalability}. In zijn onderzoek concludeert hij het volgende:
 \begin{quote}
 	\textit{
 		I examined aspects of scalability, but did not find a useful, rigorous definition of it. Without such a definition, I assert that calling a system ‘scalable’ is about as useful as calling it ‘modern’. I encourage the technical community to either rigorously define scalability or stop using it to describe systems.
@@ -36,7 +36,7 @@ H. El-Rewini en M. Abd-El-Barr noemen in het boek Advanced computer architecture
 	\item \textbf{Heterogeneous scalability} (het vermogen van een systeem om op te schalen met behulp van hardware- en softwarecomponenten die door verschillende leveranciers zijn gemaakt)
 \end{itemize}
 
-C.B. Weinstock en J. B. Goodenough hebben een algemeen onderzoek uitgevoerd naar schaalbaarheid \parencite{OnSystemScalability}. Zij noemen in hun conclusie dat er voornamelijk twee betekenissen van het woord schaalbaarheid zijn:
+C. B. Weinstock en J. B. Goodenough hebben een algemeen onderzoek uitgevoerd naar schaalbaarheid \parencite{OnSystemScalability}. Zij noemen in hun conclusie dat er voornamelijk twee betekenissen van het woord schaalbaarheid zijn:
 \begin{enumerate}
 	\item De mogelijkheid om met verhoogde werkdruk om te gaan (zonder extra resources aan een systeem toe te voegen).
 	\item De mogelijkheid om met verhoogde werkdruk om te gaan door herhaaldelijk een kosteneffectieve strategie toe te passen om de mogelijkheden van een systeem uit te breiden.
@@ -75,16 +75,16 @@ Schalen kan op twee verschillende manieren, namelijk horizontaal en verticaal. H
 Wat in de literatuur mist over schaalbaarheid is het schrijven van \enquote{schaalbare code}. Deze term wordt regelmatig gebruikt in informele bronnen als blogs of vacatures, maar is nooit concreet gedefinieerd. Schaalbare code betekent in welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem. In dit onderzoek refereren we naar deze definitie als \enquote{functionele schaalbaarheid}. Functionele schaalbaarheid ligt heel dicht bij de definitie van onderhoudbaarheid. Deze term zal verder worden uitgelicht in paragraaf \ref{onderhoudbaarheid}.
 
 \section{Onderhoudbaarheid} \label{onderhoudbaarheid}
-Grubb, P. en Takang, A. A. definiëren in hun boek \enquote{Software Maintenance: Concepts And Practice} onderhoudbaarheid als \enquote{The discipline concerned with changes related to a software system after delivery} \parencite{MaintenanceConcepts}. In 1993 heeft IEEE een \enquote{Standard Glossary of Software Engineering Terminology} opgesteld. Deze begrippenlijst definieert onderhoudbaarheid als \enquote{the ease with which a software system or component can be modified to correct faults, improve performance or other attributes, or adapt to a changed environment} \parencite{SENTerminology}. Deze twee definities komen uiteindelijk op hetzelfde neer. Grubb en Takang noemen het in de context van een discipline, terwijl IEEE het als een kwaliteitseigenschap definieert. Ook specificeren Grubb en Takang het feit dat het alleen ná het opleveren gebeurt. In dit onderzoek wordt uitgegaan van de definitie van IEEE.
+P. Grubb en A. A. Takang definiëren in hun boek \enquote{Software Maintenance: Concepts And Practice} onderhoudbaarheid als \enquote{The discipline concerned with changes related to a software system after delivery} \parencite{MaintenanceConcepts}. In 1993 heeft IEEE een \enquote{Standard Glossary of Software Engineering Terminology} opgesteld. Deze begrippenlijst definieert onderhoudbaarheid als \enquote{the ease with which a software system or component can be modified to correct faults, improve performance or other attributes, or adapt to a changed environment} \parencite{SENTerminology}. Deze twee definities komen uiteindelijk op hetzelfde neer. Grubb en Takang noemen het in de context van een discipline, terwijl IEEE het als een kwaliteitseigenschap definieert. Ook specificeren Grubb en Takang het feit dat het alleen ná het opleveren gebeurt. In dit onderzoek wordt uitgegaan van de definitie van IEEE.
 
 Grubb en Takang noemen ook een aantal redenen waarom software moet worden onderhouden:
 \begin{itemize}
-	\item Ondersteuning van verplichtte upgrades
+	\item Ondersteuning van verplichte upgrades
 	\item Ondersteuning van verzoeken van gebruikers om verbeteringen toe te voegen
 	\item Om toekomstige onderhoudswerkzaamheden te vergemakkelijken
 \end{itemize}
 
-K.K. Aggarwal, Y. Singh en J.K. Chhabra noemen in hun onderzoek een aantal factoren die van invloed zijn op onderhoudbaarheid van software \parencite{MaintainabilityMeasure}:
+K.K. Aggarwal et al. noemen in hun onderzoek een aantal factoren die van invloed zijn op onderhoudbaarheid van software \parencite{MaintainabilityMeasure}:
 \begin{itemize}
 	\item Leesbaarheid van de broncode
 	\item Kwaliteit van de documentatie
@@ -103,18 +103,16 @@ ISO 25010 \parencite{ISO25010} definieert onderhoudbaarheid als \enquote{The deg
 Een bekende manier om onderhoudbaarheid te meten is de zogenaamde Maintainability Index (MI). Hier is echter veel kritiek op \parencite{MaintainabilityLiteratureReview, WhyNoMI, WhyNoMI2}.
 
 \section{Architectuur}
-Kruchten P. noemt dat software-architectuur zich bezig houdt met het ontwerp en de implementatie van de structuur op hoog niveau \parencite{4plus1}. Dit is echter een vrij vage definitie, het is niet duidelijk wat \enquote{hoog niveau} precies inhoudt.
+P. Kruchten noemt dat software-architectuur zich bezig houdt met het ontwerp en de implementatie van de structuur op hoog niveau \parencite{4plus1}. Dit is echter een vrij vage definitie, het is niet duidelijk wat \enquote{hoog niveau} precies inhoudt.
 
-Albin, S. T. definieert software-architectuur als \enquote{De waarneembare eigenschappen van een softwaresysteem} \parencite{ArtOfArchitecture}. Ook dit is een onduidelijke definitie, het is veel te algemeen.
+S. T. Albin definieert software-architectuur als \enquote{De waarneembare eigenschappen van een softwaresysteem} \parencite{ArtOfArchitecture}. Ook dit is een onduidelijke definitie, het is veel te algemeen.
 
-Bass, L. en Clements, P. definiëren de architectuur van software als het volgende \parencite{ArchitectureInPractice}: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them}. Gerespecteerde boeken als \parencite{ArchitectureStakeholders, DesigningArchitectures} nemen deze definitie als uitgangspunt. Ook noemen Bass en Clements vier verschillende aspecten die behoren bij software-architectuur:
+L. Bass en P. Clements, definiëren de architectuur van software als het volgende \parencite{ArchitectureInPractice}: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them}. Gerespecteerde boeken als \parencite{ArchitectureStakeholders, DesigningArchitectures} nemen deze definitie als uitgangspunt. Ook noemen Bass en Clements vier verschillende aspecten die behoren bij software-architectuur:
 \begin{itemize}
 	\item \textbf{Statische structuur} (interne design-time elementen zoals modules, classes, packages, services, of andere zelfstandige code-eenheden en hun opstelling.)
-	\item \textbf{Dynamische structuur} (de runtime-elementen zoals informatie-flows, parallelle of opeenvolgende uitvoering van interne taken, of de invloed die ze hebben op data en hun interacties)
+	\item \textbf{Dynamische structuur} (de runtime-elementen zoals informatie-flows, parallelle of opeenvolgende uitvoering van interne taken, of de invloed die ze hebben op data en hun interacties.)
 	\item \textbf{Extern zichtbaar gedrag} (de functionele interacties tussen het systeem en zijn omgeving. Denk aan Informatie-flows in en uit het systeem, of API's.)
 	\item \textbf{Kwaliteitseigenschappen} (externe zichtbare, niet-functionele eigenschappen van een systeem zoals prestaties, beveiliging of schaalbaarheid.)
 \end{itemize}
 
 ISO/IEC/IEEE 42010:2011 definieert software-architectuur als \enquote{Fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution} \parencite{IEEEArchitecture}. The Open Group Architecture Framework (TOGAF) voegt nog een tweede definitie toe aan deze context \parencite{ArchitectureTOGAF}: \enquote{The structure of components, their inter-relationships, and the principles and guidelines governing their design and evolution over time}. TOGAF is gebaseerd op een viertal architectuur-domeinen: business, data, applicatie en technische/infrastructuur architectuur. In dit onderzoek wordt alleen de technische/infrastructuur architectuur gebruikt. Dit domein omvat de IT infrastructuur, middleware, netwerken, communicaties en standaarden. Onder deze definitie passen ook de vier aspecten uit \parencite{ArchitectureInPractice}.
-
-
