@@ -103,7 +103,11 @@ ISO 25010 \parencite{ISO25010} definieert onderhoudbaarheid als \enquote{The deg
 Een bekende manier om onderhoudbaarheid te meten is de zogenaamde Maintainability Index (MI). Hier is echter veel kritiek op \parencite{MaintainabilityLiteratureReview, WhyNoMI, WhyNoMI2}.
 
 \section{Architectuur}
-Bass, L. en Clements, P. definiëren de architectuur van software met de volgende definitie \parencite{ArchitectureInPractice}: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them}. Ook noemen Bass en Clements vier verschillende aspecten die behoren bij software-architectuur:
+Kruchten P. noemt dat software-architectuur zich bezig houdt met het ontwerp en de implementatie van de structuur op hoog niveau \parencite{4plus1}. Dit is echter een vrij vage definitie, het is niet duidelijk wat \enquote{hoog niveau} precies inhoudt.
+
+Albin, S. T. definieert software-architectuur als \enquote{De waarneembare eigenschappen van een softwaresysteem} \parencite{ArtOfArchitecture}. Ook dit is een onduidelijke definitie, het is veel te algemeen.
+
+Bass, L. en Clements, P. definiëren de architectuur van software als het volgende \parencite{ArchitectureInPractice}: \enquote{The architecture of a software-intensive system is the structure or structures of the system, which comprise software elements, the externally visible properties of those elements, and the relationships among them}. Gerespecteerde boeken als \parencite{ArchitectureStakeholders, DesigningArchitectures} nemen deze definitie als uitgangspunt. Ook noemen Bass en Clements vier verschillende aspecten die behoren bij software-architectuur:
 \begin{itemize}
 	\item \textbf{Statische structuur} (interne design-time elementen zoals modules, classes, packages, services, of andere zelfstandige code-eenheden en hun opstelling.)
 	\item \textbf{Dynamische structuur} (de runtime-elementen zoals informatie-flows, parallelle of opeenvolgende uitvoering van interne taken, of de invloed die ze hebben op data en hun interacties)
@@ -111,11 +115,6 @@ Bass, L. en Clements, P. definiëren de architectuur van software met de volgend
 	\item \textbf{Kwaliteitseigenschappen} (externe zichtbare, niet-functionele eigenschappen van een systeem zoals prestaties, beveiliging of schaalbaarheid.)
 \end{itemize}
 
-IEEE 1471 A software-intensive system is any system where software contributes essential influences to the design, construction, deployment, and evolution of the system as a whole
+ISO/IEC/IEEE 42010:2011 definieert software-architectuur als \enquote{Fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution} \parencite{IEEEArchitecture}. The Open Group Architecture Framework (TOGAF) voegt nog een tweede definitie toe aan deze context \parencite{ArchitectureTOGAF}: \enquote{The structure of components, their inter-relationships, and the principles and guidelines governing their design and evolution over time}. TOGAF is gebaseerd op een viertal architectuur-domeinen: business, data, applicatie en technische/infrastructuur architectuur. In dit onderzoek wordt alleen de technische/infrastructuur architectuur gebruikt. Dit domein omvat de IT infrastructuur, middleware, netwerken, communicaties en standaarden. Onder deze definitie passen ook de vier aspecten uit \parencite{ArchitectureInPractice}.
 
-IEEE 1471 The fundamental organization of a system embodied in its components, their relationships to each other, and to the environment, and the principles guiding its design and evolution.
-\parencite{IEEEArchitecture}
 
-Albin, S. T. definieert software-architectuur als \enquote{De waarneembare eigenschappen van een softwaresysteem} \parencite{ArtOfArchitecture}.Software-architectuur houdt zich bezig met het ontwerp en de implementatie van de structuur op hoog niveau \parencite{4plus1}.
-
-Meerdere boeken nemen de definitie van \parencite{ArchitectureInPractice} als uitgangspunt \parencite{ArchitectureStakeholders, DesigningArchitectures}. Daarom zal in dit onderzoek ook gebruik gemaakt worden van deze definitie.
