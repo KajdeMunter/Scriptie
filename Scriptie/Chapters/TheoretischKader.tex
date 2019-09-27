@@ -40,7 +40,7 @@ C. B. Weinstock en J. B. Goodenough hebben een algemeen onderzoek uitgevoerd naa
 \begin{enumerate}
 	\item De mogelijkheid om met verhoogde werkdruk om te gaan (zonder extra resources aan een systeem toe te voegen).
 	\item De mogelijkheid om met verhoogde werkdruk om te gaan door herhaaldelijk een kosteneffectieve strategie toe te passen om de mogelijkheden van een systeem uit te breiden.
-\end{enumerate}
+\end{enumerate} % TODO: Waarom die 2 soorten schaalbaarheid, terugvallen op probleemstelling
 Het valt op dat een concrete definitie van schaalbaarheid alleen duidelijk te definiëren is wanneer het in meerdere verschillende soorten is opgesplitst. Daarom zal in dit onderzoek vanaf dit punt altijd worden gespecificeerd welke soort schaalbaarheid het betreft. In dit onderzoek wordt vooral de focus gelegd op de \enquote{structural scalability} en \enquote{load scalability} uit \parencite{ScalabilityCharacteristics}. \enquote{application scalability} uit \parencite{AdvancedArchitecture} heeft veel overlapping met de load scalability. Omdat load scalability iets generieker is en de twee definities van Weinstock en Goodenough \parencite{OnSystemScalability} omvat wordt deze geprefereerd boven application scalability. De overgebleven definities zijn minder relevant voor dit onderzoek aangezien ze te maken hebben met hardware, of niet volledig toepasselijk is op de architectuur.
 
 \subsection{Schaalbaarheid controleren}
@@ -72,6 +72,7 @@ In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om 
 Schalen kan op twee verschillende manieren, namelijk horizontaal en verticaal. Horizontaal wilt zeggen dat er geschaald wordt door meerdere machines toe te voegen, terwijl verticaal schalen betekent dat er  meer rekenkracht (als bijvoorbeeld een betere CPU of meer RAM) wordt toegevoegd aan een machine. Ook is bij het schaalbaar maken van systemen van belang dat het zo min mogelijk ten koste gaat van prestaties en niet meer kost dan nodig is.
 
 \subsection{Functionele schaalbaarheid}
+% TODO: Verschil uitleggen met onderhoudbaarheid, ook iets uitbreiden.
 Wat in de literatuur mist over schaalbaarheid is het schrijven van \enquote{schaalbare code}. Deze term wordt regelmatig gebruikt in informele bronnen als blogs of vacatures, maar is nooit concreet gedefinieerd. Schaalbare code betekent in welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem. In dit onderzoek refereren we naar deze definitie als \enquote{functionele schaalbaarheid}. Functionele schaalbaarheid ligt heel dicht bij de definitie van onderhoudbaarheid. Deze term zal verder worden uitgelicht in paragraaf \ref{onderhoudbaarheid}.
 
 \section{Onderhoudbaarheid} \label{onderhoudbaarheid}
