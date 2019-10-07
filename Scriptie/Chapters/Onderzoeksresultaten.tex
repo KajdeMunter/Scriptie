@@ -43,15 +43,16 @@ Definitie: Het vermogen van een systeem om uit te breiden in een gekozen dimensi
 
 \subsubsection{Load scalability}
 Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt.
+
+Meerdere tools vergeleken:
 \begin{itemize}
-	\item https://loader.io/
-	\item https://gatling.io/
+	\item https://loader.io/ (gratis versie te weinig)
+	\item https://gatling.io/ (Is in Ruby)
 	\item https://k6.io/
-	\item https://loadimpact.com/
-	\item http://tsung.erlang-projects.org/
+	\item http://tsung.erlang-projects.org/ (XML, Erlang)
 \end{itemize}
 
-Gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Eventueel InfluxDB + Grafana gebruiken voor mooie grafieken.
+Gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een gemakkelijke manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Eventueel InfluxDB + Grafana gebruiken voor mooie grafieken.
 
 
 

@@ -115,3 +115,33 @@ L. Bass en P. Clements, definiëren de architectuur van software als het volgend
 \end{itemize}
 
 ISO/IEC/IEEE 42010:2011 definieert software-architectuur als \enquote{Fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution} \parencite{IEEEArchitecture}. The Open Group Architecture Framework (TOGAF) voegt nog een tweede definitie toe aan deze context \parencite{ArchitectureTOGAF}: \enquote{The structure of components, their inter-relationships, and the principles and guidelines governing their design and evolution over time}. TOGAF is gebaseerd op een viertal architectuur-domeinen: business, data, applicatie en technische/infrastructuur architectuur. In dit onderzoek wordt alleen de technische/infrastructuur architectuur gebruikt. Dit domein omvat de IT infrastructuur, middleware, netwerken, communicaties en standaarden. Onder deze definitie passen ook de vier aspecten uit \parencite{ArchitectureInPractice}.
+
+\section{de "Twelve-Factor App"}
+
+A. Wiggins \parencite{12Factor} heeft een methodologie opgezet om moderne, schaalbare en onderhoudbare web-applicaties te bouwen. De methodologie past goed bij de probleemstelling, het minimaliseren van de kosten en tijd die het kost om nieuwe ontwikkelaars aan het project te laten werken en de gemakkelijkheid van het schalen. Ook zorgt het voor structural scalability, draagbaarheid tussen uitvoeringsomgevingen, de mogelijkheid om te deployen op moderne cloud platformen en een minimale divergentie tussen development en productie waardoor CD gemakkelijk wordt om te implementeren.
+
+De methodologie heeft 12 factoren die voor deze eigenschappen zorgen. In tabel \ref{tab:FactorApp} is een gevolg samen met een uitleg bij elke factor geplaatst. Deze factoren zullen worden meegenomen bij het behandelen van de deelvragen.
+
+\begin{table}[h]
+	\caption{12-Factor app}
+	\label{tab:FactorApp}
+	\centering
+	\begin{tabular}{c p{3cm} p{3.5cm} p{5.5cm}}
+		\toprule
+		\textbf{Factor} & \textbf{Naam} & \textbf{Gevolg} & \textbf{Waarom?} \\
+		\midrule
+		1 & Codebase & Onderhoudbaarheid & Door de frequente deploys kunnen veranderingen snel in productie gezet worden. \\
+		2 & Dependencies & Onderhoudbaarheid & gemakkelijk opzetten van project voor nieuwe ontwikkelaars. \\
+		3 & Config & Structural scalability & Environment variabelen zijn niet in omgevingen maar per deployment opgezet, zo maakt de hoveelheid omgevingen niet uit. \\
+		4 & Backing services & Onderhoudbaarheid & Door backing services als \enquote{attached resources} te behandelen maakt het niet uit welke techniek er wordt gebruikt en zijn deze dus los gekoppeld. \\
+		5 & Build, release, run & Onderhoudbaarheid & Het is onmogelijk om veranderingen aan de code tijdens runtime te maken. \\
+		6 & Processes & Load scalability & Mede door de shared-nothing architectuur kan het systeem gemakkelijker schalen. \\
+		7 & Port binding & \textbf{Niet relevant ?} & \textbf{Niet relevant ?} \\
+		8 & Concurrency & Load scalability & Door het \enquote{process model} te gebruiken is het makkelijker om horizontaal en verticaal te schalen. \\
+		9 & Disposability & Load scalability & Door processen gemakkelijk te laten stoppen en starten gaat het schalen een stuk sneller.  \\
+		10 & Dev/prod parity & Onderhoudbaarheid & Hierdoor kan er een stuk vaker gedeployed worden. \\
+		11 & Logs & Onderhoudbaarheid & Door logs naar de \texttt{stdout} te sturen is het gemakkelijker om specifieke fouten te vinden, overzicht te creëren en actief meldingen te versturen naar ontwikkelaars. \\
+		12 & Admin processes & Onderhoudbaarheid & Door commands in versiebeheer op te slaan is er een duidelijk overzicht en een geschiedenis van alle \enquote{one-off processes} die gebeuren. \\
+		\bottomrule\\
+	\end{tabular}
+\end{table}
