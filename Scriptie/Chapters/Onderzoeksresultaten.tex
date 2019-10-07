@@ -40,6 +40,8 @@ Nu luidt de vraag, hoe schaalbaar is deze infrastructuur eigenlijk? Om dit te be
 \subsubsection{Structural scalability}
 Definitie: Het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur.
 
+Bij structural scalability hoort factor 3 (Config) van de 12-factor app.
+
 
 \subsubsection{Load scalability}
 Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt.
@@ -52,18 +54,21 @@ Meerdere tools vergeleken:
 	\item http://tsung.erlang-projects.org/ (XML, Erlang)
 \end{itemize}
 
-Gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een gemakkelijke manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Eventueel InfluxDB + Grafana gebruiken voor mooie grafieken.
+Gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een gemakkelijke manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Om de uitkomsten te visualiseren is InfluxDB samen met Grafana gebruikt.
 
-
+Bij load scalability horen factor 6 (processes), 8 (concurrency) en 9 (disposability) van de 12-factor app methodologie.
 
 \subsubsection{Functional scalability}
 Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem.
-
 
 \subsection{conclusie}
 
 \section{Technieken}
 Deze paragraaf gaat over de deelvraag \enquote{\deeltechnieken}
+
+\subsection{Schaalbaarheid}
+
+\subsection{Onderhoudbaarheid}
 
 \section{Verbeteringen}
 Deze paragraaf gaat over de deelvraag \enquote{\deelverbetering}
