@@ -40,8 +40,11 @@ Nu luidt de vraag, hoe schaalbaar is deze infrastructuur eigenlijk? Om dit te be
 \subsubsection{Structural scalability}
 Definitie: Het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur.
 
-Bij structural scalability hoort factor 3 (Config) van de 12-factor app.
+Bij structural scalability hoort factor 3 (Config) van de 12-factor app. Een test om te bewijzen dat alle configuratie correct uit de code is verwerkt, is of de applicatie op elk gewenst moment open-source kan worden gemaakt zonder geclassificeerde informatie vrij te geven.
 
+Voor de website wordt er gebruik gemaakt van docker-secrets en ansible-vault. Deze combinatie zorgt ervoor dat er nooit wachtwoorden, API sleutels en dergelijke plain-text in versiebeheer komt te staan. Deze secrets worden uiteindelijk in de containers als environment variabelen opgeslagen en uitgelezen door Symfony. In het EMS is deze techniek nog niet gebruikt en staan credentials wél plaintext in de repository.
+
+Om aan factor 3 van de 12-factor app te voldoen moeten de configuratiefiles niet per specifieke omgeving (productie, test, staging) gegroepeerd worden maar moeten juist individueel per deployment geregeld worden. Dit gebeurt in zowel het EMS als de website, de bitbucket pipeline heeft zijn eigen specifieke environment variabelen om te gebruiken en de variabelen in de docker containers worden meegegeven in de algemene docker-compose file die in elke deployment hetzelfde zal zijn.
 
 \subsubsection{Load scalability}
 Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt.
@@ -60,6 +63,10 @@ Bij load scalability horen factor 6 (processes), 8 (concurrency) en 9 (disposabi
 
 \subsubsection{Functional scalability}
 Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem.
+
+\subsubsection{Onderhoudbaarheid}
+Definitie: The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements
+
 
 \subsection{conclusie}
 
