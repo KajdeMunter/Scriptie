@@ -35,7 +35,7 @@ Ook heeft Developers.nl een \enquote{Employee Management Systeem} (EMS) gebouwd.
 
 \subsection{Metingen}
 
-Nu luidt de vraag, hoe schaalbaar is deze infrastructuur eigenlijk? Om dit te beantwoorden worden de verschillende definities van schaalbaarheid individueel behandeld. 
+Nu de infrastructuur in kaart is gebracht luidt de vraag; hoe schaalbaar is deze infrastructuur eigenlijk? Om dit te beantwoorden worden de verschillende definities van schaalbaarheid individueel behandeld.
 
 \subsubsection{Structural scalability}
 Definitie: Het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur.
@@ -59,14 +59,15 @@ Meerdere tools vergeleken:
 
 Gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een gemakkelijke manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Om de uitkomsten te visualiseren is InfluxDB samen met Grafana gebruikt. In bijlage \ref{Bijlagek6} is de implementatie hiervan te vinden.
 
-Bij load scalability horen factor 6 (processes), 8 (concurrency) en 9 (disposability) van de 12-factor app methodologie.
+Bij load scalability horen factor 6 (processes), 8 (concurrency) en 9 (disposability) van de 12-factor app methodologie. Factor 6 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de back-end PHP container worden geüploade bestanden weggeschreven naar een volume.
 
 \subsubsection{Functional scalability}
 Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem.
 
-\subsubsection{Onderhoudbaarheid}
-Definitie: The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements
+Binnen de scope van de infrastructuur.
 
+\subsubsection{Onderhoudbaarheid}
+Definitie: The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements.
 
 \subsection{conclusie}
 
