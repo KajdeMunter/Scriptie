@@ -27,9 +27,9 @@ In figuur \ref{fig:infra} is een component diagram te vinden van de huidige webs
 	\label{fig:infra}
 \end{figure}
 
-PHP-FPM is een FastCGI Process Manager, deze Container serveert de Symfony “FosREST” API en het Content Management Systeem. De NodeJS container serveert een statische Next.js React applicatie en maakt gebruik van Server Side Rendering. Er zit een Nginx reverse proxy in die kiest om een request naar het back-end of de front-end te laten gaan. Redis is een Key-Value Database dat gebruikt wordt voor het cachen, en een PostgreSQL container als database. De Bitbucket Pipeline gebruikt Ansible om op de servers de geüpdatete containers te pullen en te starten.
+PHP-FPM is een FastCGI Process Manager, deze Container serveert de Symfony “FosREST” API en het Content Management Systeem. De NodeJS container serveert een statische Next.js React applicatie en maakt gebruik van Server Side Rendering. Er zit een Nginx reverse proxy in die kiest om een request naar de back-end of de front-end te laten gaan. Redis is een Key-Value Database die gebruikt wordt voor het cachen, en een PostgreSQL container als database. De Bitbucket Pipeline gebruikt Ansible om op de servers de geüpdatete containers te pullen en te starten.
 
-Voor zowel de front- als backend is één monitoring tool genaamd \enquote{Sentry} geimplementeerd. Sentry creëert een duidelijk overzicht voor alle errors die opkomen in productie.
+Voor zowel de front- als backend is één monitoring tool genaamd \enquote{Sentry} geïmplementeerd. Sentry creëert een duidelijk overzicht voor alle errors die opkomen in productie.
 
 Ook heeft Developers.nl een \enquote{Employee Management Systeem} (EMS) gebouwd. Deze heeft een soortgelijke structuur aan de website. Het EMS bevat zeer veel gevoelige informatie en het is dus van hoog belang dat deze goed beveiligd is.
 
@@ -57,7 +57,7 @@ Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aan
 
 De gratis versie van loader.io is niet genoeg voor de wensen van de test, voor gatling.io is Ruby kennis nodig, en voor Tsung worden de tests in XML geschreven wat het lastig maakt om de load op te schalen. Uiteindelijk is gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een gemakkelijke manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Om de uitkomsten te visualiseren is InfluxDB samen met Grafana gebruikt. In bijlage \ref{Bijlagek6} is de implementatie hiervan te vinden.
 
-Bij load scalability horen factor 6 \textbf{(processes)}, 8 \textbf{(concurrency)} en 9 \textbf{(disposability)} van de 12-factor app methodologie. Factor 6 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de PHP containers worden geüploade bestanden weggeschreven naar een volume, dit zorgt ervoor dat de container niet volledig stateless meer is. Ook zijn databases in docker containers geplaatst, dit is een stateful process aangezien het van belang is dat alla data niet verloren gaat zodra de container stopt.
+Bij load scalability horen factor 6 \textbf{(processes)}, 8 \textbf{(concurrency)} en 9 \textbf{(disposability)} van de 12-factor app methodologie. Factor 6 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de PHP containers worden geüploade bestanden weggeschreven naar een volume, dit zorgt ervoor dat de container niet volledig stateless meer is. Ook zijn databases in docker containers geplaatst, dit is een stateful process aangezien het van belang is dat niet alle data verloren gaat zodra de container stopt.
 
 Voor factor 8 \textbf{(concurrency)}......
 
