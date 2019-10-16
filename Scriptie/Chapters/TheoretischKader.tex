@@ -11,12 +11,7 @@ M. D. Hill heeft in 1990 onderzoek gedaan naar een concrete definitie naar schaa
 		I examined aspects of scalability, but did not find a useful, rigorous definition of it. Without such a definition, I assert that calling a system ‘scalable’ is about as useful as calling it ‘modern’. I encourage the technical community to either rigorously define scalability or stop using it to describe systems.
 	}
 \end{quote}
-Ondertussen zijn er meerdere pogingen gedaan om schaalbaarheid te definiëren. zo zijn L. Duboc, D. S. Rosenblum en T. Wicks op deze conclusie ingegaan en hebben een poging gedaan om een framework te creëren voor karakterisering en analyse van software schaalbaarheid \parencite{ScalabilityFramework}. Zij definiëren schaalbaarheid als:
-\begin{quote}
-	\textit{quality of software systems characterized by the causal impact that scaling aspects of the system environment and design have on certain measured system qualities as these aspects are varied over expected operational ranges}
-\end{quote}
-
-% TODO: uitleggen scalability framework?
+Ondertussen zijn er meerdere pogingen gedaan om schaalbaarheid te definiëren. zo zijn L. Duboc, D. S. Rosenblum en T. Wicks op deze conclusie ingegaan en hebben een poging gedaan om een framework te creëren voor karakterisering en analyse van software schaalbaarheid \parencite{ScalabilityFramework}. Dit framework is te complex voor de scope van dit onderzoek, maar zij definiëren schaalbaarheid als: \enquote{quality of software systems characterized by the causal impact that scaling aspects of the system environment and design have on certain measured system qualities as these aspects are varied over expected operational ranges}.
 
 In een onderzoek over de kenmerken van schaalbaarheid en de impact op prestatie heeft A. B. Bondy \parencite{ScalabilityCharacteristics} schaalbaarheid verdeeld in een aantal verschillende aspecten, waaronder:
 \begin{itemize}
@@ -99,7 +94,7 @@ ISO 25010 \parencite{ISO25010} definieert onderhoudbaarheid als \enquote{The deg
 	\item Testbaarheid
 \end{itemize}
 
-Een bekende manier om onderhoudbaarheid te meten is de zogenaamde Maintainability Index (MI). Hier is echter veel kritiek op \parencite{MaintainabilityLiteratureReview, WhyNoMI, WhyNoMI2}.
+Een bekende manier om onderhoudbaarheid te meten is de zogenaamde Maintainability Index (MI). Hier is echter veel kritiek op \parencite{MaintainabilityLiteratureReview, WhyNoMI, WhyNoMI2, MeasuringMaintainability}. Enerzijds is het een duidelijk nummer om een indicatie te geven van de onderhoudbaarheid. Anderzijds is het uiteindelijk niet duidelijk welke aspecten precies voor het eindresultaat zorgen of welke acties er genomen moeten worden om de indicatie te verbeteren.
 
 \section{Architectuur}
 P. Kruchten noemt dat software-architectuur zich bezig houdt met het ontwerp en de implementatie van de structuur op hoog niveau \parencite{4plus1}. Dit is echter een vrij vage definitie, het is niet duidelijk wat \enquote{hoog niveau} precies inhoudt.
@@ -115,35 +110,3 @@ L. Bass en P. Clements, definiëren de architectuur van software als het volgend
 \end{itemize}
 
 ISO/IEC/IEEE 42010:2011 definieert software-architectuur als \enquote{Fundamental concepts or properties of a system in its environment embodied in its elements, relationships, and in the principles of its design and evolution} \parencite{IEEEArchitecture}. The Open Group Architecture Framework (TOGAF) voegt nog een tweede definitie toe aan deze context \parencite{ArchitectureTOGAF}: \enquote{The structure of components, their inter-relationships, and the principles and guidelines governing their design and evolution over time}. TOGAF is gebaseerd op een viertal architectuur-domeinen: business, data, applicatie en technische / infrastructuur architectuur. In dit onderzoek wordt alleen de technische / infrastructuur architectuur gebruikt. Dit domein omvat de IT infrastructuur, middleware, netwerken, communicaties en standaarden. Onder deze definitie passen ook de vier aspecten uit \parencite{ArchitectureInPractice}.
-
-\section{de "Twelve-Factor App"}
-
-A. Wiggins \parencite{12Factor} heeft een methodologie opgezet om moderne, schaalbare en onderhoudbare web-applicaties te bouwen. De methodologie past goed bij de probleemstelling, het minimaliseren van de kosten en tijd die het kost om nieuwe ontwikkelaars aan het project te laten werken en de gemakkelijkheid van het schalen. Ook zorgt het voor structural scalability, draagbaarheid tussen uitvoeringsomgevingen, de mogelijkheid om te deployen op moderne cloud platformen en een minimale divergentie tussen development en productie waardoor CD gemakkelijk wordt om te implementeren.
-
-De methodologie heeft 12 factoren die voor deze eigenschappen zorgen. In tabel \ref{tab:FactorApp} is een gevolg samen met een uitleg bij elke factor geplaatst. Deze factoren zullen worden meegenomen bij het behandelen van de deelvragen.
-
-\begin{table}[h]
-	\caption{12-Factor app}
-	\label{tab:FactorApp}
-	\centering
-	\begin{tabular}{c p{3cm} p{3.5cm} p{5.5cm}}
-		\toprule
-		\textbf{Factor} & \textbf{Naam} & \textbf{Gevolg} & \textbf{Waarom?} \\
-		\midrule
-		1 & Codebase & Onderhoudbaarheid & Door de frequente deploys kunnen veranderingen snel in productie gezet worden. \\
-		2 & Dependencies & Onderhoudbaarheid & Gemakkelijk opzetten van project voor nieuwe ontwikkelaars. \\
-		3 & Config & Structural scalability & Environment variabelen zijn niet in omgevingen maar per deployment opgezet, zo maakt de hoeveelheid omgevingen niet uit. \\
-		4 & Backing services & Onderhoudbaarheid & Door backing services als \enquote{attached resources} te behandelen maakt het niet uit welke techniek er wordt gebruikt en zijn deze dus los gekoppeld. \\
-		5 & Build, release, run & Onderhoudbaarheid & Het is onmogelijk om veranderingen aan de code tijdens runtime te maken. \\
-		6 & Processes & Load scalability & Mede door de shared-nothing architectuur kan het systeem gemakkelijker schalen. \\
-		7 & Port binding & \textbf{Niet relevant ?} & \textbf{Niet relevant ?} \\
-		8 & Concurrency & Load scalability & Door het \enquote{process model} te gebruiken is het makkelijker om horizontaal en verticaal te schalen. \\
-		9 & Disposability & Load scalability & Door processen gemakkelijk te laten stoppen en starten gaat het schalen een stuk sneller.  \\
-		10 & Dev/prod parity & Onderhoudbaarheid & Hierdoor kan er een stuk vaker gedeployed worden. \\
-		11 & Logs & Onderhoudbaarheid & Door logs naar de \texttt{stdout} te sturen is het gemakkelijker om specifieke fouten te vinden, overzicht te creëren en actief meldingen te versturen naar ontwikkelaars. \\
-		12 & Admin processes & Onderhoudbaarheid & Door commands in versiebeheer op te slaan is er een duidelijk overzicht en een geschiedenis van alle \enquote{one-off processes} die gebeuren. \\
-		\bottomrule\\
-	\end{tabular}
-\end{table}
-
-Vijf jaar nadat Wiggins de 12 factor app heeft opgesteld is K. Hoffman aan de slag gegaan met een boek genaamd \enquote{Beyond the 12-factor app} \parencite{Beyond12Factor}. Dit boek heeft als doel om de 12 factoren concreter te definiëren en voegt daarnaast nog 3 extra factoren toe om applicaties in de cloud niet alleen te laten functioneren maar ook te laten gedijen. Deze factoren zijn telemetry, security, en het concept \enquote{API first}.
