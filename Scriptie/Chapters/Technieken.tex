@@ -8,36 +8,7 @@ Deze paragraaf gaat over de deelvraag \enquote{\deeltechnieken}.
 
 A. Wiggins \parencite{12Factor} heeft een methodologie opgezet om moderne, schaalbare en onderhoudbare web-applicaties te bouwen. De methodologie past goed bij de probleemstelling, het minimaliseren van de kosten en tijd die het kost om nieuwe ontwikkelaars aan het project te laten werken en de gemakkelijkheid van het schalen. Ook zorgt het voor structural scalability, draagbaarheid tussen uitvoeringsomgevingen, de mogelijkheid om te deployen op moderne cloud platformen en een minimale divergentie tussen development en productie waardoor CD gemakkelijk wordt om te implementeren.
 
-De methodologie heeft 12 factoren die voor deze eigenschappen zorgen. Vijf jaar nadat Wiggins de 12 factor app heeft opgesteld is K. Hoffman aan de slag gegaan met een boek genaamd \enquote{Beyond the 12-factor app} \parencite{Beyond12Factor}. Dit boek heeft als doel om de 12 factoren concreter te definiëren en voegt daarnaast nog 3 extra factoren toe om applicaties in de cloud niet alleen te laten functioneren maar ook te laten gedijen. Deze factoren zijn telemetry, security, en het concept \enquote{API first}. In tabel \ref{tab:FactorApp} is een gevolg samen met een uitleg bij elke factor geplaatst. Deze factoren zullen worden meegenomen bij het behandelen van de deelvragen.
-
-\begin{table}[h]
-	\caption{12-Factor app}
-	\label{tab:FactorApp}
-	\centering
-	\begin{tabular}{c p{3cm} p{3.5cm} p{5.5cm}}
-		\toprule
-		\textbf{Factor} & \textbf{Naam} & \textbf{Gevolg} & \textbf{Waarom?} \\
-		\midrule		
-		1 & One codebase, one application & Onderhoudbaarheid & Door de frequente deploys kunnen veranderingen snel in productie gezet worden. \\
-		2 & API first & Structural scalability & Door de API op de eerste rang te zetten van het development proces wordt de mogelijkheid gecreëerd om met elkaars contracten te communiceren zonder interne ontwikkelingsprocessen te verstoren. Zo kunnen veel nieuwe services gemakkelijker worden toegevoegd. \\
-		3 & Dependency management & Onderhoudbaarheid & Gemakkelijk opzetten van project voor nieuwe ontwikkelaars. \\
-		4 & Design, build, release, and run & Onderhoudbaarheid & Het is onmogelijk om veranderingen aan de code tijdens runtime te maken. \\
-		5 & Configuration, credentials, and code & Structural scalability & Environment variabelen zijn niet in omgevingen maar per deployment opgezet, zo maakt de hoeveelheid omgevingen niet uit. \\
-		6 & Logs & Onderhoudbaarheid & Door logs naar de \texttt{stdout} te sturen is het gemakkelijker om specifieke fouten te vinden, overzicht te creëren en actief meldingen te versturen naar ontwikkelaars. \\
-		7 & Disposability & Load scalability & Door processen gemakkelijk te laten stoppen en starten gaat het schalen een stuk sneller. \\
-		8 & Backing services & Onderhoudbaarheid & Door backing services als \enquote{attached resources} te behandelen maakt het niet uit welke techniek er wordt gebruikt en zijn deze dus los gekoppeld. \\
-		9 & Environment parity & Onderhoudbaarheid & Hierdoor kan een stuk vaker gedeployed worden. \\
-		10 & Administrative processes & Onderhoudbaarheid & Door commands in versiebeheer op te slaan is er een duidelijk overzicht en een geschiedenis van alle \enquote{one-off processes} die gebeuren. \\
-		11 & Port binding & \textbf{Begrijp ik nog niet} & \textbf{Vaag} \\
-		12 & Stateless processes & Load scalability & Mede door de shared-nothing architectuur kan het systeem gemakkelijker schalen. \\
-		13 & Concurrency & Load scalability & Door processen gemakkelijk te laten stoppen en starten gaat het schalen een stuk sneller. \\
-		14 & Telemetry & \textbf{kaas} & \textbf{kaas} \\
-		15 & Authentication and authorization & \textbf{kaas} & \textbf{kaas} \\
-		\bottomrule\\
-	\end{tabular}
-\end{table}
-
-
+De methodologie heeft 12 factoren die voor deze eigenschappen zorgen. Vijf jaar nadat Wiggins de 12 factor app heeft opgesteld is K. Hoffman aan de slag gegaan met een boek genaamd \enquote{Beyond the 12-factor app} \parencite{Beyond12Factor}. Dit boek heeft als doel om de 12 factoren concreter te definiëren en voegt daarnaast nog 3 extra factoren toe om applicaties in de cloud niet alleen te laten functioneren maar ook te laten gedijen. Deze factoren zijn telemetry, security, en het concept \enquote{API first}. In bijlage \ref{TabelFactors} is een gevolg samen met een uitleg bij elke factor geplaatst. Deze factoren zullen worden meegenomen bij het behandelen van de deelvragen.
 
 \section{ISO 25010}
 
