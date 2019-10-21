@@ -58,7 +58,7 @@ Bij load scalability horen factor 6 \textbf{(processes)}, 8 \textbf{(concurrency
 
 Voor factor 8 \textbf{(concurrency)}......
 
-Voor factor 9 \textbf{(disposability)} moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet. \textbf{TODO: HOE SNEL?} % TODO: Hoe snel?
+Voor factor 9 \textbf{(disposability)} moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet. \textcolor{red}{TODO: HOE SNEL?} % TODO: Hoe snel?
 
 Ook vereist factor 9 dat processen netjes worden afgesloten zodra ze een \texttt{SIGTERM} ontvangen. Zodra een docker container met \texttt{docker stop <container>} gestopt wordt zal er een SIGTERM worden gestuurd naar de draaiende processen. De vier containers met processen zijn PostgreSQL, PHP-FPM, Nginx en Redis. Deze sluiten allemaal netjes af en hebben de volgende outputs zodra ze worden gestopt:
 

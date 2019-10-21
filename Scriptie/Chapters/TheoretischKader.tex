@@ -37,32 +37,6 @@ C. B. Weinstock en J. B. Goodenough hebben een algemeen onderzoek uitgevoerd naa
 \end{enumerate}
 Het valt op dat een concrete definitie van schaalbaarheid alleen duidelijk te definiëren is wanneer het in meerdere verschillende soorten is opgesplitst. Daarom zal in dit onderzoek vanaf dit punt altijd worden gespecificeerd welke soort schaalbaarheid het betreft. In dit onderzoek wordt vooral de focus gelegd op de \enquote{structural scalability} en \enquote{load scalability} uit \parencite{ScalabilityCharacteristics} omdat deze het meest relevant zijn met betrekking tot de probleemstelling. \enquote{application scalability} uit \parencite{AdvancedArchitecture} heeft veel overlapping met de load scalability. Omdat load scalability iets generieker is en de twee definities van Weinstock en Goodenough \parencite{OnSystemScalability} omvat wordt deze geprefereerd boven application scalability. De overgebleven definities zijn minder relevant voor dit onderzoek aangezien ze te maken hebben met hardware, of niet volledig toepasselijk is op de architectuur.
 
-\subsection{Schaalbaarheid controleren}
-In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} zijn een aantal manieren genoemd om de schaalbaarheid van een systeem te controleren.
-
-\subsubsection{Knelpunten}
-Deze knelpunten hebben vooral te maken de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user interface en de complexiteitsgraad van algoritmen.
-
-\subsubsection{Onthullen van schaalbaarheids-aannames}
-Dit gaat over het onderzoeken hoe de uitbreiding van een systeem nieuwe problemen kan onthullen. Zodra een systeem zich uitbreidt is er een grotere kans op errors in de systeemconfiguratie, \enquote{zeldzame} errors komen vaker voor, is het belangrijk dat een probleem in het systeem gelokaliseerd blijft, en kan het een stuk complexer en lastiger worden om het systeem te begrijpen.
-
-\subsubsection{Schaalstrategieën}
-Hier wordt bekeken wat voor verschillende tekortkomingen een schaalstrategie heeft. Zodra een systeem een lange termijn leeft kan het zo zijn dat het systeem anders wordt gebruikt, hier moet de strategie op voorbereid zijn. Een strategie moet moet niet te afhankelijk zijn van het feit dat gebruikers weten hoe het systeem wordt geïmplementeerd. Ook moet de strategie voorbereid zijn op de vooruitgang van hardware.
-
-\subsubsection{Methoden voor schaalbaarheidsborging}
-In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om te testen of een systeem schaalbaar is. Wel zijn er methoden om de schaalbaarheid te waarborgen, zoals:
-\begin{itemize}
-	\item Onderzoek de \enquote{performance curves} en karakteriseer deze met een Big O notatie.
-	\item Identificeer mechanismen om knelpunten aan het licht brengen of waar aannames van het schaalbaarheids- ontwerp beginnen te worden geschonden.
-	\item Voer een SWOT analyse uit op de schaalbaarheids-strategie.
-	\begin{itemize}
-		\item \textbf{S}trengths (de soorten groei waar de strategie voor ontworpen is)
-		\item \textbf{W}eaknesses (de soorten groei waar de strategie niet voor ontworpen is)
-		\item \textbf{O}pportunities (mogelijke veranderingen in werklast of technologie die de strategie goed zou kunnen benutten)
-		\item \textbf{T}hreats (mogelijke veranderingen in de werklast of technologie die de strategie in twijfel zouden kunnen trekken)
-	\end{itemize}
-\end{itemize}
-
 Schalen kan op twee verschillende manieren, namelijk horizontaal en verticaal. Horizontaal wilt zeggen dat er geschaald wordt door meerdere machines toe te voegen, terwijl verticaal schalen betekent dat er  meer rekenkracht (als bijvoorbeeld een betere CPU of meer RAM) wordt toegevoegd aan een machine. Ook is bij het schaalbaar maken van systemen van belang dat het zo min mogelijk ten koste gaat van prestaties en niet meer kost dan nodig is.
 
 \subsection{Functionele schaalbaarheid}

@@ -4,12 +4,62 @@
 
 Deze paragraaf gaat over de deelvraag \enquote{\deeltechnieken}.
 
+\section{ISO 25010}
+
+ISO-norm 25010 \parencite{ISO25010} is de opvolger van ISO-9126 en beschrijft software kwaliteitskenmerken in acht categorieën. Een categorie hiervan is onderhoudbaarheid. Elke categorie heeft een aantal subcategorieën, bij onderhoudbaarheid zijn dat:
+
+\textbf{Modulariteit:} De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact heeft op andere componenten.
+
+\textbf{Herbruikbaarheid:} De mate waarin een bestaand onderdeel gebruikt kan worden in meer dan één systeem of bij het bouwen van een nieuw onderdeel.
+
+\textbf{Analyseerbaarheid:} De mate waarin het mogelijk is om effectief en efficiënt de impact, van een geplande verandering van één of meer onderdelen, op een product of systeem te beoordelen, om afwijkingen en/of foutoorzaken van een product vast te stellen of om onderdelen te identificeren die gewijzigd moeten worden.
+
+\textbf{Wijzigbaarheid:} De mate waarin een product of systeem effectief en efficiënt gewijzigd kan worden zonder fouten of kwaliteitsvermindering tot gevolg.
+
+\textbf{Testbaarheid:} De mate waarin effectief en efficiënt testcriteria vastgesteld kunnen worden voor een systeem, product of component en waarin tests uitgevoerd kunnen worden om vast te stellen of aan die criteria is voldaan.
+\\\\
+\textcolor{red}{TODO: Dit is rechtstreeks gekopieerd uit de wikipedia pagina, kan dat...?} % TODO: Vraag
+
+Om de applicatie \enquote{onderhoudbaar} te noemen moeten alle subcategorieën voldoende worden vervuld. Er moet een analyse worden uitgevoerd per subcategorie over eventuele tekortkomingen.
+
+
 \section{de "Twelve-Factor App"}
 
 A. Wiggins \parencite{12Factor} heeft een methodologie opgezet om moderne, schaalbare en onderhoudbare web-applicaties te bouwen. De methodologie past goed bij de probleemstelling, het minimaliseren van de kosten en tijd die het kost om nieuwe ontwikkelaars aan het project te laten werken en de gemakkelijkheid van het schalen. Ook zorgt het voor structural scalability, draagbaarheid tussen uitvoeringsomgevingen, de mogelijkheid om te deployen op moderne cloud platformen en een minimale divergentie tussen development en productie waardoor CD gemakkelijk wordt om te implementeren.
 
-De methodologie heeft 12 factoren die voor deze eigenschappen zorgen. Vijf jaar nadat Wiggins de 12 factor app heeft opgesteld is K. Hoffman aan de slag gegaan met een boek genaamd \enquote{Beyond the 12-factor app} \parencite{Beyond12Factor}. Dit boek heeft als doel om de 12 factoren concreter te definiëren en voegt daarnaast nog 3 extra factoren toe om applicaties in de cloud niet alleen te laten functioneren maar ook te laten gedijen. Deze factoren zijn telemetry, security, en het concept \enquote{API first}. In bijlage \ref{TabelFactors} is een gevolg samen met een uitleg bij elke factor geplaatst. Deze factoren zullen worden meegenomen bij het behandelen van de deelvragen.
+De methodologie heeft 12 factoren die voor deze eigenschappen zorgen. Vijf jaar nadat Wiggins de 12-Factor App heeft opgesteld is K. Hoffman aan de slag gegaan met een boek genaamd \enquote{Beyond the 12-Factor App} \parencite{Beyond12Factor}. Dit boek heeft als doel om de 12 factoren concreter te definiëren en voegt daarnaast nog 3 extra factoren toe om applicaties in de cloud niet alleen te laten functioneren maar ook te laten gedijen. Deze factoren zijn telemetry, security, en het concept \enquote{API first}. Eigenlijk is een betere benaming voor dit onderzoek dus de \enquote{Fifteen-Factor App}. In bijlage \ref{TabelFactors} is een gevolg samen met een uitleg bij elke factor geplaatst. Zodra een factor te maken heeft met onderhoudbaarheid is er een subcategorie van ISO 25010 onderhoudbaarheid bij geplaatst. Alle 15 factoren zullen worden meegenomen bij het behandelen van de deelvragen.
 
-\section{ISO 25010}
+\section{Schaalbaarheids-controle}
 
-Kaas
+In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} zijn een aantal manieren genoemd om de schaalbaarheid van een systeem te controleren.
+
+\subsection{Knelpunten}
+Deze knelpunten hebben vooral te maken de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user-interface en de complexiteitsgraad van algoritmen.
+
+\subsection{Onthullen van schaalbaarheids-aannames}
+Dit gaat over het onderzoeken hoe de uitbreiding van een systeem nieuwe problemen kan onthullen. Zodra een systeem zich uitbreidt is er een grotere kans op errors in de systeemconfiguratie, \enquote{zeldzame} errors komen vaker voor, is het belangrijk dat een probleem in het systeem gelokaliseerd blijft, en kan het een stuk complexer en lastiger worden om het systeem te begrijpen.
+
+\subsection{Schaalstrategieën}
+Hier wordt bekeken wat voor verschillende tekortkomingen een schaalstrategie heeft. Zodra een systeem voor een lange termijn leeft kan het zo zijn dat het systeem anders wordt gebruikt, hier moet de strategie op voorbereid zijn. Een strategie moet moet niet te afhankelijk zijn van het feit dat gebruikers weten hoe het systeem wordt geïmplementeerd. Ook moet de strategie voorbereid zijn op de vooruitgang van hardware.
+
+\subsection{Methoden voor schaalbaarheidsborging}
+In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om te testen of een systeem schaalbaar is. Wel zijn er methoden om de schaalbaarheid te waarborgen, zoals:
+\begin{itemize}
+	\item Onderzoek de \enquote{performance curves} en karakteriseer deze met een Big O notatie.
+	\item Identificeer mechanismen om knelpunten aan het licht brengen of waar aannames van het schaalbaarheids- ontwerp beginnen te worden geschonden.
+	\item Voer een SWOT analyse uit op de schaalbaarheids-strategie.
+	\begin{itemize}
+		\item \textbf{S}trengths (de soorten groei waar de strategie voor ontworpen is)
+		\item \textbf{W}eaknesses (de soorten groei waar de strategie niet voor ontworpen is)
+		\item \textbf{O}pportunities (mogelijke veranderingen in werklast of technologie die de strategie goed zou kunnen benutten)
+		\item \textbf{T}hreats (mogelijke veranderingen in de werklast of technologie die de strategie in twijfel zouden kunnen trekken)
+	\end{itemize}
+\end{itemize}
+
+\section{Load scalability}
+
+De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}.
+
+\section{Conclusie}
+
+Door een systeem te controleren op de ISO-norm 25010, de 15-Factor App en de controle van Weinstock en Goodenough is te concluderen of een systeem schaal-en onderhoudbaar is.
