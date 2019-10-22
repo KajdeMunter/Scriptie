@@ -58,7 +58,23 @@ In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om 
 
 \section{Load scalability}
 
-De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}.
+De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}. Om dit te kunnen waarborgen zijn twee technieken leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Dit zijn zogenaamde \enquote{container orchestration} tools die helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Om te beslissen welke van de twee technieken het meest toepasselijk is op de infrastructuur van Developers.nl worden de voor-en nadelen op een rijtje gezet:
+
+
+\begin{table}[h]
+	\caption{Kubernetes versus Docker Swarm}
+	\label{tab:LoadScalability}
+	\centering
+	\begin{tabular}{p{2cm} p{3.5cm} p{3.5cm}}
+		\toprule
+		\textbf{Wat} & \textbf{Kubernetes} & \textbf{Swarm} \\
+		\midrule
+		Schalen & X & - \\
+		Orchestreren & X & X \\
+		Cloud & X & - \\
+		\bottomrule\\
+	\end{tabular}
+\end{table}
 
 \section{Conclusie}
 
