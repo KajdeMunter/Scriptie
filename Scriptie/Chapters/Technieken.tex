@@ -56,10 +56,24 @@ In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om 
 	\end{itemize}
 \end{itemize}
 
+\section{Cloud providers}
+
+Momenteel worden de applicaties binnen Developers.nl gehost op een simpele server van Mijndomein. Een overweging om te maken is of dit niet beter naar een cloud service provider kan worden verplaatst. Om te overwegen of een cloud provider bij de wensen van Developers.nl past worden de voor-en nadelen op een rijtje gezet:
+
+\textbf{Voordelen cloud provider:} blabla
+
+\textbf{Voordelen traditionele server:} blabla
+
+\textbf{Nadelen cloud provider:} blabla
+
+\textbf{Nadelen traditionele server:} blabla
+
+
 \section{Load scalability}
 
-De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}. Om dit te kunnen waarborgen zijn twee technieken leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Dit zijn zogenaamde \enquote{container orchestration} tools die helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Om te beslissen welke van de twee technieken het meest toepasselijk is op de infrastructuur van Developers.nl worden de voor-en nadelen op een rijtje gezet:
+De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}. Om dit te kunnen waarborgen zijn twee technieken leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Dit zijn zogenaamde \enquote{container orchestration} tools die helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Een relevante factor is de keuze om voor een cloud service provider te kiezen of om de reguliere server te behouden. Het gebruik van een cloud provider kan namelijk veel werk schelen in het opzetten van K8s.
 
+Om te beslissen welke van de twee technieken het meest toepasselijk is op de infrastructuur van Developers.nl worden de voor-en nadelen op een rijtje gezet:
 
 \begin{table}[h]
 	\caption{Kubernetes versus Docker Swarm}
@@ -75,6 +89,8 @@ De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een
 		\bottomrule\\
 	\end{tabular}
 \end{table}
+
+
 
 \section{Conclusie}
 
