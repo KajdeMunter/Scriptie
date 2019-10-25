@@ -67,16 +67,13 @@ Momenteel worden de applicaties binnen Developers.nl gehost op een simpele, trad
 
 Om te overwegen of een cloud provider bij de wensen van Developers.nl past worden de voor-en nadelen op een rijtje gezet:
 
-\textbf{Voordelen cloud:} De kosten van cloud hosting zijn flexibel, er wordt alleen betaalt voor wat er daadwerkelijk gebruikt wordt. Dit betekend dat het erg kostenefficiënt is voor Developers.nl aangezien er tijdens de maandelijkse \enquote{Tech Nights} piekmomenten zijn op de website, en er heel weinig verkeer is op het EMS. Een ander voordeel is dat er bijna een ongelimiteerde hoeveelheid opslagruimte beschikbaar is. Aangezien het CMS van de website dubbel functioneert als \enquote{file-server} en er veel foto's worden geüpload is het fijn dat er geen rekening hoeft worden gehouden met de hoeveelheid opslag. Verder worden software updates automatisch uitgevoerd, software als K8s kunnen al inbegrepen zijn bij de infrastructuur en het maakt schalen gemakkelijker. Aangezien cloud providers meer middelen voor beveiliging hebben wordt de veiligheid ook een stuk verbeterd.
+\textbf{Voordelen cloud:} De kosten van cloud hosting zijn flexibel, er wordt alleen betaalt voor wat er daadwerkelijk gebruikt wordt zolang er verstandig gebruik van wordt gemaakt. Dit betekend dat het erg kostenefficiënt is voor Developers.nl aangezien er tijdens de maandelijkse \enquote{Tech Nights} piekmomenten zijn op de website, en er heel weinig verkeer is op het EMS. In verband met de lage hoeveelheid verkeer op het EMS is \enquote{serverless computing} een goede oplossing om kosten te besparen. Een ander voordeel is dat er bijna een ongelimiteerde hoeveelheid opslagruimte beschikbaar is. Aangezien het CMS van de website dubbel functioneert als \enquote{file-server} en er veel foto's worden geüpload is het fijn dat er geen rekening hoeft worden gehouden met de hoeveelheid opslag. Verder worden software updates automatisch uitgevoerd, software als K8s kunnen al inbegrepen zijn bij de infrastructuur en het maakt schalen gemakkelijker. Aangezien cloud providers meer middelen voor beveiliging hebben wordt de veiligheid ook een stuk verbeterd.
 
 \textbf{Voordelen traditioneel:} Ook al is cloud hosting meer kostenefficiënt is het toch mogelijk dat een web host goedkoper uitkomt. Zolang er maar geen hoge piekmomenten zijn in het verkeer. Dit is dus niet van toepassing op Developers.nl aangezien de \enquote{Tech Nights} of andere evenementen voor piekmomenten zorgen. \textcolor{red}{TODO: Huidige kosten?} % TODO: huidige kosten
 
 \textbf{Nadelen cloud:} Cloud providers hebben de mogelijkheid voor technische problemen buiten de controle van klanten, waardoor het mogelijk is dat er downtime ontstaat. Ook kan het duurder uitpakken zodra er niet goed word omgegaan met schalen.
 
-\textbf{Nadelen traditioneel:} De mogelijkheid bestaat dat er meer kosten worden gemaakt dan nodig is. Ook is shared hosting een risico omdat zodra een andere klant veel rekenkracht opeist de kans omstaat dat de prestaties dalen.
-
-\section{Serverless}
-Omdat het EMS zo weinig wordt gebruikt is het mogelijk dat \enquote{serverless computing} een zeer kostenbesparende optie kan zijn.
+\textbf{Nadelen traditioneel:} De mogelijkheid bestaat dat er meer kosten worden gemaakt dan nodig is. Ook is shared-hosting een risico omdat zodra een andere klant veel rekenkracht opeist de kans ontstaat dat de prestaties dalen.
 
 \section{Policies}
 Door policies zijn er duidelijke standaarden waaraan moet voldaan.
