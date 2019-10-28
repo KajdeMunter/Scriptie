@@ -27,7 +27,7 @@ Om de applicatie \enquote{onderhoudbaar} te noemen moeten alle subcategorieën v
 
 A. Wiggins \parencite{12Factor} heeft een methodologie opgezet om moderne, schaalbare en onderhoudbare web-applicaties te bouwen. De methodologie past goed bij de probleemstelling, het minimaliseren van de kosten en tijd die het kost om nieuwe ontwikkelaars aan het project te laten werken en de gemakkelijkheid van het schalen. Ook zorgt het voor structural scalability, draagbaarheid tussen uitvoeringsomgevingen, de mogelijkheid om te deployen op moderne cloud platformen en een minimale divergentie tussen development en productie waardoor CD gemakkelijk wordt om te implementeren.
 
-De methodologie heeft 12 factoren die voor deze eigenschappen zorgen. Vijf jaar nadat Wiggins de 12-Factor App heeft opgesteld is K. Hoffman aan de slag gegaan met een boek genaamd \enquote{Beyond the 12-Factor App} \parencite{Beyond12Factor}. Dit boek heeft als doel om de 12 factoren concreter te definiëren en voegt daarnaast nog 3 extra factoren toe om applicaties in de cloud niet alleen te laten functioneren maar ook te laten gedijen. Deze factoren zijn telemetry, security, en het concept \enquote{API first}. Eigenlijk is een betere benaming voor dit onderzoek dus de \enquote{Fifteen-Factor App}. In bijlage \ref{TabelFactors} is een gevolg samen met een uitleg bij elke factor geplaatst. Zodra een factor te maken heeft met onderhoudbaarheid is er een subcategorie van ISO 25010 onderhoudbaarheid bij geplaatst. Alle 15 factoren zullen worden meegenomen bij het behandelen van de deelvragen.
+De methodologie heeft 12 factoren (best-practices) die voor deze eigenschappen zorgen. Deze methodologie wordt vaak aangeraden door professionals, en is ook een methodologie die Developers.nl graag terug ziet in haar applicaties. Kritiek op de 12-factor app gaat voornamelijk over het feit dat het gelimiteerd is tot Heroku \parencite{AdaptingTwelveFactor}. Vijf jaar nadat Wiggins de 12-Factor App heeft opgesteld is K. Hoffman aan de slag gegaan met een boek genaamd \enquote{Beyond the 12-Factor App} \parencite{Beyond12Factor}. Dit boek heeft als doel om de 12 factoren concreter te definiëren en voegt daarnaast nog 3 extra factoren toe om applicaties in de cloud niet alleen te laten functioneren maar ook te laten gedijen. Hierdoor is de methodologie ook niet meer persé gericht op Heroku. Deze factoren zijn telemetry, security, en het concept \enquote{API first}. Eigenlijk is een betere benaming voor dit onderzoek dus de \enquote{Fifteen-Factor App}. In bijlage \ref{TabelFactors} is een gevolg samen met een uitleg bij elke factor geplaatst. Zodra een factor te maken heeft met onderhoudbaarheid is er een subcategorie van ISO 25010 onderhoudbaarheid bij geplaatst. Alle 15 factoren zullen worden meegenomen bij het behandelen van de deelvragen.
 
 \section{Schaalbaarheids-controle}
 
@@ -75,10 +75,21 @@ Om te overwegen of een cloud provider bij de wensen van Developers.nl past worde
 
 \textbf{Nadelen traditioneel:} De mogelijkheid bestaat dat er meer kosten worden gemaakt dan nodig is. Ook is shared-hosting een risico omdat zodra een andere klant veel rekenkracht opeist de kans ontstaat dat de prestaties dalen.\\
 
-Er zijn veel verschillende cloud providers, waarvan de grootste Amazon Web Services (AWS), Microsoft Azure en Google Cloud zijn. Om te kijken welke relevant voor Developers.nl zijn
+Er zijn veel verschillende cloud providers, waarvan de grootste Amazon Web Services (AWS), Microsoft Azure en Google Cloud zijn. \textcolor{red}{TODO: kiezen welke} % TODO: Kiezen welke
 
-\section{Policies}
-Door policies zijn er duidelijke standaarden waaraan moet voldaan.
+\section{Policy-as-Code}
+Door policies zijn er duidelijke standaarden waaraan moet voldaan. Policies kunnen in meerdere vormen voorkomen \parencite{WhyPaC}, waaronder:
+\begin{itemize}
+	\item \textbf{Compliance Policies.} Deze policies verzekeren dat nieuwe toevoegingen voldoen aan standaarden als bijvoorbeeld AVG of SOC.
+	\item \textbf{Security Policies.} Deze policies verdedigen de integriteit van de infrastructuur door bijvoorbeeld te verzekeren dat bepaalde poorten niet open staan.
+	\item \textbf{Operational Excellence.} Deze policies voorkomen uitval of verslechtering van geleverde services, bijvoorbeeld door nieuwe configuratie te valideren.
+\end{itemize}
+
+Vóór policy-as-code werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek Policy-as-code richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en opnieuw kan worden gebruikt.
+
+Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere analyseerbaarheid op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de testbaarheid van de systemen stijgt bij het implementeren van policies as code. Bovendien zijn security policies handig voor het beschermen van de gevoelige data dat het EMS bevat.
+
+Er zijn twee technieken om policy-as-code te implementeren. HashiCorps \enquote{Sentinel} en \enquote{Open Policy Agent} (OPA). In verband met de reden dat Sentinel closed-source is wordt er gekozen om OPA te gebruiken, dit past beter bij de bedrijfscultuur van Developers.nl. Ook is Sentinel alleen toepasbaar op hashiCorp producten, waardoor de techniek een stuk beperkter is.
 
 \section{Load scalability}
 
