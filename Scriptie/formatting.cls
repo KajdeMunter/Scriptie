@@ -338,7 +338,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	ABBREVIATIONS PAGE DESIGN
 %----------------------------
 
-\newcommand{\abbrevname}{Lijst van afkortingen}
+\newcommand{\abbrevname}{Afkortingenlijst}
 \NewDocumentEnvironment{abbreviations}{ m }{%
 	\ifbool{nolistspace}{\begingroup\singlespacing}{}
 	\ifbool{listtoc}{\addchap{\abbrevname}}{\addchap*{\abbrevname}}

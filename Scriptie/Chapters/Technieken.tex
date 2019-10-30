@@ -23,7 +23,7 @@ ISO-norm 25010 \parencite{ISO25010} is de opvolger van ISO-9126 en beschrijft so
 Om de applicatie \enquote{onderhoudbaar} te noemen moeten alle subcategorieën voldoende worden vervuld. Er moet een analyse worden uitgevoerd per subcategorie over eventuele tekortkomingen.
 
 
-\section{de "Twelve-Factor App"}
+\section{De Twelve-Factor App}
 
 A. Wiggins \parencite{12Factor} heeft een methodologie opgezet om moderne, schaalbare en onderhoudbare web-applicaties te bouwen. De methodologie past goed bij de probleemstelling, het minimaliseren van de kosten en tijd die het kost om nieuwe ontwikkelaars aan het project te laten werken en de gemakkelijkheid van het schalen. Ook zorgt het voor structural scalability, draagbaarheid tussen uitvoeringsomgevingen, de mogelijkheid om te deployen op moderne cloud platformen en een minimale divergentie tussen development en productie waardoor CD gemakkelijk wordt om te implementeren.
 
@@ -75,7 +75,10 @@ Om te overwegen of een cloud provider bij de wensen van Developers.nl past worde
 
 \textbf{Nadelen traditioneel:} De mogelijkheid bestaat dat er meer kosten worden gemaakt dan nodig is. Ook is shared-hosting een risico omdat zodra een andere klant veel rekenkracht opeist de kans ontstaat dat de prestaties dalen.\\
 
-Er zijn veel verschillende cloud providers, waarvan de grootste Amazon Web Services (AWS), Microsoft Azure en Google Cloud zijn. \textcolor{red}{TODO: kiezen welke} % TODO: Kiezen welke
+Er zijn veel verschillende cloud providers, waarvan de grootste Amazon Web Services (AWS), Microsoft Azure en Google Cloud Platform (GCP) zijn. \textcolor{red}{TODO: kiezen welke} % TODO: Kiezen welke
+
+\section{Infrastructure-as-Code}
+De huidige infrastructuur van de Website en het EMS wordt opgebouwd met Ansible. \enquote{Ansible is a radically simple IT automation engine that automates cloud provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs} \parencite{Ansible}. Dit doet Ansible door middel van een techniek genaamd \enquote{Infrastructure-as-Code}. Zoals de structuur nu is opgebouwd word er voor elke applicatie een apart stuk IaC geschreven. Om modulariteit en herbruikbaarheid van ISO 25010 \parencite{ISO25010} te verbeteren is het mogelijk om één centrale, algemene infrastructuur repository te maken waar installaties (stukken code dus) als Docker of databases en user-management kunnen worden hergebruikt voor meerdere applicaties. Andere IaC tools als Chef, Puppet, of Terraform kunnen ook voor dit doeleinde worden gebruikt, maar aangezien Ansible al gebruikt wordt is het niet efficiënt om dit om te herschrijven naar iets anders.
 
 \section{Policy-as-Code}
 Door policies zijn er duidelijke standaarden waaraan moet voldaan. Policies kunnen in meerdere vormen voorkomen \parencite{WhyPaC}, waaronder:
@@ -85,18 +88,16 @@ Door policies zijn er duidelijke standaarden waaraan moet voldaan. Policies kunn
 	\item \textbf{Operational Excellence.} Deze policies voorkomen uitval of verslechtering van geleverde services, bijvoorbeeld door nieuwe configuratie te valideren.
 \end{itemize}
 
-Vóór policy-as-code werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek Policy-as-code richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en opnieuw kan worden gebruikt.
+Vóór policy-as-code (PaC) werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek PaC richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en kan worden hergebruikt. Dit sluit goed aan met de huidige Infrastructure-as-Code (IaC) oplossing die Developers.nl gebruikt voor het inrichten van haar servers.
 
-Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere analyseerbaarheid op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de testbaarheid van de systemen stijgt bij het implementeren van policies as code. Bovendien zijn security policies handig voor het beschermen van de gevoelige data dat het EMS bevat.
+Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere analyseerbaarheid op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de testbaarheid van de systemen stijgt bij het implementeren van policies as code. Ook zorgen policies voor wijzigbaarheid, aangezien het systeem gewijzigd kan worden zonder fouten of kwaliteitsverminderingen als gevolg omdat het simpelweg niet geïmplementeerd mag worden zodra een wijziging niet aan een policy voldoet. Bovendien zijn security policies handig voor het beschermen van de gevoelige data dat het EMS bevat.
 
-Er zijn twee technieken om policy-as-code te implementeren. HashiCorps \enquote{Sentinel} en \enquote{Open Policy Agent} (OPA). In verband met de reden dat Sentinel closed-source is wordt er gekozen om OPA te gebruiken, dit past beter bij de bedrijfscultuur en slogan van Developers.nl. Ook is Sentinel alleen toepasbaar op hashiCorp producten, waardoor de techniek een stuk beperkter is.
+Er zijn twee technieken om PaC te implementeren. HashiCorps \enquote{Sentinel} en \enquote{Open Policy Agent} (OPA). In verband met de reden dat Sentinel closed-source is wordt er gekozen om OPA te gebruiken, dit past beter bij de bedrijfscultuur en slogan van Developers.nl. Ook is Sentinel alleen toepasbaar op hashiCorp producten, waardoor de techniek een stuk beperkter is.
 
 \section{Load scalability}
 
-De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}. Om dit te kunnen waarborgen zijn twee technieken leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Dit zijn zogenaamde \enquote{container orchestration} tools die helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool.
-
+De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}. Om dit te kunnen waarborgen zijn twee technieken leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Dit zijn zogenaamde \enquote{container orchestration} tools die helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is.
+ 
 \section{Conclusie}
 
-Door een systeem te controleren op de ISO-norm 25010, de 15-Factor App en de controle van Weinstock en Goodenough is te concluderen of een systeem schaal-en onderhoudbaar is.
-
-Om de kenmerken analyseerbaarheid en testbaarheid van ISO 25010 te verbeteren kunnen policies worden afgedwongen.
+Door een systeem te controleren op de ISO-norm 25010, de 15-Factor App en de controle van Weinstock en Goodenough is te concluderen of een systeem schaal-en onderhoudbaar is. Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur repository gemaakt worden. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen.
