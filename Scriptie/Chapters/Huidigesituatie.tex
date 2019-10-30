@@ -2,7 +2,7 @@
 
 \label{Chapter4}
 
-Dit hoofdstuk gaat over de deelvraag \enquote{\deelhuidig}
+Dit hoofdstuk gaat over de deelvraag \enquote{\deelhuidig}. Dit wordt beantwoord
 
 \section{Huidige Architectuur}
 De huidige website is een combinatie van een PHP \& Symfony back-end API en Content Management Systeem, samen met een React + next.js front-end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
@@ -37,11 +37,17 @@ Nu de infrastructuur in kaart is gebracht luidt de vraag; hoe schaalbaar is deze
 \subsection{Structural scalability}
 Definitie: Het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur.
 
-Bij structural scalability hoort factor 3 (Config) van de 12-factor app. Een test om te bewijzen dat alle configuratie correct uit de code is verwerkt, is of de applicatie op elk gewenst moment open-source kan worden gemaakt zonder geclassificeerde informatie vrij te geven.
+Bij structural scalability horen factor 2 \textbf{(API First)} en 5 \textbf{(Configuration, credentials, and code)} van de 15-factor app. 
+
+\subsubsection{API First}
+De website van Developers.nl is momenteel in 2 delen gesplitst: de React Front-end en de PHP API als back-end. Deze worden apart ontwikkeld, waardoor dus het principe altijd wordt toegepast. Daarnaast heeft het EMS geen API, en is dus out-of-scope.
+
+\subsubsection{Configuration}
+Een test om te bewijzen dat alle configuratie correct uit de code is verwerkt, is of de applicatie op elk gewenst moment open-source kan worden gemaakt zonder geclassificeerde informatie vrij te geven.
 
 Voor de website wordt er gebruik gemaakt van docker-secrets en ansible-vault. Deze combinatie zorgt ervoor dat er nooit wachtwoorden, API sleutels en dergelijke plain-text in versiebeheer komt te staan. Deze secrets worden uiteindelijk in de containers als environment variabelen opgeslagen en uitgelezen door Symfony. In het EMS is deze techniek nog niet gebruikt en staan credentials wél plaintext in de repository.
 
-Om aan factor 3 van de 12-factor app te voldoen moeten de configuratiefiles niet per specifieke omgeving (productie, test, staging) gegroepeerd worden maar moeten juist individueel per deployment geregeld worden. Dit gebeurt in zowel het EMS als de website, de bitbucket pipeline heeft zijn eigen specifieke environment variabelen om te gebruiken en de variabelen in de docker containers worden meegegeven in de algemene docker-compose file die in elke deployment hetzelfde zal zijn.
+Om aan factor 5 te voldoen moet de configuratiefiles niet per specifieke omgeving (productie, test, staging) gegroepeerd worden maar moeten juist individueel per deployment geregeld worden. Dit gebeurt in zowel het EMS als de website, de bitbucket pipeline heeft zijn eigen specifieke environment variabelen om te gebruiken en de variabelen in de docker containers worden meegegeven in de algemene docker-compose file die in elke deployment hetzelfde zal zijn.
 
 \subsection{Load scalability}
 Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt. Om een load-test uit te voeren zijn meerdere tools met elkaar vergeleken:
@@ -54,88 +60,30 @@ Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aan
 
 De gratis versie van loader.io is niet genoeg voor de wensen van de test, voor gatling.io is Ruby kennis nodig, en voor Tsung worden de tests in XML geschreven wat het lastig maakt om de load op te schalen. Uiteindelijk is gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een gemakkelijke manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Om de uitkomsten te visualiseren is InfluxDB samen met Grafana gebruikt. In bijlage \ref{Bijlagek6} is de implementatie hiervan te vinden.
 
-Bij load scalability horen factor 6 \textbf{(processes)}, 8 \textbf{(concurrency)} en 9 \textbf{(disposability)} van de 12-factor app methodologie. Factor 6 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de PHP containers worden geüploade bestanden weggeschreven naar een volume, dit zorgt ervoor dat de container niet volledig stateless meer is. Ook zijn databases in docker containers geplaatst, dit is een stateful process aangezien het van belang is dat niet alle data verloren gaat zodra de container stopt.
+Bij load scalability horen factor 12 \textbf{(stateless processes)}, 13 \textbf{(concurrency)} en 7 \textbf{(disposability)} van de 15-factor app methodologie. 
 
-Voor factor 8 \textbf{(concurrency)}......
+\subsubsection{Stateless processes}
+Factor 12 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de PHP containers worden geüploade bestanden weggeschreven naar een volume, dit zorgt ervoor dat de container niet volledig stateless meer is. Ook zijn databases in docker containers geplaatst, dit is een stateful process aangezien het van belang is dat niet alle data verloren gaat zodra de container stopt.
 
-Voor factor 9 \textbf{(disposability)} moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet. \textcolor{red}{TODO: HOE SNEL?} % TODO: Hoe snel?
+\subsubsection{Concurrency}
+Voor factor 13 is het van belang dat een applicatie horizontaal uit te schalen is. Zolang de applicatie aan factor 7 (Disposability) en 12 (Stateless processes) voldoet zit deze factor goed \parencite{Beyond12Factor}.
 
-Ook vereist factor 9 dat processen netjes worden afgesloten zodra ze een \texttt{SIGTERM} ontvangen. Zodra een docker container met \texttt{docker stop <container>} gestopt wordt zal er een SIGTERM worden gestuurd naar de draaiende processen. De vier containers met processen zijn PostgreSQL, PHP-FPM, Nginx en Redis. Deze sluiten allemaal netjes af en hebben de volgende outputs zodra ze worden gestopt:
+\subsubsection{Disposability}
+Voor factor 7 moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet. \textcolor{red}{TODO: HOE SNEL?} % TODO: Hoe snel?
 
-\subsubsection{PostgreSQL}
-\begin{minted}{text}
-LOG: received smart shutdown request
-LOG: background worker "logical replication launcher" (PID 43) exited with exit code 1
-LOG: shutting down
-LOG: database system is shut down
-\end{minted}
+Ook vereist factor 7 dat processen netjes worden afgesloten zodra ze een \texttt{SIGTERM} ontvangen. Zodra een docker container met \texttt{docker stop <container>} gestopt wordt zal er een SIGTERM worden gestuurd naar de draaiende processen. De vier containers met processen zijn PostgreSQL, PHP-FPM, Nginx en Redis. Deze sluiten allemaal netjes af, de outputs zijn te zien in Bijlage \ref{DockerExits}.
 
-\subsubsection{PHP-FPM}
-\begin{minted}{text}
-NOTICE: Terminating ...
-NOTICE: exiting, bye-bye!
-\end{minted}
+Ook moeten de processen bestendig zijn tegen \enquote{sudden death}. Om dit te simuleren kan \texttt{docker kill <container>} gebruikt worden om een \texttt{SIGKILL} te sturen naar de hoofdprocessen. In bijlage \ref{DockerKills} is te zien dat alle containers na een \texttt{docker kill} zonder problemen weer kunnen opstarten.
 
-\subsubsection{Redis}
-\begin{minted}{text}
-1:signal-handler (1570781278) Received SIGTERM scheduling shutdown...
-# User requested shutdown...
-* Saving the final RDB snapshot before exiting.
-* DB saved on disk
-* Removing the pid file.
-# Redis is now ready to exit, bye bye...
-\end{minted}
+\subsubsection{Weinstock \& Goodenough controle}
+Om de schaalbaarheid te waarborgen zullen de 3 methoden van Weinstock en Goodenough \parencite{OnSystemScalability} uitgevoerd worden:
 
-\subsubsection{Nginx}
-\begin{minted}{text}
-[notice] 1#1: signal 15 (SIGTERM) received from 56, exiting
-[notice] 48#48: exiting
-[notice] 47#47: exiting
-[notice] 47#47: exit
-[notice] 1#1: signal 14 (SIGALRM) received
-[notice] 1#1: signal 17 (SIGCHLD) received from 48
-[notice] 1#1: cache manager process 48 exited with code 0
-[notice] 1#1: worker process 47 exited with code 0
-[notice] 1#1: exit
-\end{minted}
+\begin{itemize}
+	\item Performance curves
+	\item Knelpunten
+	\item SWOT
+\end{itemize}
 
-Ook moeten de processen bestendig zijn tegen \enquote{sudden death}. Om dit te simuleren kan \texttt{docker kill <container>} gebruikt worden om een \texttt{SIGKILL} te sturen naar de hoofdprocessen. Hieronder is te zien dat alle containers na een \texttt{docker kill} zonder problemen weer kunnen opstarten.
-
-\begin{minted}{text}
--  developers.nl git:(develop) docker ps -q
-d0829783af18
-f72e9967771b
-01dd48ff5a59
-fab794731d47
-ca510c065d11
-3ee85578efb5
--  developers.nl git:(develop) docker kill $(docker ps -q) 
-docker ps
-d0829783af18
-f72e9967771b
-01dd48ff5a59
-fab794731d47
-ca510c065d11
-3ee85578efb5
--  developers.nl git:(develop) docker ps -q
-
--  developers.nl git:(develop) docker start $(docker ps -aq)
-d0829783af18
-f72e9967771b
-01dd48ff5a59
-fab794731d47
-d68d7ab9809c
-ca510c065d11
-3ee85578efb5
-e1866ab6c1af
--  developers.nl git:(develop) docker ps -q
-d0829783af18
-f72e9967771b
-01dd48ff5a59
-fab794731d47
-ca510c065d11
-3ee85578efb5
-\end{minted}
 
 \subsection{Functional scalability}
 Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem.
