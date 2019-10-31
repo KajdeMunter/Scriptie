@@ -50,17 +50,7 @@ Voor de website wordt er gebruik gemaakt van docker-secrets en ansible-vault. De
 Om aan factor 5 te voldoen moet de configuratiefiles niet per specifieke omgeving (productie, test, staging) gegroepeerd worden maar moeten juist individueel per deployment geregeld worden. Dit gebeurt in zowel het EMS als de website, de bitbucket pipeline heeft zijn eigen specifieke environment variabelen om te gebruiken en de variabelen in de docker containers worden meegegeven in de algemene docker-compose file die in elke deployment hetzelfde zal zijn.
 
 \subsection{Load scalability}
-Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt. Om een load-test uit te voeren zijn meerdere tools met elkaar vergeleken:
-\begin{itemize}
-	\item https://loader.io/
-	\item https://gatling.io/
-	\item https://k6.io/
-	\item http://tsung.erlang-projects.org/
-\end{itemize}
-
-De gratis versie van loader.io is niet genoeg voor de wensen van de test, voor gatling.io is Ruby kennis nodig, en voor Tsung worden de tests in XML geschreven wat het lastig maakt om de load op te schalen. Uiteindelijk is gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een gemakkelijke manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Om de uitkomsten te visualiseren is InfluxDB samen met Grafana gebruikt. In bijlage \ref{Bijlagek6} is de implementatie hiervan te vinden.
-
-Bij load scalability horen factor 12 \textbf{(stateless processes)}, 13 \textbf{(concurrency)} en 7 \textbf{(disposability)} van de 15-factor app methodologie. 
+Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt. Bij load scalability horen factor 12 \textbf{(stateless processes)}, 13 \textbf{(concurrency)} en 7 \textbf{(disposability)} van de 15-factor app methodologie. 
 
 \subsubsection{Stateless processes}
 Factor 12 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de PHP containers worden geüploade bestanden weggeschreven naar een volume, dit zorgt ervoor dat de container niet volledig stateless meer is. Ook zijn databases in docker containers geplaatst, dit is een stateful process aangezien het van belang is dat niet alle data verloren gaat zodra de container stopt.
@@ -76,13 +66,31 @@ Ook vereist factor 7 dat processen netjes worden afgesloten zodra ze een \texttt
 Ook moeten de processen bestendig zijn tegen \enquote{sudden death}. Om dit te simuleren kan \texttt{docker kill <container>} gebruikt worden om een \texttt{SIGKILL} te sturen naar de hoofdprocessen. In bijlage \ref{DockerKills} is te zien dat alle containers na een \texttt{docker kill} zonder problemen weer kunnen opstarten.
 
 \subsubsection{Weinstock \& Goodenough controle}
-Om de schaalbaarheid te waarborgen zullen de 3 methoden van Weinstock en Goodenough \parencite{OnSystemScalability} uitgevoerd worden:
+Om de schaalbaarheid te waarborgen zullen de 3 methoden van Weinstock en Goodenough \parencite{OnSystemScalability} uitgevoerd worden. Performance curves zullen worden gevisualiseerd, knelpunten zullen worden uitgelicht en een SWOT analyse op de schaalbaarheid zal worden uitgevoerd.
 
+Om de performance curves te visualiseren zal een load-test worden uitgevoerd. Er zijn hier meerdere tools voor vergeleken, waaronder:
 \begin{itemize}
-	\item Performance curves
-	\item Knelpunten
-	\item SWOT
+	\item https://loader.io/
+	\item https://gatling.io/
+	\item https://k6.io/
+	\item http://tsung.erlang-projects.org/
 \end{itemize}
+
+De gratis versie van loader.io is niet genoeg voor de wensen van de test, voor gatling.io is Ruby kennis nodig, en voor Tsung worden de tests in XML geschreven wat het lastig maakt om de load op te schalen. Uiteindelijk is gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een eenvoudige manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Om de uitkomsten te visualiseren is InfluxDB samen met Grafana gebruikt. In bijlage \ref{Bijlagek6} is de implementatie hiervan te vinden.
+
+\textcolor{red}{TODO: PERFORMANCE CURVES} % TODO: Performance curves
+
+Één van de grootste limiterende factoren bij het schalen van de website is de hoeveelheid opslag. Voornamelijk omdat het CMS dubbel functioneert als \enquote{file-server}. Daarnaast bevat de content van de website een grote hoeveelheid foto's en video's, waardoor het opslaggebruik snel kan oplopen. Door het commando \texttt{\$ df -h} is te zien dat 21G -- oftewel 57\% -- van de totale 49G wordt gebruikt.
+\begin{minted}[bgcolor=codebg, breaklines]{text}
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        49G   27G   21G  57% /
+\end{minted}
+Bij nader onderzoek is te zien dat de statische folder (waar ook de geüploade bestanden in zitten) maar \texttt{278M} is, dus er is nog veel ruimte voor uitbreiding in dit aspect en zal voor een redelijk lange tijd geen probleem vormen:
+\begin{minted}[bgcolor=codebg, breaklines]{text}
+root@developers:/etc/developers.nl# du -shc ./static/
+278M	./static/
+\end{minted}
+
 
 
 \subsection{Functional scalability}
