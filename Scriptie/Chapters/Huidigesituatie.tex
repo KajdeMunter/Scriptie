@@ -96,8 +96,9 @@ Omdat 27G nogal veel leek voor wat er op de server draait is er nog onderzoek ge
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/vda1        49G   13G   34G  28% /
 \end{minted}
+Qua schaalbaarheid is dit dus een verbeterpunt. De images en volumes moeten eigenlijk automatisch worden opgeschoond.
 
-Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook voordelig gaat zijn.
+Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook kan worden toegepast. Het is (nog) niet nodig om een SWOT analyse uit te voeren, aangezien er nog geen schaalstrategie in plaats is.
 
 \subsection{Functional scalability}
 Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem.
@@ -105,6 +106,22 @@ Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe f
 Binnen de scope van de infrastructuur.
 
 \subsection{Onderhoudbaarheid}
-Definitie: The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements.
+De definitie van onderhoudbaarheid waarvan wordt uitgegaan in dit onderzoek luidt als volgt: \enquote{The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements}. Om de onderhoudbaarheid van de huidige infrastructuur te analyseren worden de vijf subcategorieën van ISO-25010 \parencite{ISO25010}; Modulariteit, Herbruikbaarheid, Analyseerbaarheid, Wijzigbaarheid en Testbaarheid individueel behandeld.
+
+\subsubsection{Modulariteit}
+De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact heeft op andere componenten.
+
+\subsubsection{Herbruikbaarheid}
+De mate waarin een bestaand onderdeel gebruikt kan worden in meer dan één systeem of bij het bouwen van een nieuw onderdeel.
+
+\subsubsection{Analyseerbaarheid}
+De mate waarin het mogelijk is om effectief en efficiënt de impact, van een geplande verandering van één of meer onderdelen, op een product of systeem te beoordelen, om afwijkingen en/of foutoorzaken van een product vast te stellen of om onderdelen te identificeren die gewijzigd moeten worden.
+
+\subsubsection{Wijzigbaarheid}
+De mate waarin een product of systeem effectief en efficiënt gewijzigd kan worden zonder fouten of kwaliteitsvermindering tot gevolg.
+
+\subsubsection{Testbaarheid}
+De mate waarin effectief en efficiënt testcriteria vastgesteld kunnen worden voor een systeem, product of component en waarin tests uitgevoerd kunnen worden om vast te stellen of aan die criteria is voldaan.
+
 
 \section{conclusie}
