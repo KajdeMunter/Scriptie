@@ -101,7 +101,13 @@ headsepline, % Uncomment to get a line under the header
 
 \renewcommand{\tablename}{Tabel}
 \renewcommand{\figurename}{Figuur}
-\definecolor{codebg}{rgb}{0.9,0.9,0.9}
+\definecolor{codebg}{rgb}{0.93,0.93,0.93}
+
+% Set texttt background color to grey
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{
+	\colorbox{codebg}{\oldtexttt{#1}}
+}
 
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 

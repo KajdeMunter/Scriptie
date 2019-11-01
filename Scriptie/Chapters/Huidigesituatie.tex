@@ -80,18 +80,24 @@ De gratis versie van loader.io is niet genoeg voor de wensen van de test, voor g
 
 \textcolor{red}{TODO: PERFORMANCE CURVES} % TODO: Performance curves
 
-Één van de grootste limiterende factoren bij het schalen van de website is de hoeveelheid opslag. Voornamelijk omdat het CMS dubbel functioneert als \enquote{file-server}. Daarnaast bevat de content van de website een grote hoeveelheid foto's en video's, waardoor het opslaggebruik snel kan oplopen. Door het commando \texttt{\$ df -h} is te zien dat 21G -- oftewel 57\% -- van de totale 49G wordt gebruikt.
+Één limiterende factor bij het schalen van de website is de hoeveelheid opslag. Voornamelijk omdat het CMS dubbel functioneert als \enquote{file-server}. Daarnaast bevat de content van de website een grote hoeveelheid foto's en video's, waardoor het opslaggebruik snel kan oplopen. Door het commando \texttt{\$ df -h} is te zien dat 27G -- oftewel 57\% -- van de totale 49G wordt gebruikt.
 \begin{minted}[bgcolor=codebg, breaklines]{text}
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/vda1        49G   27G   21G  57% /
 \end{minted}
-Bij nader onderzoek is te zien dat de statische folder (waar ook de geüploade bestanden in zitten) maar \texttt{278M} is, dus er is nog veel ruimte voor uitbreiding in dit aspect en zal voor een redelijk lange tijd geen probleem vormen:
+Bij nader onderzoek is te zien dat de directory die gebruikt wordt voor statische bestanden (waar ook de geüploade bestanden in zitten) maar \texttt{278M} in beslag neemt, dus er is nog veel ruimte (21G) voor uitbreiding in dit aspect en zal voor een redelijk lange tijd geen probleem vormen:
 \begin{minted}[bgcolor=codebg, breaklines]{text}
 root@developers:/etc/developers.nl# du -shc ./static/
 278M	./static/
 \end{minted}
 
+Omdat 27G nogal veel leek voor wat er op de server draait is er nog onderzoek gedaan naar de oorzaak. Het bleek dat er nog erg veel oude Docker volumes en images op de website stonden. Na een \texttt{\$ docker system prune -\--volumes} en een \texttt{\$ docker image prune -a} is er nog 14G vrijgemaakt:
+\begin{minted}[bgcolor=codebg, breaklines]{text}
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        49G   13G   34G  28% /
+\end{minted}
 
+Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook voordelig gaat zijn.
 
 \subsection{Functional scalability}
 Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem.
