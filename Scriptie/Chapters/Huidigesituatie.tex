@@ -108,20 +108,33 @@ Binnen de scope van de infrastructuur.
 \subsection{Onderhoudbaarheid}
 De definitie van onderhoudbaarheid waarvan wordt uitgegaan in dit onderzoek luidt als volgt: \enquote{The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements}. Om de onderhoudbaarheid van de huidige infrastructuur te analyseren worden de vijf subcategorieën van ISO-25010 \parencite{ISO25010}; Modulariteit, Herbruikbaarheid, Analyseerbaarheid, Wijzigbaarheid en Testbaarheid individueel behandeld.
 
-\subsubsection{Modulariteit}
+\subsubsection{Modulariteit} % TODO: Deze subdefinities komen ook uit wikipedia
 De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact heeft op andere componenten.
+
+De website van Developers.nl is opgebouwd in twee applicaties, de Node \& React frontend samen met de PHP \& Symfony backend. Een wijziging in één van de API endpoints van de backend zou kunnen betekenen dat de frontend breekt. Om dit te voorkomen is een versioning systeem \footnote{Voor de API wordt FOSRestBundle gebruikt, deze heeft een eigen implementatie van versioning, zie: https://symfony.com/doc/master/bundles/FOSRestBundle/versioning.html} geïmplementeerd waardoor er zonder problemen individueel de front-of backend gedeployed kan worden.
+
+Het EMS is één enkele Symfony applicatie, waar voor de frontend gebruik wordt gemaakt van de templating engine \enquote{Twig}
+
+Voor de 15-Factor App geldt Factor 1 \textbf{(One codebase, one application)}, 3 \textbf{(Dependency management)} en 8 \textbf{(Backing services)}.
 
 \subsubsection{Herbruikbaarheid}
 De mate waarin een bestaand onderdeel gebruikt kan worden in meer dan één systeem of bij het bouwen van een nieuw onderdeel.
 
+Hoewel de Docker containers en Ansible infrastructuur generiek zijn opgesteld zijn er toch specifieke aanpassingen voor de website en voor het EMS. Dit betekent dat bijvoorbeeld de PHP Docker image van de website niet dezelfde is als de PHP Docker image voor het EMS. Ook is de door-ansible-opgebouwde infrastructuur nog niet herbruikbaar voor meerdere projecten, aangezien het in dezelfde codebase zit als de applicatie.
+
 \subsubsection{Analyseerbaarheid}
 De mate waarin het mogelijk is om effectief en efficiënt de impact, van een geplande verandering van één of meer onderdelen, op een product of systeem te beoordelen, om afwijkingen en/of foutoorzaken van een product vast te stellen of om onderdelen te identificeren die gewijzigd moeten worden.
+
+Voor de 15-Factor App geldt Factor 6 \textbf{(Logs)}, 10 \textbf{(Administrative processes)} en 14 \textbf{(Telemetry)}.
 
 \subsubsection{Wijzigbaarheid}
 De mate waarin een product of systeem effectief en efficiënt gewijzigd kan worden zonder fouten of kwaliteitsvermindering tot gevolg.
 
+Voor de 15-Factor app geldt Factor 4 \textbf{(Design, build, release and run)}, 9 \textbf{(Environment parity)} en 11 \textbf{(Port binding)}.
+
 \subsubsection{Testbaarheid}
 De mate waarin effectief en efficiënt testcriteria vastgesteld kunnen worden voor een systeem, product of component en waarin tests uitgevoerd kunnen worden om vast te stellen of aan die criteria is voldaan.
 
+\textcolor{red}{TODO: Hoe te meten?} % TODO: Hoe te meten?
 
 \section{conclusie}
