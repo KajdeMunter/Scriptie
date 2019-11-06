@@ -226,6 +226,7 @@
 \NewDocumentCommand{\deelvraagverbetering}{m}{\newcommand{\deelverbetering}{#1}}
 \NewDocumentCommand{\deelvraagimplementatie}{m}{\newcommand{\deelimplementatie}{#1}}
 \NewDocumentCommand{\deelvraagrequirements}{m}{\newcommand{\deelrequirements}{#1}}
+\NewDocumentCommand{\deelvraagbereiken}{m}{\newcommand{\deelbereiken}{#1}}
 
 \newcommand{\checktoopen}{% New command to move content to the next page which prints to the next odd page if twosided mode is active  
 	\if@openright\cleardoublepage\else\clearpage\fi
