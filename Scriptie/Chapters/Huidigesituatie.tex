@@ -2,7 +2,7 @@
 
 \label{Chapter4}
 
-Dit hoofdstuk gaat over de deelvraag \enquote{\deelhuidig}. Dit wordt beantwoord
+Dit hoofdstuk gaat over de deelvraag \enquote{\deelhuidig}.
 
 \section{Huidige Architectuur}
 De huidige website is een combinatie van een PHP \& Symfony back-end API en Content Management Systeem, samen met een React + next.js front-end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
@@ -56,7 +56,7 @@ Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aan
 Factor 12 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de PHP containers worden geüploade bestanden weggeschreven naar een volume, dit zorgt ervoor dat de container niet volledig stateless meer is. Ook zijn databases in docker containers geplaatst, dit is een stateful process aangezien het van belang is dat niet alle data verloren gaat zodra de container stopt.
 
 \subsubsection{Concurrency}
-Voor factor 13 is het van belang dat een applicatie horizontaal uit te schalen is. Zolang de applicatie aan factor 7 (Disposability) en 12 (Stateless processes) voldoet zit deze factor goed \parencite{Beyond12Factor}.
+Voor factor 13 is het van belang dat een applicatie horizontaal uit te schalen is. Zolang de applicatie aan factor 7 (Disposability) en 12 (Stateless processes) voldoet, zit deze factor goed \parencite{Beyond12Factor}.
 
 \subsubsection{Disposability}
 Voor factor 7 moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet. \textcolor{red}{TODO: HOE SNEL?} % TODO: Hoe snel?
@@ -96,44 +96,40 @@ Omdat 27G nogal veel leek voor wat er op de server draait is er nog onderzoek ge
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/vda1        49G   13G   34G  28% /
 \end{minted}
-Qua schaalbaarheid is dit dus een verbeterpunt. De images en volumes moeten eigenlijk automatisch worden opgeschoond.
+Qua schaalbaarheid is dit dus een verbeterpunt. De images en volumes moeten automatisch worden opgeschoond.
 
 Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook kan worden toegepast. Het is (nog) niet nodig om een SWOT analyse uit te voeren, aangezien er nog geen schaalstrategie in plaats is.
 
-\subsection{Functional scalability}
-Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem.
-
-Binnen de scope van de infrastructuur.
+\subsection{Functional scalability} % TODO
+Definitie: In welke mate bestaande code moet worden aangepast zodra een nieuwe functionaliteit wordt toegevoegd aan het systeem. Binnen de scope van de infrastructuur.
 
 \subsection{Onderhoudbaarheid}
 De definitie van onderhoudbaarheid waarvan wordt uitgegaan in dit onderzoek luidt als volgt: \enquote{The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements}. Om de onderhoudbaarheid van de huidige infrastructuur te analyseren worden de vijf subcategorieën van ISO-25010 \parencite{ISO25010}; Modulariteit, Herbruikbaarheid, Analyseerbaarheid, Wijzigbaarheid en Testbaarheid individueel behandeld.
 
 \subsubsection{Modulariteit} % TODO: Deze subdefinities komen ook uit wikipedia
-De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact heeft op andere componenten.
+\textit{De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact heeft op andere componenten.}
 
 De website van Developers.nl is opgebouwd in twee applicaties, de Node \& React frontend samen met de PHP \& Symfony backend. Een wijziging in één van de API endpoints van de backend zou kunnen betekenen dat de frontend breekt. Om dit te voorkomen is een versioning systeem \footnote{Voor de API wordt FOSRestBundle gebruikt, deze heeft een eigen implementatie van versioning, zie: https://symfony.com/doc/master/bundles/FOSRestBundle/versioning.html} geïmplementeerd waardoor er zonder problemen individueel de front-of backend gedeployed kan worden.
 
-Voor de 15-Factor App geldt Factor 1 \textbf{(One codebase, one application)}, 3 \textbf{(Dependency management)} en 8 \textbf{(Backing services)}. Factor 1 vereist dat er per applicatie één enkele codebase is. De huidige situatie is dat er één repository is voor de back-end van de website, één voor de front-end van de website, en één voor het EMS. De regel wordt gebroken omdat het opbouwen van de infrastructuur met Ansible op elke repository voorkomt. Om dit op te lossen zou er een enkele repository moeten zijn waar alle Ansible infrastructuur in staat. Om aan Factor 3 te voldoen wordt Composer gebruikt voor het managen van de dependencies. Daarnaast worden waardes als de database host of het Redis adres in environment variabelen opgeslagen, waardoor factor 8 wordt voldaan. Om dit te implementeren worden backing services gedefinieerd als een handle, deze ziet er voor de database als volgt uit: \texttt{postgresql://username:password@developers.nl/database}
+Voor de 15-Factor App geldt Factor 1 \textbf{(One codebase, one application)}, 3 \textbf{(Dependency management)} en 8 \textbf{(Backing services)}. Factor 1 vereist dat er per applicatie één enkele codebase is. De huidige situatie is dat er één repository is voor de back-end van de website, één voor de front-end van de website, en één voor het EMS. De regel wordt gebroken omdat het opbouwen van de infrastructuur met Ansible op elke repository voorkomt. Om aan Factor 3 te voldoen wordt Composer gebruikt voor het managen van de dependencies. Daarnaast worden waardes als de database host of het Redis adres in environment variabelen opgeslagen, waardoor factor 8 wordt voldaan. Om dit te implementeren worden backing services gedefinieerd als een handle, deze ziet er voor de database als volgt uit:\\ \texttt{postgresql://username:password@developers.nl/database}
 
 \subsubsection{Herbruikbaarheid}
-De mate waarin een bestaand onderdeel gebruikt kan worden in meer dan één systeem of bij het bouwen van een nieuw onderdeel.
+\textit{De mate waarin een bestaand onderdeel gebruikt kan worden in meer dan één systeem of bij het bouwen van een nieuw onderdeel.}
 
 Hoewel de Docker containers en Ansible infrastructuur generiek zijn opgesteld zijn er toch specifieke aanpassingen voor de website en voor het EMS. Dit betekent dat bijvoorbeeld de PHP Docker image van de website niet dezelfde is als de PHP Docker image voor het EMS. Ook is de door-ansible-opgebouwde infrastructuur nog niet herbruikbaar voor meerdere projecten, aangezien het in dezelfde codebase zit als de applicatie.
 
 \subsubsection{Analyseerbaarheid}
-De mate waarin het mogelijk is om effectief en efficiënt de impact, van een geplande verandering van één of meer onderdelen, op een product of systeem te beoordelen, om afwijkingen en/of foutoorzaken van een product vast te stellen of om onderdelen te identificeren die gewijzigd moeten worden.
+\textit{De mate waarin het mogelijk is om effectief en efficiënt de impact, van een geplande verandering van één of meer onderdelen, op een product of systeem te beoordelen, om afwijkingen en/of foutoorzaken van een product vast te stellen of om onderdelen te identificeren die gewijzigd moeten worden.}
 
-Voor de 15-Factor App geldt Factor 6 \textbf{(Logs)}, 10 \textbf{(Administrative processes)} en 14 \textbf{(Telemetry)}.
-
-Voor factor 6 is het belangrijk dat alle relevante logs naar de \texttt{stdout} worden gestuurd, dit gebeurt voor alle containers waardoor de logs gemakkelijk te zien zijn via \texttt{\$ docker logs <container>}. Voor factor 10 moeten alle administrative processes als individuele processen gedraaid worden. Deze processen als bijvoorbeeld database migrations zijn een simpel commando. In het geval van database migrations is dit \texttt{\$ bin/console doctrine:migrations:migrate} \footnote{Dit is onderdeel van de DoctrineMigrationsBundle, zie:\\ https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html\\voor meer informatie.}. Deze commando's worden meegenomen bij het bouwen van de docker image waardoor het automatisch wordt uitgevoerd, maar wél als een apart proces. Factor 14 vertelt dat de applicatie voldoende moet gemonitord worden. Er zijn voor zowel het EMS als de website geen monitoring tools in gebruik voor performance. Wel is Sentry geimplementeerd, een monitoring tool die gericht is op errors.
+Voor de 15-Factor App geldt Factor 6 \textbf{(Logs)}, 10 \textbf{(Administrative processes)} en 14 \textbf{(Telemetry)}. Voor factor 6 is het belangrijk dat alle relevante logs naar de \texttt{stdout} worden gestuurd, dit gebeurt voor alle containers waardoor de logs gemakkelijk te zien zijn via \texttt{\$ docker logs <container>}. Voor factor 10 moeten alle administrative processes als individuele processen gedraaid worden. Deze processen als bijvoorbeeld database migrations zijn een simpel commando. In het geval van database migrations is dit \texttt{\$ bin/console doctrine:migrations:migrate} \footnote{Dit is onderdeel van de DoctrineMigrationsBundle, zie:\\ https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html\\voor meer informatie.}. Deze commando's worden meegenomen bij het bouwen van de docker image waardoor het automatisch wordt uitgevoerd, maar wél als een apart proces. Factor 14 vertelt dat de applicatie voldoende moet gemonitord worden. Er zijn voor zowel het EMS als de website geen monitoring tools in gebruik voor performance. Wel is Sentry geïmplementeerd, een monitoring tool die gericht is op errors.
 
 \subsubsection{Wijzigbaarheid}
-De mate waarin een product of systeem effectief en efficiënt gewijzigd kan worden zonder fouten of kwaliteitsvermindering tot gevolg.
+\textit{De mate waarin een product of systeem effectief en efficiënt gewijzigd kan worden zonder fouten of kwaliteitsvermindering tot gevolg.}
 
 Voor de 15-Factor app geldt Factor 4 \textbf{(Design, build, release and run)}, 9 \textbf{(Environment parity)} en 11 \textbf{(Port binding)}. Factor 4 is volledig van kracht, allereerst is de design fase het beslissen wat voor features er in de volgende release komen. De build stage is het bouwen van de Docker images om die klaar te maken voor de volgende fase -- release -- waar de Docker images in de environment worden geplaatst en uiteindelijk voor de laatste fase gerund worden. Factor 9 vereist dat verschillende environments als development, test en productie zo gelijk mogelijk aan elkaar zijn. Docker maakt dit een stuk gemakkelijker, en is geïmplementeerd in zowel het EMS als de website. De verschillen tussen environments zijn minimaal. Factor 11 vereist dat applicaties services via port binding exporteren. Voor PHP is dit niet de best ondersteunde manier van werken, aangezien PHP ontworpen is om een webserver te gebruiken. Er is wel een library voor beschikbaar genaamd ReactPHP, maar dit is redelijk onbekend en heeft dus als gevolg niet voldoende ondersteuning om PHP-FPM samen met Nginx weg te concurreren.
 
 \subsubsection{Testbaarheid}
-De mate waarin effectief en efficiënt testcriteria vastgesteld kunnen worden voor een systeem, product of component en waarin tests uitgevoerd kunnen worden om vast te stellen of aan die criteria is voldaan.
+\textit{De mate waarin effectief en efficiënt testcriteria vastgesteld kunnen worden voor een systeem, product of component en waarin tests uitgevoerd kunnen worden om vast te stellen of aan die criteria is voldaan.}
 
 \textcolor{red}{TODO: Hoe te meten? Dit is echt een vage definitie.} % TODO: Hoe te meten?
 

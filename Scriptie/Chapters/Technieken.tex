@@ -2,7 +2,7 @@
 
 \label{Chapter3}
 
-Deze paragraaf gaat over de deelvraag \enquote{\deeltechnieken}.
+Dit hoofdstuk gaat over de deelvraag \enquote{\deeltechnieken}.
 
 \section{ISO 25010}
 
@@ -31,7 +31,7 @@ De methodologie heeft 12 factoren (best-practices) die voor deze eigenschappen z
 
 \section{Schaalbaarheids-controle}
 
-In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} zijn een aantal manieren genoemd om de schaalbaarheid van een systeem te controleren.
+Het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} noemt een aantal manieren om de schaalbaarheid van een systeem te controleren.
 
 \subsection{Knelpunten}
 Deze knelpunten hebben vooral te maken de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user-interface en de complexiteitsgraad van algoritmen.
@@ -56,29 +56,13 @@ In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om 
 	\end{itemize}
 \end{itemize}
 
-\section{Cloud providers}
-
+\section{Cloud service providers}
 Momenteel worden de applicaties binnen Developers.nl gehost op een simpele, traditionele server van TransIP. Een overweging om te maken is of dit niet beter naar een cloud service provider kan worden verplaatst, aangezien dit mogelijk de onderhoudbaarheidslast verminderd. L. Wang \textit{et al.} \parencite{CloudPerspective} definiëren cloud computing als \enquote{A computing Cloud is a set of network enabled services, providing scalable, QoS guaranteed, normally personalized, inexpensive computing infrastructures on demand, which could be accessed in a simple and pervasive way}. Volgens \parencite{CloudPlatformsIntroduction} zijn er drie verschillende categorieën van Cloud computing:
 \begin{itemize}
 	\item Infrastructure as a Service (IaaS): Een virtueel aangeboden infrastructuur van rekenkracht en/of geheugen \parencite{CloudComputingAdvantages}.
 	\item Platform as a Service (PaaS): Een aangeboden platform voor ondersteuning van deployment, ontwikkelen en testen van applicaties \parencite{TransformingCloud}.
 	\item Software as a Service (SaaS): Een aangeboden (web)applicatie dat direct gebruikt kan worden \parencite{CloudComputingAdvantages}.
 \end{itemize}
-
-Om te overwegen of een cloud provider bij de wensen van Developers.nl past worden de voor-en nadelen op een rijtje gezet:
-
-\textbf{Voordelen cloud:} De kosten van cloud hosting zijn flexibel, er wordt alleen betaalt voor wat er daadwerkelijk gebruikt wordt zolang er verstandig gebruik van wordt gemaakt. Dit betekend dat het erg kostenefficiënt is voor Developers.nl aangezien er tijdens de maandelijkse \enquote{Tech Nights} piekmomenten zijn op de website, en er heel weinig verkeer is op het EMS. In verband met de lage hoeveelheid verkeer op het EMS is \enquote{serverless computing} een goede oplossing om kosten te besparen. Een ander voordeel is dat er bijna een ongelimiteerde hoeveelheid opslagruimte beschikbaar is. Aangezien het CMS van de website dubbel functioneert als \enquote{file-server} en er veel foto's worden geüpload is het fijn dat er geen rekening hoeft worden gehouden met de hoeveelheid opslag. Bovendien worden software updates automatisch uitgevoerd, software als K8s kunnen al inbegrepen zijn bij de infrastructuur en het maakt schalen gemakkelijker. Aangezien cloud providers meer middelen voor beveiliging hebben wordt de veiligheid ook een stuk verbeterd.
-
-\textbf{Voordelen traditioneel:} Ook al is cloud hosting meer kostenefficiënt is het toch mogelijk dat een web host goedkoper uitkomt. Zolang er maar geen hoge piekmomenten zijn in het verkeer. Dit is dus niet van toepassing op Developers.nl aangezien de \enquote{Tech Nights} of andere evenementen voor piekmomenten zorgen. \textcolor{red}{TODO: Huidige kosten?} % TODO: huidige kosten
-
-\textbf{Nadelen cloud:} Cloud providers hebben de mogelijkheid voor technische problemen buiten de controle van klanten, waardoor het mogelijk is dat er downtime ontstaat. Ook kan het duurder uitpakken zodra er niet goed word omgegaan met schalen.
-
-\textbf{Nadelen traditioneel:} De mogelijkheid bestaat dat er meer kosten worden gemaakt dan nodig is. Ook is shared-hosting een risico omdat zodra een andere klant veel rekenkracht opeist de kans ontstaat dat de prestaties dalen.\\
-
-Er zijn veel verschillende cloud providers, waarvan de grootste Amazon Web Services (AWS), Microsoft Azure en Google Cloud Platform (GCP) zijn. \textcolor{red}{TODO: kiezen welke} % TODO: Kiezen welke
-
-\section{Infrastructure-as-Code}
-De huidige infrastructuur van de Website en het EMS wordt opgebouwd met Ansible. \enquote{Ansible is a radically simple IT automation engine that automates cloud provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs} \parencite{Ansible}. Dit doet Ansible door middel van een techniek genaamd \enquote{Infrastructure-as-Code}. Zoals de structuur nu is opgebouwd word er voor elke applicatie een apart stuk IaC geschreven. Om modulariteit en herbruikbaarheid van ISO 25010 \parencite{ISO25010} te verbeteren is het mogelijk om één centrale, algemene infrastructuur repository te maken waar installaties (stukken code dus) als Docker of databases en user-management kunnen worden hergebruikt voor meerdere applicaties. Andere IaC tools als Chef, Puppet, of Terraform kunnen ook voor dit doeleinde worden gebruikt, maar aangezien Ansible al gebruikt wordt is het niet efficiënt om dit om te herschrijven naar iets anders.
 
 \section{Policy-as-Code}
 Door policies zijn er duidelijke standaarden waaraan moet voldaan. Policies kunnen in meerdere vormen voorkomen \parencite{WhyPaC}, waaronder:
@@ -88,16 +72,16 @@ Door policies zijn er duidelijke standaarden waaraan moet voldaan. Policies kunn
 	\item \textbf{Operational Excellence.} Deze policies voorkomen uitval of verslechtering van geleverde services, bijvoorbeeld door nieuwe configuratie te valideren.
 \end{itemize}
 
-Vóór policy-as-code (PaC) werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek PaC richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en kan worden hergebruikt. Dit sluit goed aan met de huidige Infrastructure-as-Code (IaC) oplossing die Developers.nl gebruikt voor het inrichten van haar servers.
+Vóór Policy-as-Code (PaC) werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek PaC richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en kan worden hergebruikt. Dit sluit goed aan met de huidige Infrastructure-as-Code (IaC) oplossing die Developers.nl gebruikt voor het inrichten van haar servers.
 
-Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere analyseerbaarheid op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de testbaarheid van de systemen stijgt bij het implementeren van policies as code. Ook zorgen policies voor wijzigbaarheid, aangezien het systeem gewijzigd kan worden zonder fouten of kwaliteitsverminderingen als gevolg omdat het simpelweg niet geïmplementeerd mag worden zodra een wijziging niet aan een policy voldoet. Bovendien zijn security policies handig voor het beschermen van de gevoelige data dat het EMS bevat.
-
-Er zijn twee technieken om PaC te implementeren. HashiCorps \enquote{Sentinel} en \enquote{Open Policy Agent} (OPA). In verband met de reden dat Sentinel closed-source is wordt er gekozen om OPA te gebruiken, dit past beter bij de bedrijfscultuur en slogan van Developers.nl. Ook is Sentinel alleen toepasbaar op hashiCorp producten, waardoor de techniek een stuk beperkter is.
+Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere \textbf{analyseerbaarheid} op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de \textbf{testbaarheid} van de systemen stijgt bij het implementeren van policies as code. Ook zorgen policies voor \textbf{wijzigbaarheid}, aangezien het systeem gewijzigd kan worden zonder fouten of kwaliteitsverminderingen als gevolg omdat het simpelweg niet geïmplementeerd mag worden zodra een wijziging niet aan een policy voldoet. Bovendien zijn security policies handig voor het beschermen van de gevoelige data dat het EMS bevat.
 
 \section{Load scalability}
 
-De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}. Om dit te kunnen waarborgen zijn twee technieken leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Dit zijn zogenaamde \enquote{container orchestration} tools die helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is.
+De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}. Om dit te verbeteren zijn de volgende technieken beschikbaar: \textcolor{red}{TODO: Technieken voor load scalability}
+
+\enquote{container orchestration} tools helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers.
  
 \section{Conclusie}
 
-Door een systeem te controleren op de ISO-norm 25010, de 15-Factor App en de controle van Weinstock en Goodenough is te concluderen of een systeem schaal-en onderhoudbaar is. Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC.
+Door een systeem te controleren op de ISO-norm 25010, de 15-Factor App en de controle van Weinstock en Goodenough is te concluderen of een systeem schaal-en onderhoudbaar is. 
