@@ -74,15 +74,18 @@ Tijdens de stageperiode zal de stagiair een leidende rol aannemen in een team va
 Dit onderzoek heeft tot doel het verkrijgen van kennis en inzicht over de schaal- en onderhoudbaarheid van de interne systemen die Developers.nl beheert om vervolgens deze twee factoren in de praktijk te verbeteren.
 
 \section{Probleemstelling}
-Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele tijd aan de interne projecten. Dit heeft te maken met het feit dat de ontwikkelaars die eraan werken vaak tussen twee opdrachten in zitten. Dit betekent dat het van hoog belang is dat een ontwikkelaar de omgevingen sneller kan opzetten en op korte termijn een toevoeging kan leveren die in productie staat. Ook heeft de website regelmatig piekmomenten in verband met de maandelijkse TechNights die het bedrijf organiseert. De restante tijd is het verkeer op de website een stuk lager. Het EMS heeft ook redelijk weinig verkeer, hierdoor is veel rekenkracht op de server overbodig.
+Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele tijd aan de interne projecten. Dit heeft te maken met het feit dat de ontwikkelaars die eraan werken vaak tussen twee opdrachten in zitten. Dit betekent dat het van hoog belang is dat een ontwikkelaar de omgevingen sneller kan opzetten en op korte termijn een kwalitatieve toevoeging kan leveren die in productie staat. Developers.nl als product owner wilt een nieuwe toevoeging of zelfs volledig nieuwe applicatie kunnen bedenken en deze zo snel mogelijk geïmplementeerd zien. Momenteel is de workflow qua integration en deployment nog niet genoeg geoptimaliseerd om ontwikkelaars deze snelheid te beloven.
 
 \section{Requirements}
-\textcolor{red}{TODO} % TODO: Requirements
-\subsection{Schaalbaarheid}
+De kwaliteit van nieuwe toevoegingen moet gewaarborgd worden. Ze moeten door Developers.nl als product owner gevalideerd kunnen worden, en daarbovenop moeten deze ook automatisch getest worden op kwaliteit. Om ze te valideren moeten er voor individuele toevoegingen naast elkaar verschillende omgevingen kunnen worden opgezet. Dit betekent dus dat de applicatie schaalbaar moet zijn. Om schaalbaarheid te realiseren moet de onderhoudbaarheid van de infrastructuur ook op een voldoende niveau zijn, hier moeten kwaliteitsstandaarden voor onderzocht worden. De oplossing moet zo generiek mogelijk zijn en dus voor meerdere applicaties te gebruiken zijn, en dus ook bestemt zijn op applicaties met meer verkeer.
 
-
-\subsection{Onderhoudbaarheid}
-
+Concreet moet de oplossing;
+\begin{itemize}
+	\item Meerdere instanties van de applicatie naast elkaar kunnen draaien.
+	\item Generiek genoeg zijn zodat meerdere applicaties er gebruik van kunnen maken.
+	\item Een manier bevatten om kwaliteit automatisch te waarborgen.
+	\item Automatisch kunnen schalen bij een grote hoeveelheid verkeer.
+\end{itemize}
 
 \section{Hoofd- en Deelvragen}
 \subsubsection{Hoofdvraag}
@@ -108,6 +111,18 @@ Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele
 	\item de wijze waarop je de geldigheid en betrouwbaarheid van je bronnen hebt gecontroleerd
 	\item een onderbouwde keuze voor je projectmethode
 \end{itemize}
+
+De deelvraag \enquote{\deeltechnieken} Is beantwoord door......
+
+De deelvraag \enquote{\deelhuidig} Is beantwoord door......
+
+De deelvraag \enquote{\deelverbetering} Is beantwoord door......
+
+De deelvraag \enquote{\deelimplementatie} Is beantwoord door......
+
+De deelvraag \enquote{\deelrequirements} Is beantwoord door......
+
+
 
 \section{Planning}
 \begin{table}[h]
