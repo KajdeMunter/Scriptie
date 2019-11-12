@@ -56,7 +56,7 @@ Definitie: Het vermogen van een systeem om elegant te presteren naarmate het aan
 Factor 12 vereist dat de applicatie als één of meerdere \enquote{stateless processes} moet uitgevoerd worden. Bij de PHP containers worden geüploade bestanden weggeschreven naar een volume, dit zorgt ervoor dat de container niet volledig stateless meer is. Ook zijn databases in docker containers geplaatst, dit is een stateful process aangezien het van belang is dat niet alle data verloren gaat zodra de container stopt.
 
 \subsubsection{Concurrency}
-Voor factor 13 is het van belang dat een applicatie horizontaal uit te schalen is. Zolang de applicatie aan factor 7 (Disposability) en 12 (Stateless processes) voldoet, zit deze factor goed \parencite{Beyond12Factor}. Er is alleen nog geen manier geïmplementeerd om daadwerkelijk meerdere Docker containers naast elkaar te draaien.
+Voor factor 13 is het van belang dat een applicatie horizontaal uit te schalen is. Zolang de applicatie aan factor 7 (Disposability) en 12 (Stateless processes) voldoet, zit deze factor goed \parencite{Beyond12Factor}. Er is alleen nog geen manier geïmplementeerd om daadwerkelijk meerdere Docker containers naast elkaar te draaien of te managen.
 
 \subsubsection{Disposability}
 Voor factor 7 moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet. \textcolor{red}{TODO: HOE SNEL?} % TODO: Hoe snel?

@@ -68,10 +68,8 @@ Vóór Policy-as-Code (PaC) werden deze policies opgeschreven door iemand en han
 
 Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere \textbf{analyseerbaarheid} op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de \textbf{testbaarheid} van de systemen stijgt bij het implementeren van policies as code. Ook zorgen policies voor \textbf{wijzigbaarheid}, aangezien het systeem gewijzigd kan worden zonder fouten of kwaliteitsverminderingen als gevolg omdat het simpelweg niet geïmplementeerd mag worden zodra een wijziging niet aan een policy voldoet. Bovendien zijn security policies handig voor het beschermen van de gevoelige data dat het EMS bevat.
 
-\section{Load scalability}
-De definitie van load scalability luidt als volgt: \enquote{Het vermogen van een systeem om elegant te presteren naarmate het aangeboden verkeer toeneemt}.
-
-\enquote{container orchestration} tools helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers.
+\section{Container orchestration}
+Om gebruik te maken van Factor 13 \textbf{(Concurrency)} moet de applicatie horizontaal en verticaal kunnen schalen. Omdat de systemen bij Developers.nl op Docker containers draaien moet er een manier zijn om deze te beheren. \enquote{Container orchestration} platforms helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Dit doen zij door meerdere containers als één entiteit te beschouwen -- voor doeleinden van beschikbaarheid, schaalbaarheid, netwerken en de initiële containerimplementatie \parencite{ContainerOrchestration}.
  
 \section{Conclusie}
 De 12-Factor App is een methodologie die twaalf best-practices samenvoegt om moderne, schaal- en onderhoudbare web-applicaties te bouwen. Het boek \enquote{Beyond the 12-factor app} \parencite{Beyond12Factor} is hierop verder gegaan door nog een drietal factoren toe te voegen. Door een applicatie te evalueren op deze vijftien factoren, samen met de definitie van ISO-25010 \parencite{ISO25010} is te beoordelen of deze schaal- en onderhoudbaar is. Om de schaalbaarheid van een systeem te waarborgen zijn  van Weinstock en Goodenough \parencite{OnSystemScalability} een geschikte manier.
