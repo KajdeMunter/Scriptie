@@ -19,7 +19,18 @@ Er zijn twee technieken voor container orchestration leidend in de context van D
 De images en volumes moeten automatisch worden opgeschoond.
 
 \section{Telemetry}
-Factor 14.
+Telemetry is Factor 14 van de 15-Factor app. \parencite{Beyond12Factor} noemt drie verschillende categorieën van data om te monitoren in een applicatie:
+\begin{itemize}
+	\item Application performance monitoring (APM)
+	\item Domain-specific telemetry
+	\item Health and system logs
+\end{itemize}
+
+Om de juiste keuze van monitoring tool te maken is het belangrijk om te specificeren wat Developers.nl graag gemonitord ziet worden. Na een overleg met de Jelle is besloten om minimaal het volgende te monitoren:
+\textcolor{red}{TODO: wat te monitoren? Prometheus + Grafana?} % TODO: Wat te monitoren?
+
+\section{Codecov}
+Om de testbaarheid te verbeteren is Codecov geïmplementeerd.
 
 \section{Conclusie}
 Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC.
