@@ -13,9 +13,9 @@ Andere IaC tools als Chef, Puppet, of Terraform kunnen ook voor dit doeleinde wo
 Er zijn twee technieken om PaC te implementeren. HashiCorps \enquote{Sentinel} en \enquote{Open Policy Agent} (OPA). In verband met de reden dat Sentinel closed-source is, is er gekozen om OPA te gebruiken, dit past beter bij de bedrijfscultuur, slogan en budgetwensen van Developers.nl. Ook is Sentinel alleen toepasbaar op hashiCorp producten, waardoor de techniek een stuk beperkter is.
 
 \section{Container Orchestration}
-Er zijn twee technieken voor container orchestration leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is.
+Er zijn twee technieken voor container orchestration leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is. Als er gekeken wordt naar de wensen van Developers.nl en de scope van dit onderzoek is Swarm de meest passende keuze. Aangezien de meeste prioriteit qua schalen niet specifiek naar het automatiseren en managen van hoge hoeveelheden verkeer gaat maar naar het draaien van meerderen omgevingen naast elkaar om zo verschillende features apart te deployen, of A/B te testen.
 
-\section{Docker cleanup}
+\section{Opschonen Docker volumes en images}
 De images en volumes moeten automatisch worden opgeschoond.
 
 \section{Telemetry}
@@ -27,7 +27,7 @@ Telemetry is Factor 14 van de 15-Factor app. \parencite{Beyond12Factor} noemt dr
 \end{itemize}
 
 Om de juiste keuze van monitoring tool te maken is het belangrijk om te specificeren wat Developers.nl graag gemonitord ziet worden. Na een overleg met de Jelle is besloten om minimaal het volgende te monitoren:
-\textcolor{red}{TODO: wat te monitoren? Prometheus + Grafana?} % TODO: Wat te monitoren?
+\textcolor{red}{TODO: wat te monitoren? en met wat? Prometheus + Grafana?} % TODO: Wat te monitoren?
 
 \section{Codecov}
 Om de testbaarheid te verbeteren is Codecov geïmplementeerd.
