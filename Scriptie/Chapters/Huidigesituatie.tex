@@ -65,8 +65,8 @@ Ook vereist factor 7 dat processen netjes worden afgesloten zodra ze een \texttt
 
 Ook moeten de processen bestendig zijn tegen \enquote{sudden death}. Om dit te simuleren kan \texttt{docker kill <container>} gebruikt worden om een \texttt{SIGKILL} te sturen naar de hoofdprocessen. In bijlage \ref{DockerKills} is te zien dat alle containers na een \texttt{docker kill} zonder problemen weer kunnen opstarten.
 
-\subsubsection{Weinstock \& Goodenough controle}
-Om de schaalbaarheid te waarborgen zullen de 3 methoden van Weinstock en Goodenough \parencite{OnSystemScalability} uitgevoerd worden. Performance curves zullen worden gevisualiseerd, knelpunten zullen worden uitgelicht en een SWOT analyse op de schaalbaarheid zal worden uitgevoerd.
+\subsection{Weinstock \& Goodenough controle} \label{schaalbaarheidscontrole}
+Om de functionele schaalbaarheid te waarborgen zullen de 3 methoden van Weinstock en Goodenough \parencite{OnSystemScalability} uitgevoerd worden. Performance curves zullen worden gevisualiseerd, knelpunten zullen worden uitgelicht en een SWOT analyse op de schaalbaarheid zal worden uitgevoerd.
 
 Om de performance curves te visualiseren zal een load-test worden uitgevoerd. Er zijn hier meerdere tools voor vergeleken, waaronder:
 \begin{itemize}
@@ -98,10 +98,26 @@ Filesystem      Size  Used Avail Use% Mounted on
 \end{minted}
 Qua schaalbaarheid is dit dus een verbeterpunt. De images en volumes moeten automatisch worden opgeschoond.
 
-Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook kan worden toegepast. Het is (nog) niet nodig om een SWOT analyse uit te voeren, aangezien er nog geen schaalstrategie in plaats is.
+Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook kan worden toegepast. 
 
-\subsection{Functional scalability} % TODO
-Definitie: In welke mate bestaande componenten moeten worden aangepast zodra een nieuwe functionele requirement wordt toegevoegd aan het systeem, en in hoeverre deze goed blijft functioneren naarmate de hoeveelheid gebruik van het systeem toeneemt.
+Om de schaalbaarheid nog verder te analyseren is een SWOT analyse uitgevoerd op basis van de aanbeveling van Weinstock en Goodenough.
+
+\subsubsection{Strengths}
+- Stateless processes
+- Concurrency
+- Disposability
+
+\subsubsection{Weaknesses}
+- De hoeveelheid opslag
+- Hoge hoeveelheid verkeer
+- Nog geen manier van automatisch schalen geïmplementeerd
+
+\subsubsection{Opportunities}
+- Het daadwerkelijk schalen door middel van container orchestration
+
+\subsubsection{Threats}
+- De hoeveelheid onderhoud dat een nieuwe schaalstrategie met zich mee brengt.
+
 
 \subsection{Onderhoudbaarheid}
 De definitie van onderhoudbaarheid waarvan wordt uitgegaan in dit onderzoek luidt als volgt: \enquote{The degree of effectiveness and efficiency with which a product or system can be modified to improve it, correct it or adapt it to changes in environment, and in requirements}. Om de onderhoudbaarheid van de huidige infrastructuur te analyseren worden de vijf subcategorieën van ISO-25010 \parencite{ISO25010}; Modulariteit, Herbruikbaarheid, Analyseerbaarheid, Wijzigbaarheid en Testbaarheid individueel behandeld.

@@ -31,22 +31,12 @@ De methodologie heeft 12 factoren (best-practices) die voor deze eigenschappen z
 
 \section{Schaalbaarheids-controle}
 
-Het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} noemt een aantal manieren om de schaalbaarheid van een systeem te controleren.
-
-\subsection{Knelpunten}
-Deze knelpunten hebben vooral te maken de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user-interface en de complexiteitsgraad van algoritmen.
-
-\subsection{Onthullen van schaalbaarheids-aannames}
-Dit gaat over het onderzoeken hoe de uitbreiding van een systeem nieuwe problemen kan onthullen. Zodra een systeem zich uitbreidt is er een grotere kans op errors in de systeemconfiguratie, \enquote{zeldzame} errors komen vaker voor, is het belangrijk dat een probleem in het systeem gelokaliseerd blijft, en kan het een stuk complexer en lastiger worden om het systeem te begrijpen.
-
-\subsection{Schaalstrategieën}
-Hier wordt bekeken wat voor verschillende tekortkomingen een schaalstrategie heeft. Zodra een systeem voor een lange termijn leeft kan het zo zijn dat het systeem anders wordt gebruikt, hier moet de strategie op voorbereid zijn. Een strategie moet moet niet te afhankelijk zijn van het feit dat gebruikers weten hoe het systeem wordt geïmplementeerd. Ook moet de strategie voorbereid zijn op de vooruitgang van hardware.
-
-\subsection{Methoden voor schaalbaarheidsborging}
-In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om te testen of een systeem schaalbaar is. Wel zijn er methoden om de schaalbaarheid te waarborgen, zoals:
+In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} noemen zij dat het niet echt mogelijk is om te testen of een systeem schaalbaar is. Wel zijn er methoden om de schaalbaarheid te waarborgen:
 \begin{itemize}
-	\item Onderzoek de \enquote{performance curves} en karakteriseer deze met een Big O notatie.
-	\item Identificeer mechanismen om knelpunten aan het licht brengen of waar aannames van het schaalbaarheids- ontwerp beginnen te worden geschonden.
+	\item Onderzoek de \enquote{performance curves} en karakteriseer deze met een Big O notatie. Hoe veranderen deze curves bij het aanpassen van een schaalstrategie? 
+	
+	\item Identificeer mechanismen om knelpunten aan het licht brengen of waar aannames van het schaalbaarheids- ontwerp beginnen te worden geschonden. Deze knelpunten hebben vooral te maken met de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user-interface en de complexiteitsgraad van algoritmen. De schaalbaarheids-aannames gaan over het onderzoeken hoe de uitbreiding van een systeem nieuwe problemen kan onthullen. Zodra een systeem zich uitbreidt is er een grotere kans op errors in de systeemconfiguratie, \enquote{zeldzame} errors komen vaker voor, is het belangrijk dat een probleem in het systeem gelokaliseerd blijft, en kan het een stuk complexer en lastiger worden om het systeem te begrijpen.
+	
 	\item Voer een SWOT analyse uit op de schaalbaarheids-strategie.
 	\begin{itemize}
 		\item \textbf{S}trengths (de soorten groei waar de strategie voor ontworpen is)
@@ -55,6 +45,8 @@ In het onderzoek vertellen Weinstock en Goodenough dat niet echt mogelijk is om 
 		\item \textbf{T}hreats (mogelijke veranderingen in de werklast of technologie die de strategie in twijfel zouden kunnen trekken)
 	\end{itemize}
 \end{itemize}
+
+Door het karakteriseren van de performance curves met een Big O notatie wordt voornamelijk de load scalability gewaarborgd. Het identificeren van de knelpunten en aannames samen met het uitvoeren van een SWOT analyse zorgt voor het waarborgen van de functionele schaalbaarheid.
 
 \section{Policy-as-Code}
 Door policies zijn er duidelijke standaarden waaraan moet voldaan. Policies kunnen in meerdere vormen voorkomen \parencite{WhyPaC}, waaronder:
