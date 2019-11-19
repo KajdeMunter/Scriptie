@@ -52,7 +52,7 @@ services:
       - ../k6:/k6
 \end{minted}
 
-Hiervoor is een Pull-request gedaan naar loadimpact/k6 om dit te verbeteren. \texttt{https://github.com/loadimpact/k6/pull/1183} samen met de issue\\ \texttt{https://github.com/loadimpact/k6/issues/1182}. Hierin is te lezen wat precies de veranderingen waren. De loadtest is geschreven in javascript met de volgende code:
+Hiervoor is een Pull-Request gemaakt naar loadimpact/k6 om dit te verbeteren. \texttt{https://github.com/loadimpact/k6/pull/1183} samen met de issue\\ \texttt{https://github.com/loadimpact/k6/issues/1182}. Hierin is te lezen wat precies de veranderingen waren. De maintainers van k6 waren blij met de verandering en hebben deze geaccepteerd en gemerged naar master. De loadtest is geschreven in javascript met de volgende code:
 \begin{minted}[linenos=true, bgcolor=codebg, breaklines]{javascript}
 import http from "k6/http";
 import { sleep, check } from "k6";
@@ -157,3 +157,109 @@ fab794731d47
 ca510c065d11
 3ee85578efb5
 \end{minted}
+
+\section{Codecov implementatie} \label{codecov}
+Om codecov te implementeren in de website is het volgende gebeurd:\\
+De README.md is bijgewerkt:
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{text}
+## Tests
+
+We enforce that code coverage stays acceptable using codecov:
+
+[![codecov](https://codecov.io/bb/developers_nl/developers.nl/branch/ma
+ster/graph/badge.svg?token=DzAv79t9Gd)](https://codecov.io/bb/developer
+s_nl/developers.nl)
+\end{minted}
+
+Bitbucket en codecoverage environment variabelen moesten worden doorgegeven door build arguments. Het builden van de Docker images gebeurd met Ansible:
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
+docker_images:
+  - dockerfile: docker/php7-fpm/Dockerfile
+  path: ../
+  name: developersnl/website-php-fpm
+  buildargs:
+    GROUP_ID: 9000
+    USER_ID: 9000
+    BITBUCKET_BRANCH: "{{ lookup('env','BITBUCKET_BRANCH') }}"
+    BITBUCKET_COMMIT: "{{ lookup('env', 'BITBUCKET_COMMIT') }}"
+    BITBUCKET_BUILD_NUMBER: "{{ lookup('env','BITBUCKET_BUILD_NUMBER') }}"
+    BITBUCKET_REPO_OWNER: "{{ lookup('env','BITBUCKET_REPO_OWNER') }}"
+    BITBUCKET_REPO_SLUG: "{{ lookup('env','BITBUCKET_REPO_SLUG') }}"
+    BITBUCKET_PR_ID: "{{ lookup('env','BITBUCKET_PR_ID') }}"
+    CODECOV_TOKEN: "{{ lookup('env','CODECOV_TOKEN') }}"
+    CI: "{{ lookup('env','CI') }}"
+\end{minted}
+
+In de php7-fpm dockerfile zijn de build args omgezet naar environment variablen, een aantal apk packages toegevoegd en is het codecov script toegevoegd:
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{bash}
+FROM application AS test
+
+ENV SYMFONY_PHPUNIT_VERSION 8.0.0
+
+ARG BITBUCKET_BRANCH
+ARG BITBUCKET_BUILD_NUMBER
+ARG BITBUCKET_REPO_OWNER
+ARG BITBUCKET_REPO_SLUG
+ARG BITBUCKET_PR_ID
+ARG CODECOV_TOKEN
+ARG CI
+ARG BITBUCKET_COMMIT
+
+ENV BITBUCKET_BRANCH=$BITBUCKET_BRANCH
+ENV BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
+ENV BITBUCKET_REPO_OWNER=$BITBUCKET_REPO_OWNER
+ENV BITBUCKET_REPO_SLUG=$BITBUCKET_REPO_SLUG
+ENV BITBUCKET_PR_ID=$BITBUCKET_PR_ID
+ENV CODECOV_TOKEN=$CODECOV_TOKEN
+ENV CI=$CI
+
+# TODO: Cange VCS_COMMIT_ID to BITBUCKET_COMMIT when https://github.com/codecov/codecov-bash/pull/225 is deployed
+ENV VCS_COMMIT_ID=$BITBUCKET_COMMIT
+
+COPY --from=composer:1.9.0 /usr/bin/composer /usr/bin/composer
+
+RUN apk add \
+    php7-pdo_sqlite \
+    php7-sqlite3 \
+    php7-phar \
+    php7-pear \
+    php7-dev \
+    redis \
+    curl \
+    bash \
+    git \
+    mercurial \
+    findutils \
+    g++ \
+    make \
+ && . /bin/pcov.sh \
+ && redis-server --daemonize yes --requirepass test \
+ && composer install -d /app/src --optimize-autoloader --no-interaction --no-suggest --no-scripts \
+ && chmod u+x,g+x /app/src/bin/phpunit \
+ && /app/src/bin/phpunit --configuration /app/src/phpunit.xml --coverage-clover=coverage.xml \
+ && curl -s https://codecov.io/bash | bash -s - -X coveragepy
+\end{minted}
+
+Er is een script geschreven om pcov te installeren zodat dit kan hergebruikt worden zowel in de `develop.sh` entrypoint als in de test-stage van de dockerfile.
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{bash}
+#!/bin/sh
+
+# Add PHP Coverage ini configuration
+echo "- Enabling pcov"
+cat <<-EOF > /etc/php7/conf.d/pcov.ini
+extension=pcov
+pcov.enable=1
+EOF
+
+echo "- Installing pcov"
+if ! pecl list | grep pcov >/dev/null 2>&1;
+then
+    pecl install pcov ||
+    {
+        echo "Could not pecl install pcov" >&2;
+        exit 1;
+    }
+fi
+\end{minted}
+
+Om BitBucket een betere ondersteuning te geven met codecov is hier ook een Pull-Request naar codecov-bash gemaakt. Deze is te zien op:\\ \texttt{https://github.com/codecov/codecov-bash/pull/225}. De maintainers van codecov waren tevreden met deze verbeteringen en hebben de Pull-Request geaccepteerd en gemerged.

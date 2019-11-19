@@ -28,11 +28,10 @@ Telemetry is Factor 14 van de 15-Factor app. \parencite{Beyond12Factor} noemt dr
 	\item Health and system logs
 \end{itemize}
 
-Om de juiste keuze van monitoring tool te maken is het belangrijk om te specificeren wat Developers.nl graag gemonitord ziet worden. Na een overleg met de Jelle is besloten om minimaal het volgende te monitoren:
-\textcolor{red}{TODO: wat te monitoren? en met wat? Prometheus + Grafana?} % TODO: Wat te monitoren?
+Om de juiste keuze van monitoring tool te maken is het belangrijk om te specificeren wat Developers.nl graag gemonitord ziet worden. Na een overleg met Jelle is besloten om te beginnen met APM als de hoeveelheid CPU/geheugen dat wordt gebruikt. Om dit te realiseren kan een tool als Prometheus samen met Grafana worden gebuikt, waardoor het erg simpel is om in de toekomst de hoeveelheid en soort data dat wordt gemonitord uit te breiden.
 
-\section{Codecov}
-Om de testbaarheid te verbeteren is Codecov geïmplementeerd.
+\section{Testbaarheid}
+Om de testbaarheid te verbeteren moet een tool worden gebruikt om de testcoverage van nieuwe toevoegingen te waarborgen. De meest prominente tool hiervoor is codecov. Het zorgt voor een duidelijk overzicht van de coverage tools en kan direct bij pull-requests nakijken of de nieuwe features wel voldoende zijn getest.
 
 \section{Conclusie}
-Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC.
+Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC. Om de testbaarheid te waarborgen kan een tool als Codecov worden gebruikt.
