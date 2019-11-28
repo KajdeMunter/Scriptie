@@ -7,13 +7,11 @@
 
 \enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt wanneer interne software bij Developers.nl wordt ontwikkeld. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethode in topconditie zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage.
 
-Dit betekent dat er veel onderzoek moet worden uitgevoerd op de kwaliteit van de huidige website. Met name de infrastructuur, het \enquote{Continuous Integration/Continuous Deployment} (CI/CD) en het horizontaal en verticaal schalen hebben nog veel ruimte voor verbetering. Bovendien zijn er meerdere interne systemen dan alleen de website. Het onderhouden van (binnenkort) 5 systemen vereist veel tijd en moeite, dus moet dit makkelijker worden.
+Dit betekent dat er veel onderzoek moet worden uitgevoerd op de kwaliteit van de huidige website. Met name de infrastructuur, het \enquote{Continuous Integration/Continuous Deployment} (CI/CD) en het horizontaal en verticaal schalen hebben nog veel ruimte voor verbetering. Bovendien zijn er meerdere interne systemen dan alleen de website, het onderhouden van deze systemen vereist veel tijd en moeite. Dit wordt voornamelijk door stagiairs of tijdelijke hulpkrachten uitgevoerd.
 
 \section{Belang}
 
-Het open-source maken van de website betekent dat elke potentiële klant en/of nieuwe medewerker de mogelijkheid heeft om te bekijken wat Developers.nl qua kennis in huis heeft. Het is dus van hoog belang dat de kwaliteit gewaarborgd wordt, en dat er zo veel mogelijk nieuwe en opkomende technieken worden gebruikt.
-
-Bovendien heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source software voordelen heeft als:
+De afhankelijkheid van stagiairs of tijdelijke hulpkrachten is niet ideaal, maar onvermijdelijk. Developers.nl heeft nog veel te verbeteren aan haar systemen dus is het belangrijk dat dit goed verloopt. Bovendien betekent het open-source maken van de website dat elke potentiële klant en/of nieuwe medewerker de mogelijkheid heeft om te bekijken wat Developers.nl qua kennis in huis heeft. Het is dus van hoog belang dat de kwaliteit gewaarborgd wordt, en dat er zo veel mogelijk nieuwe en opkomende technieken worden gebruikt. Daarnaast heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source software mooi-meegenomen voordelen heeft als:
 \begin{itemize}
 	\item Betere beveiliging
 	\item Betere betrouwbaarheid 
@@ -21,11 +19,7 @@ Bovendien heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source 
 	\item Betere schaalbaarheid
 	\item Mindere onderhoudskosten
 \end{itemize}
-Ook al is de website op eerste gezicht van de buitenkant vrij eenvoudig, er moet (om indruk te wekken op potentiële klanten en nieuwe medewerkers) onder water een stevige applicatie draaien dat eigenlijk iets \enquote{te complex} is. Kortom, er is nog veel te verbeteren en toe te voegen.
-
-Het onderhouden van (binnenkort) 5 interne systemen betekent dat er veel werk dubbel wordt uitgevoerd. Dit kost geld, en kan beter.
-
-\pagebreak
+Ook al is de website op eerste gezicht van de buitenkant vrij eenvoudig, er moet -- om indruk te wekken op potentiële klanten en nieuwe medewerkers -- onder water een stevige applicatie draaien dat eigenlijk iets \enquote{te complex} is. Maar; omdat de ontwikkelaars óf \enquote{minder ervaren} stagiairs zijn, óf maar tijdelijk zijn kost dit -- vooral met 5 verschillende systemen -- erg veel tijd, moeite en als gevolg hiervan: geld.
 
 \section{Opdrachtgever}
 
@@ -110,16 +104,7 @@ Om de workflow sneller te laten verlopen moeten zo veel mogelijk processen geaut
 	\item een onderbouwde keuze voor je projectmethode
 \end{itemize}
 
-De deelvraag \enquote{\deeltechnieken} Is beantwoord door......
-
-De deelvraag \enquote{\deelhuidig} Is beantwoord door......
-
-De deelvraag \enquote{\deelverbetering} Is beantwoord door......
-
-De deelvraag \enquote{\deelimplementatie} Is beantwoord door......
-
-De deelvraag \enquote{\deelrequirements} Is beantwoord door......
-
+Om antwoord te geven op de hoofdvraag \enquote{\hoofdvraagname} is voornamelijk kwalitatief onderzoek uitgevoerd. 
 
 
 \section{Planning}
@@ -142,7 +127,7 @@ De deelvraag \enquote{\deelrequirements} Is beantwoord door......
 		\bottomrule\\
 	\end{tabular}
 \end{table}
-\section{Leeswijzer}
-% TODO: Leeswijzer
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut.
+\section{Leeswijzer}
+
+Vóór het \enquote{echte onderzoek} is eerst in het theoretisch kader (hoofdstuk in \ref{Chapter2}) een literatuuronderzoek uitgevoerd naar definities van de meest belangrijke begrippen: \textbf{Schaalbaarheid}, \textbf{onderhoudbaarheid}, en \textbf{infrastructuur}. Hierdoor is een concrete basis gelegd voor de opvolgende deelvragen. Daarna is in \ref{Chapter3} onderzoek gedaan naar de mogelijke technieken, met de deelvraag: \enquote{\deeltechnieken}. Hier zijn zowel standaarden besproken om te kunnen bewijzen dat de hoofdvraag daadwerkelijk beantwoord is als technieken die schaal- en onderhoudbaarheid kunnen realiseren. In het volgende hoofdstuk (\ref{Chapter4}) met deelvraag \enquote{\deelhuidig} zijn deze standaarden afgewogen tegen de huidige infrastructuur. Vervolgens wordt in hoofdstuk \ref{Chapter5} onderzocht welke verbeteringen hier op toe te passen zijn, hierbij hoort de deelvraag \enquote{\deelverbetering}. In hoofdstuk \ref{Chapter6} wordt de daadwerkelijke implementatie van deze verbeteringen besproken door verschillende opties met elkaar af te wegen. Hier wordt antwoord gegeven op de deelvraag \enquote{\deelverbetering}. Hierna zijn de geïmplementeerde verbeteringen geëvalueerd in hoofdstuk \ref{Chapter7}, bijbehorende deelvraag \enquote{\deelrequirements}. Nu alle deelvragen zijn beantwoord worden er in hoofdstuk \ref{Chapter8} aanbevelingen toegelicht voor toekomstige verbeteringen. Ten slotte wordt in hoofdstuk \ref{Chapter9} antwoord gegeven op de hoofdvraag \enquote{\hoofdvraagname} door alle deelconclusies samen te binden tot één hoofdconclusie.
