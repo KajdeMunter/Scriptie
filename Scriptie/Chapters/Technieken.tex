@@ -8,7 +8,7 @@ Dit hoofdstuk gaat over de deelvraag \enquote{\deeltechnieken}.
 
 ISO-norm 25010 \parencite{ISO25010} is de opvolger van ISO-9126 en beschrijft software kwaliteitskenmerken in acht categorieën. Een categorie hiervan is onderhoudbaarheid. Elke categorie heeft een aantal subcategorieën, bij onderhoudbaarheid zijn dat:
 
-\textbf{Modulariteit:} De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact heeft op andere componenten.
+\textbf{Modulariteit:} De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact hebben op andere componenten.
 
 \textbf{Herbruikbaarheid:} De mate waarin een bestaand onderdeel gebruikt kan worden in meer dan één systeem of bij het bouwen van een nieuw onderdeel.
 
@@ -35,7 +35,7 @@ In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} noe
 \begin{itemize}
 	\item Onderzoek de \enquote{performance curves} en karakteriseer deze met een Big O notatie. Hoe veranderen deze curves bij het aanpassen van een schaalstrategie? 
 	
-	\item Identificeer mechanismen om knelpunten aan het licht brengen of waar aannames van het schaalbaarheids- ontwerp beginnen te worden geschonden. Deze knelpunten hebben vooral te maken met de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user-interface en de complexiteitsgraad van algoritmen. De schaalbaarheids-aannames gaan over het onderzoeken hoe de uitbreiding van een systeem nieuwe problemen kan onthullen. Zodra een systeem zich uitbreidt is er een grotere kans op errors in de systeemconfiguratie, \enquote{zeldzame} errors komen vaker voor, is het belangrijk dat een probleem in het systeem gelokaliseerd blijft, en kan het een stuk complexer en lastiger worden om het systeem te begrijpen.
+	\item Identificeer mechanismen om knelpunten aan het licht te brengen of waar aannames van het schaalbaarheids- ontwerp beginnen te worden geschonden. Deze knelpunten hebben vooral te maken met de eerste betekenis van Weinstock en Goodenough. Er moet gecontroleerd worden op de toenemende administratieve werkdruk, de \enquote{hard-coded} limieten op capaciteit, de user-interface en de complexiteitsgraad van algoritmen. De schaalbaarheids-aannames gaan over het onderzoeken hoe de uitbreiding van een systeem nieuwe problemen kan onthullen. Zodra een systeem zich uitbreidt is er een grotere kans op errors in de systeemconfiguratie, \enquote{zeldzame} errors komen vaker voor, is het belangrijk dat een probleem in het systeem gelokaliseerd blijft, en kan het een stuk complexer en lastiger worden om het systeem te begrijpen.
 	
 	\item Voer een SWOT analyse uit op de schaalbaarheids-strategie.
 	\begin{itemize}
@@ -49,16 +49,18 @@ In het onderzoek van Weinstock en Goodenough \parencite{OnSystemScalability} noe
 Door het karakteriseren van de performance curves met een Big O notatie wordt voornamelijk de load scalability gewaarborgd. Het identificeren van de knelpunten en aannames samen met het uitvoeren van een SWOT analyse zorgt voor het waarborgen van de functionele schaalbaarheid.
 
 \section{Policy-as-Code}
-Door policies zijn er duidelijke standaarden waaraan moet voldaan. Policies kunnen in meerdere vormen voorkomen \parencite{WhyPaC}, waaronder:
+Door policies zijn er duidelijke standaarden waaraan moet worden voldaan. Policies kunnen in meerdere vormen voorkomen \parencite{WhyPaC}, waaronder:
 \begin{itemize}
 	\item \textbf{Compliance Policies.} Deze policies verzekeren dat nieuwe toevoegingen voldoen aan standaarden als bijvoorbeeld AVG of SOC.
 	\item \textbf{Security Policies.} Deze policies verdedigen de integriteit van de infrastructuur door bijvoorbeeld te verzekeren dat bepaalde poorten niet open staan.
 	\item \textbf{Operational Excellence.} Deze policies voorkomen uitval of verslechtering van geleverde services, bijvoorbeeld door nieuwe configuratie te valideren.
 \end{itemize}
 
-Vóór Policy-as-Code (PaC) werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek PaC richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en kan worden hergebruikt. Dit sluit goed aan met de huidige Infrastructure-as-Code (IaC) oplossing die Developers.nl gebruikt voor het inrichten van haar servers.
+Vóór Policy-as-Code (PaC) werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek PaC richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. 
+\textcolor{red}{TODO: Deze zin klopt niet} % TODO: Fix
+Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en kan worden hergebruikt. Dit sluit goed aan met de huidige Infrastructure-as-Code (IaC) oplossing die Developers.nl gebruikt voor het inrichten van haar servers.
 
-Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere \textbf{analyseerbaarheid} op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de \textbf{testbaarheid} van de systemen stijgt bij het implementeren van policies as code. Ook zorgen policies voor \textbf{wijzigbaarheid}, aangezien het systeem gewijzigd kan worden zonder fouten of kwaliteitsverminderingen als gevolg omdat het simpelweg niet geïmplementeerd mag worden zodra een wijziging niet aan een policy voldoet. Bovendien zijn security policies handig voor het beschermen van de gevoelige data dat het EMS bevat.
+Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere \textbf{analyseerbaarheid} op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de \textbf{testbaarheid} van de systemen stijgt bij het implementeren van policies as code. Ook zorgen policies voor \textbf{wijzigbaarheid}, aangezien het systeem gewijzigd kan worden zonder fouten of kwaliteitsverminderingen als gevolg omdat het simpelweg niet geïmplementeerd mag worden zodra een wijziging niet aan een policy voldoet. Bovendien zijn security policies handig voor het beschermen van de gevoelige data die het EMS bevat.
 
 \section{Container orchestration}
 Om gebruik te maken van Factor 13 \textbf{(Concurrency)} moet de applicatie horizontaal en verticaal kunnen schalen. Omdat de systemen bij Developers.nl op Docker containers draaien moet er een manier zijn om deze te beheren. \enquote{Container orchestration} platforms helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Dit doen zij door meerdere containers als één entiteit te beschouwen -- voor doeleinden van beschikbaarheid, schaalbaarheid, netwerken en de initiële containerimplementatie \parencite{ContainerOrchestration}.
