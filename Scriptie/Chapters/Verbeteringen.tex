@@ -12,9 +12,24 @@ Zoals de structuur nu is opgebouwd word er voor elke applicatie een apart stuk I
 Andere IaC tools als Chef, Puppet, of Terraform kunnen ook voor dit doeleinde worden gebruikt, maar aangezien Ansible al gebruikt wordt is het niet efficiënt om dit om te herschrijven naar iets anders. \textcolor{red}{TODO: Terraform samen met Ansible?} % TODO: Terraform samen met ansible?
 
 \section{Policy-as-Code}
+Door policies zijn er duidelijke standaarden waaraan moet worden voldaan. Policies kunnen in meerdere vormen voorkomen \parencite{WhyPaC}, waaronder:
+\begin{itemize}
+	\item \textbf{Compliance Policies.} Deze policies verzekeren dat nieuwe toevoegingen voldoen aan standaarden als bijvoorbeeld AVG of SOC.
+	\item \textbf{Security Policies.} Deze policies verdedigen de integriteit van de infrastructuur door bijvoorbeeld te verzekeren dat bepaalde poorten niet open staan.
+	\item \textbf{Operational Excellence.} Deze policies voorkomen uitval of verslechtering van geleverde services, bijvoorbeeld door nieuwe configuratie te valideren.
+\end{itemize}
+
+Vóór Policy-as-Code (PaC) werden deze policies opgeschreven door iemand en handmatig gecontroleerd. De -- nog vrij nieuwe -- techniek PaC richt zich op het automatiseren van dit proces door policies te kunnen definiëren in de vorm van code. 
+\textcolor{red}{TODO: Deze zin klopt niet} % TODO: Fix
+Dit zorgt ervoor dat configuratie getest, peer-reviewed, opgeslagen kan worden in versiebeheer, geautomatiseerd en kan worden hergebruikt. Dit sluit goed aan met de huidige Infrastructure-as-Code (IaC) oplossing die Developers.nl gebruikt voor het inrichten van haar servers.
+
+Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aanzienlijk. Als we uitgaan van de ISO-25010 definitie van onderhoudbaarheid \parencite{ISO25010} zorgt het omzetten van een handmatige naar een geautomatiseerde controle voor betere \textbf{analyseerbaarheid} op veranderingen van de systemen, omdat afwijkingen en/of fouten gemakkelijker worden vastgesteld. Daarnaast zijn policies in principe testcriteria, waardoor als gevolg ook de \textbf{testbaarheid} van de systemen stijgt bij het implementeren van policies as code. Ook zorgen policies voor \textbf{wijzigbaarheid}, aangezien het systeem gewijzigd kan worden zonder fouten of kwaliteitsverminderingen als gevolg omdat het simpelweg niet geïmplementeerd mag worden zodra een wijziging niet aan een policy voldoet. Bovendien zijn security policies handig voor het beschermen van de gevoelige data die het EMS bevat.
+
 Er zijn twee technieken om PaC te implementeren. HashiCorps \enquote{Sentinel} en \enquote{Open Policy Agent} (OPA). In verband met de reden dat Sentinel closed-source is, is er gekozen om OPA te gebruiken, dit past beter bij de bedrijfscultuur, slogan en budgetwensen van Developers.nl. Ook is Sentinel alleen toepasbaar op hashiCorp producten, waardoor de techniek een stuk beperkter is.
 
 \section{Container Orchestration}
+Om gebruik te maken van Factor 13 \textbf{(Concurrency)} moet de applicatie horizontaal en verticaal kunnen schalen. Omdat de systemen bij Developers.nl op Docker containers draaien moet er een manier zijn om deze te beheren. \enquote{Container orchestration} platforms helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Dit doen zij door meerdere containers als één entiteit te beschouwen -- voor doeleinden van beschikbaarheid, schaalbaarheid, netwerken en de initiële containerimplementatie \parencite{ContainerOrchestration}.
+
 Er zijn twee technieken voor container orchestration leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is. Als er gekeken wordt naar de wensen van Developers.nl en de scope van dit onderzoek is Swarm de meest passende keuze. De meeste prioriteit qua schalen gaat niet specifiek naar het automatiseren en managen van hoge hoeveelheden verkeer maar naar het draaien van meerderen omgevingen naast elkaar, om zo verschillende features apart te deployen of A/B te testen.
 
 \section{Opschonen Docker volumes en images}

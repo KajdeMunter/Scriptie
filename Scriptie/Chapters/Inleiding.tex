@@ -70,21 +70,13 @@ Dit onderzoek heeft tot doel het verkrijgen van kennis en inzicht over de schaal
 \section{Probleemstelling}
 Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele tijd aan de interne projecten. Dit heeft te maken met het feit dat de ontwikkelaars die eraan werken vaak tussen twee opdrachten in zitten. Dit betekent dat het van hoog belang is dat een ontwikkelaar de omgevingen sneller kan opzetten en op korte termijn een kwalitatieve toevoeging kan leveren die in productie staat. Developers.nl als product owner wil een nieuwe toevoeging of zelfs volledig nieuwe applicatie kunnen bedenken en deze zo snel mogelijk geïmplementeerd zien. De workflow qua integratie en deployment moet verder geoptimaliseerd worden om ontwikkelaars deze snelheid te beloven.
 
-\section{Requirements}
-Om de workflow sneller te laten verlopen moeten zo veel mogelijk processen geautomatiseerd worden. Hieronder valt voornamelijk het automatiseren van de kwaliteitswaarborging. Het is belangrijk dat een nieuwe toevoeging of applicatie aan een aantal standaarden voldoet. Daarnaast wil Developers.nl als product owner deze nieuwe toevoegingen of applicatie zo snel mogelijk handmatig kunnen valideren. Om dit te realiseren moet er voor individuele toevoegingen naast elkaar verschillende omgevingen kunnen worden opgezet die te bekijken zijn door de product owners. Dit betekent dus dat de applicatie schaalbaar moet zijn. Om schaalbaarheid te realiseren moet de onderhoudbaarheid van de infrastructuur ook op een voldoende niveau zijn, hier moeten kwaliteitsstandaarden voor onderzocht worden. De oplossing moet zo generiek mogelijk zijn, en dus voor meerdere applicaties toe te passen zijn. Dit betekend dus ook dat de oplossing geschikt moet zijn voor applicaties met veel verkeer. Concreet moet de oplossing;
-\begin{itemize}
-	\item Meerdere instanties van de applicatie naast elkaar kunnen draaien.
-	\item Generiek genoeg zijn zodat meerdere applicaties er gebruik van kunnen maken.
-	\item Een manier bevatten om kwaliteit automatisch te waarborgen.
-	\item Automatisch kunnen schalen bij een grote hoeveelheid verkeer.
-\end{itemize}
-
 \section{Hoofd- en Deelvragen}
 \subsubsection{Hoofdvraag}
 \hoofdvraagname
 
 \subsubsection{Deelvragen}
 \begin{itemize}
+	\item \deelverwachtingen
 	\item \deeltechnieken
 	\item \deelhuidig
 	\item \deelverbetering
@@ -122,4 +114,4 @@ In tabel \ref{tab:planning} is de vooraf opgestelde planning te vinden. Het is m
 
 \section{Leeswijzer}
 
-Vóór het \enquote{echte onderzoek} is eerst in het theoretisch kader (hoofdstuk in \ref{Chapter2}) een literatuuronderzoek uitgevoerd naar definities van de meest belangrijke begrippen: \textbf{Schaalbaarheid}, \textbf{onderhoudbaarheid}, en \textbf{infrastructuur}. Hierdoor is een concrete basis gelegd voor de opvolgende deelvragen. Daarna is in \ref{Chapter3} onderzoek gedaan naar de mogelijke technieken, met de deelvraag: \enquote{\deeltechnieken}. Hier zijn zowel standaarden besproken om te kunnen bewijzen dat de hoofdvraag daadwerkelijk beantwoord is als technieken die schaal- en onderhoudbaarheid kunnen realiseren. In het volgende hoofdstuk (\ref{Chapter4}) met deelvraag \enquote{\deelhuidig} zijn deze standaarden afgewogen tegen de huidige infrastructuur. Vervolgens wordt in hoofdstuk \ref{Chapter5} onderzocht welke verbeteringen hier op toe te passen zijn, hierbij hoort de deelvraag \enquote{\deelverbetering}. In hoofdstuk \ref{Chapter6} wordt de daadwerkelijke implementatie van deze verbeteringen besproken door verschillende opties met elkaar af te wegen. Hier wordt antwoord gegeven op de deelvraag \enquote{\deelverbetering}. Hierna zijn de geïmplementeerde verbeteringen geëvalueerd in hoofdstuk \ref{Chapter7}, bijbehorende deelvraag \enquote{\deelrequirements}. Nu alle deelvragen zijn beantwoord worden er in hoofdstuk \ref{Chapter8} aanbevelingen toegelicht voor toekomstige verbeteringen. Ten slotte wordt in hoofdstuk \ref{Chapter9} antwoord gegeven op de hoofdvraag \enquote{\hoofdvraagname} door alle deelconclusies samen te binden tot één hoofdconclusie.
+Vóór het \enquote{echte onderzoek} is eerst in het theoretisch kader (hoofdstuk in \ref{Chapter2}) een literatuuronderzoek uitgevoerd naar definities van de meest belangrijke begrippen: \textbf{Schaalbaarheid}, \textbf{onderhoudbaarheid}, en \textbf{infrastructuur}. Hierdoor is een concrete basis gelegd voor de opvolgende deelvragen. In hoofdstuk \ref{Verwachtingen} zijn de wensen en eisen van Developers.nl vastgelegd en requirements opgesteld. Daarna is in \ref{Chapter3} onderzoek gedaan naar de mogelijke technieken, met de deelvraag: \enquote{\deeltechnieken}. Hier zijn standaarden en best-practices besproken om te kunnen bewijzen dat de hoofdvraag daadwerkelijk beantwoord is. In het volgende hoofdstuk (\ref{Chapter4}) met deelvraag \enquote{\deelhuidig} zijn deze standaarden afgewogen tegen de huidige infrastructuur. Vervolgens wordt in hoofdstuk \ref{Chapter5} onderzocht welke verbeteringen hier op toe te passen zijn, hierbij hoort de deelvraag \enquote{\deelverbetering}. In hoofdstuk \ref{Chapter6} wordt de daadwerkelijke implementatie van deze verbeteringen besproken door verschillende opties met elkaar af te wegen. Hier wordt antwoord gegeven op de deelvraag \enquote{\deelverbetering}. Hierna zijn de geïmplementeerde verbeteringen geëvalueerd in hoofdstuk \ref{Chapter7}, bijbehorende deelvraag \enquote{\deelrequirements}. Nu alle deelvragen zijn beantwoord worden er in hoofdstuk \ref{Chapter8} aanbevelingen toegelicht voor toekomstige verbeteringen. Ten slotte wordt in hoofdstuk \ref{Chapter9} antwoord gegeven op de hoofdvraag \enquote{\hoofdvraagname} door alle deelconclusies samen te binden tot één hoofdconclusie.
