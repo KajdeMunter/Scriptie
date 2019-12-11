@@ -2,19 +2,21 @@
 
 \label{Verwachtingen}
 
-Dit hoofdstuk gaat over de deelvraag \enquote{\deelverwachtingen}
+Dit hoofdstuk gaat over de deelvraag \enquote{\deelverwachtingen}.
 
 \section{Hoe ziet Developers.nl onderhoudbaarheid?}
 
-Om de workflow sneller te laten verlopen moeten zo veel mogelijk processen geautomatiseerd worden. Hieronder valt voornamelijk het automatiseren van de kwaliteitswaarborging. Het is belangrijk dat een nieuwe toevoeging of applicatie aan een aantal standaarden voldoet. 
+Om de workflow sneller te laten verlopen moeten zo veel mogelijk processen geautomatiseerd worden. Hieronder valt voornamelijk het automatiseren van de kwaliteitswaarborging. Het is belangrijk dat een nieuwe toevoeging of applicatie aan een aantal standaarden voldoet, zodat ontwikkelaars snel aan de slag kunnen. Developers.nl vind ten opzichte van daadwerkelijke code voornamelijk dat de infrastructuur aan verbetering toe is.
 
 \section{Hoe ziet Developers.nl schaalbaarheid?}
 
-Daarnaast wil Developers.nl als product owner deze nieuwe toevoegingen of applicatie zo snel mogelijk handmatig kunnen valideren. Om dit te realiseren moet er voor individuele toevoegingen naast elkaar verschillende omgevingen kunnen worden opgezet die te bekijken zijn door de product owners.
+Developers.nl als product owner wilt de voortgang van nieuwe toevoegingen of applicaties nauw kunnen volgen, zodat de kwaliteit hiervan op tijd gevalideerd kan worden. Dit heeft te maken met de agile werkmethodiek die Developers.nl gebruikt voor het ontwikkelen van haar interne applicaties.
+
+Om de snelheid te verhogen waarop ontwikkelaars hun toevoegingen kunnen laten zien ziet Developers.nl graag het concept van \enquote{Feature environments}. Dit wilt zeggen dat er per aangemaakte git branch gelijk gedeployed wordt naar een aparte omgeving, die dan te bekijken is door de product owner. Dit betekent dat er dus meerdere (verschillende) instanties van de applicatie naast elkaar moeten kunnen draaien. Daarnaast ziet Developers.nl graag de mogelijkheid om rekenkracht van de server te verdelen over deze instanties, waardoor er dus horizontaal geschaald moet kunnen worden.
 
 \section{Waar wilt Developers.nl meer over te weten komen?}
 
-Developers.nl wilt weten of de best-practices van de 12-factor app toepasselijk zijn op de huidige infrastructuur. Ook wilt Developers.nl meer te weten komen over verschillende standaarden die zij kunnen opvolgen.
+Developers.nl wilt weten of de best-practices van de 12-factor app toepasselijk zijn op de huidige infrastructuur. Ook wilt Developers.nl meer te weten komen over verschillende standaarden die zij kunnen opvolgen om de kwaliteit van hun infrastructuur te waarborgen.
 
 \section{Wat zijn de concrete requirements waar de oplossing aan moet voldoen?}
 
@@ -29,4 +31,13 @@ Om schaalbaarheid te realiseren moet de onderhoudbaarheid van de infrastructuur 
 
 \section{Conclusie}
 
-Boter, Kaas en Eieren.
+Developers.nl wilt onderhoudbaarheid bereiken door kwaliteitsstandaarden af te dwingen. Ook wilt Developers.nl twee soorten schaalbaarheid. Eén in de vorm van het deployen van verschillende branches in aparte omgevingen, en één in de vorm van horizontaal schalen om meer verkeer aan te kunnen. Deze twee soorten kunnen niet gerealiseerd worden zonder de onderhoudbaarheid te waarborgen. Er zijn vier concrete requirements:
+
+\begin{itemize}
+	\item Méér dan twee unieke instanties van een applicatie naast elkaar kunnen draaien, en deze automatisch kunnen aanmaken.
+	\item Generiek genoeg zijn zodat meerdere applicaties er gebruik van kunnen maken.
+	\item Een manier bevatten om kwaliteit van nieuwe toevoegingen aan de infrastructuur automatisch te waarborgen.
+	\item Horizontaal kunnen schalen bij een toe- of afnemende hoeveelheid verkeer.
+\end{itemize}
+
+
