@@ -1,0 +1,40 @@
+% Appendix B
+
+\chapter{Feedback} % Main appendix title
+
+\label{Feedback} 
+
+\section{(niet-)functionele schaalbaarheid}
+
+\label{feedbackschaalbaarheid}
+
+Na het promoten van de geschreven blog\footnote{https://developers.nl/blog/69/Defining-software-scalability-using-requirements} is dit de meest populaire blog van Developers.nl in 2019 geworden. Dit heeft het volgende feedbackpuntje opgeleverd: \enquote{Scalability is a two way thing, so adding and removing should be in the definition (and thought lines)}. Waar ik het volledig mee eens ben, en zal verbeteren in de toekomst. Ook is er een leuke discussie uit gekomen. Marlon Etheredge, MSc schreef:
+\begin{minted}[bgcolor=codebg, breaklines, breaksymbolleft=]{text}
+Hi Kaj,
+
+Mijn vraag behoeft enige introductie.
+
+Ik ben werkzaam in een deelgebied van de informatica/software-engineering waarbij performantie zeer belangrijk is, computer graphics. Onze implementaties dienen zo snel als mogelijk antwoorden te geven op soms complexe berekeningen, doorgaans in (minder dan) millisecondes.
+
+Schaalbaarheid in mijn context staat dan ook voor twee dingen; ten eerste gaat het om het niet schenden van tijdsgrenzen waar wij mee te maken hebben (e.g. één frame dient in 1/50 seconde klaar te zijn) onafhankelijk van de hoeveelheid data die verwerkt moet worden. Ten tweede staat schaalbaarheid voor implementaties die rekbaar zijn op basis van veranderende eisen die aan een systeem worden gesteld.
+
+In deze context gaat het dan niet zo zeer om een veranderend systeem, waarbij bijvoorbeeld functionaliteit wordt toegevoegd
+("... must be modified as soon ..." in je eerste definitie), of het systeem verbeterd wordt ("... is able to be improved ..." in je tweede definitie), maar eerder om een kwaliteitskenmerk van een systeem in ogenschouw nemend welke eisen mogelijk in de toekomst aan dit systeem gesteld zullen worden en de hoeveelheid energie die het zal kosten om het systeem te laten aansluiten op deze eisen. In die zin denk ik overigens ook dat dit een interessant onderwerp is, aangezien het ontwerpen van dergelijke systemen fundamenteel is aan de informatica.
+
+Mijn concrete vraag aan jou is als volgt; je schrijft:
+
+"Instead of adding more of the same requirement, non-functional requirements like security or usability are always able to be improved. Therefore, scaling a non-functional requirement is the same as improving it. Setting clear requirements helps proving your solution is scalable non-functionally."
+
+Is verandering (bijvoorbeeld in de vorm van verbetering) noodzakelijk voor schaalbaarheid, of is het mogelijk schaalbaarheid te toetsen los van verandering?
+\end{minted}
+Mijn antwoord:
+\begin{minted}[bgcolor=codebg,breaklines, breaksymbolleft=]{text}
+Schaalbaarheid in jouw context sluit goed aan op mijn twee definities: Je noemt "het niet schenden van tijdsgrenzen ... onafhankelijk van de hoeveelheid data"; in dit geval zijn de berekeningen een functionele requirement, en deze moeten voldoende blijven functioneren naarmate het hoeveelheid gebruik toe neemt. In deze context gaat het functioneren dus over het niet schenden van tijdsgrenzen, en de hoeveelheid gebruik over de hoeveelheid data.
+
+De tweede definitie die je noemt (schaalbaarheid voor implementaties die rekbaar zijn op basis van veranderende eisen) omvat in dit geval zowel functionele als niet functionele schaalbaarheid. In mijn definities heb ik het vooral over opschalen, dit is nog een verbeterpunt. Het concept van "veranderende eisen" vind ik een mooie.
+
+Om antwoord te geven op je vraag: Schaalbaarheid is een kwaliteitskenmerk, het daadwerkelijk schalen is een uitoefening van dit kenmerk. Dus, ja, het is mogelijk om schaalbaarheid te toetsen los van daadwerkelijke verandering. Een kwaliteitsanalyse op kenmerken als complexiteit van algoritmes bijvoorbeeld. In de context van functionele schaalbaarheid is dit "to what extent it continues to function properly as the amount of use of the system increases", en van niet-functionele schaalbaarheid "to what extent the quality of that requirement remains acceptable as the use of the system increases".
+
+Ik hoop dat ik hiermee je vraag voldoende heb beantwoord, zo niet hoor ik het graag uiteraard.
+\end{minted}
+
