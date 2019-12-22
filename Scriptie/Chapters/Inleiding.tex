@@ -5,13 +5,7 @@
 
 \section{Aanleiding}
 
-\enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt wanneer interne software bij Developers.nl wordt ontwikkeld. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethode in topconditie zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage.
-
-Dit betekent dat er veel onderzoek moet worden uitgevoerd op de kwaliteit van de huidige website. Met name de infrastructuur, het \enquote{Continuous Integration/Continuous Deployment} (CI/CD) en het horizontaal en verticaal schalen hebben nog veel ruimte voor verbetering. Bovendien zijn er meerdere interne systemen dan alleen de website, het onderhouden van deze systemen vereist veel tijd en moeite. Dit wordt voornamelijk door stagiairs of tijdelijke hulpkrachten uitgevoerd.
-
-\section{Belang}
-
-De afhankelijkheid van stagiairs of tijdelijke hulpkrachten is niet ideaal, maar onvermijdelijk. Developers.nl heeft nog veel te verbeteren aan haar systemen dus is het belangrijk dat dit goed verloopt. Bovendien betekent het open-source maken van de website dat elke potentiële klant en/of nieuwe medewerker de mogelijkheid heeft om te bekijken wat Developers.nl qua kennis in huis heeft. Het is dus van hoog belang dat de kwaliteit gewaarborgd wordt, en dat er zo veel mogelijk nieuwe en opkomende technieken worden gebruikt. Daarnaast heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source software mooi-meegenomen voordelen heeft als:
+\enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt van de interne software bij Developers.nl. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethode van hoge kwaliteit zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage. Het open-source maken van de website betekent dat elke potentiële klant en/of nieuwe medewerker de mogelijkheid heeft om te bekijken wat Developers.nl qua kennis in huis heeft. Het is dus van groot belang dat de kwaliteit gewaarborgd wordt, en dat zo veel mogelijk nieuwe en opkomende technieken worden gebruikt. Daarnaast heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source software voordelen heeft als:
 \begin{itemize}
 	\item Betere beveiliging
 	\item Betere betrouwbaarheid 
@@ -19,56 +13,33 @@ De afhankelijkheid van stagiairs of tijdelijke hulpkrachten is niet ideaal, maar
 	\item Betere schaalbaarheid
 	\item Mindere onderhoudskosten
 \end{itemize}
-Ook al is de website op eerste gezicht van de buitenkant vrij eenvoudig, er moet -- om indruk te wekken op potentiële klanten en nieuwe medewerkers -- onder water een stevige applicatie draaien dat eigenlijk iets \enquote{te complex} is. Maar; omdat de ontwikkelaars óf \enquote{minder ervaren} stagiairs zijn, óf maar tijdelijk zijn kost dit -- vooral met 5 verschillende systemen -- erg veel tijd, moeite en als gevolg hiervan: geld.
+
+Dit betekent dat onderzoek op de kwaliteit van de huidige website belangrijk is. Bovendien zijn er meerdere interne systemen dan alleen de website, zoals bijvoorbeeld het Employee Management System (EMS). Het onderhouden van deze systemen vereist veel tijd en moeite. Dit wordt voornamelijk door stagiairs of tijdelijke hulpkrachten uitgevoerd.
+
+\section{Belang}
+
+De afhankelijkheid van stagiairs of tijdelijke hulpkrachten is niet ideaal, maar onvermijdelijk. Developers.nl heeft nog veel te verbeteren aan haar interne systemen dus is het belangrijk dat dit goed verloopt.
+
+De systemen zijn op eerste gezicht van de buitenkant vrij eenvoudig. Developers.nl wilt -- om indruk te wekken op potentiële klanten en nieuwe medewerkers -- onder water een applicatie draaien dat \enquote{te complex} is. Maar; omdat de ontwikkelaars óf \enquote{minder ervaren} stagiairs zijn, óf een tijdelijke hulpkracht zijn kost het onderhouden -- vooral met 5 verschillende systemen -- erg veel tijd, moeite, en als gevolg hiervan: geld. 
 
 \section{Opdrachtgever}
 
-Deze scriptie is geschreven in opdracht van:\\[0.3cm]
-\textbf{Developers.nl}\\
-Stadionweg 57C\\
-3077AS Rotterdam\\
-info@developers.nl\\
-010-3035929\\
+Deze scriptie is geschreven in opdracht van Developers.nl.
 
 \subsection{Core business}
 Developers.nl neemt software ontwikkelaars in dienst. De ontwikkelaars die worden aangenomen zullen voornamelijk gespecialiseerd zijn in PHP, Python, Java of front-end. Ze worden uitgezet naar een klant (een extern bedrijf) die naar een ontwikkelaar zoekt. Developers.nl kiest hier voor de beste ontwikkelaar voor de taak en zal deze inzetten bij een klant. De opdrachten van de ontwikkelaars zijn op locatie van de klant en duren voornamelijk langer dan een jaar, maar op uitzondering zijn er ook kortere opdrachten. Zodra de ontwikkelaar klaar is met zijn of haar taak zal Developers.nl zo snel mogelijk een nieuwe opdracht toewijzen \parencite{Stageplan}. Concreet zegt het positioneringsprofiel \parencite{Positioneringsprofiel}: \enquote{Detachering van developers die software applicaties bouwen voor verschillende klanten.}
 
-\subsection{Geschiedenis}
-Mark Smit heeft altijd al in de detacheringshoek gewerkt. Hieruit is de inspiratie begonnen om een detacheringsbedrijf voor zichzelf op te richten in 2012. Het bedrijf heette \enquote{JC Capacity} en was onderdeel van \enquote{JC Groep}. Mark Smit was mede eigenaar met 2 anderen binnen JC Groep. Er was op dit moment alleen nog een kleine groep PHP ontwikkelaars, totdat in 2013 een aantal Java en Python ontwikkelaars zijn aangenomen. In februari 2014 is Mark Smit samen met een andere eigenaar binnen JC Group als JC Capacity afgesplitst. Dit gebeurde in verband met meningsverschillen over welke kant het bedrijf op moest doordat JC Groep meer op de zorg gefocust was. Gelijk hierna is een naamsverandering plaatsgevonden en heette het bedrijf \enquote{Developers.nl}.
+\subsection{Eigen omgeving}
 
-Kort na de naamsverandering is het bedrijf exponentieel gegroeid, de teams PHP, Java en Python zijn individueel gegroeid, maar ook is er een nieuwe Front-End tak bijgekomen.  vanaf 2015 is heeft de andere eigenaar het bedrijf verlaten en was Mark Smit de enige eigenaar van Developers.nl De naamsverandering en de splitsing van JC Groep heeft ervoor gezorgd dat Developers.nl meer vrijheid had om veranderingen aan te brengen en naamsbekendheid op te krikken. 
+Tijdens de stageperiode zal de stagiair een leidende rol aannemen in een team van 2 part-time studenten en een stagiair. Developers.nl heeft rond de 60 software ontwikkelaars. Deze zijn voornamelijk op een externe opdracht bij ene klant. Elke vrijdag zullen 5 van de zogenaamde \enquote{kennisambassadeurs} op kantoor zijn. Dit zijn de meest senior ontwikkelaars per team. Deze zijn dan in staat om stagiairs en/of andere medewerkers persoonlijk te helpen. Hoewel ze maar één keer per week op kantoor aanwezig zijn, zijn ze altijd telefonisch bereikbaar of via Slack. Daarnaast kijken de kennisambassadeurs code van de interne systemen inhoudelijk na en geven hier feedback op.
 
-In 2016 heeft Mark Smit een tweede bedrijf opgericht met de naam \enquote{Gemvision}. Dit bedrijf vereistte meer van zijn tijd op dan hij had verwacht, en heeft hierdoor vanaf 2018 zijn management taken binnen Developers.nl overgegeven aan Maarten de Boer \parencite{Stageplan}.
-
-\subsection{Werkomgeving}
-\subsubsection{Cultuur}
-Developers.nl is een jonge en ambitieuze club mensen met een sterke onderlinge samenhang. Developers is een platte organisatie. Er heerst een sfeer van vrijheid, verantwoordelijkheid en \enquote{work hard, play hard}. De omgang met elkaar is informeel en persoonlijk, met het gevoel van een vriendenclub. De organisatie wordt gerund vanuit het besef dat plezier in het werk belangrijk is. De dresscode is business casual zodat klanten hetzelfde gevoel hebben van vrijheid en verantwoordelijkheid bij de ontwikkelaars. Op het kantoor luncht iedereen gezamenlijk en wordt er regelmatig geborreld na werktijd. Drinken is inbegrepen en lunch moet zelf meegebracht worden. Volgens het Competing Values Framework van Robert Quinn en Rohrbaug (1983) valt de cultuur onder mensgericht, de medewerkers staan centraal \parencite{Bedrijfscultuur}.
-
-Er is veel aandacht voor de medewerker als mens en zijn of haar persoonlijke leven, ook buiten werktijd. De open cultuur biedt ruimte voor het inbrengen van ambities, ideeën, vragen en wensen, op welk gebied dan ook. Vanuit het principe van wederkerigheid spant de organisatie zich in om de medewerker zoveel mogelijk te helpen en een goede werkgever te zijn, zodat medewerkers zich inspannen voor hun werkgever, collega’s en klanten.
-
-Ontwikkeling staat in alle opzichten centraal en strekt zich uit in twee richtingen: De ontwikkeling van medewerkers, zowel persoonlijk als professioneel, en de ontwikkeling van individuele en collectieve vakinhoudelijke kennis.
-
-Developers.nl faciliteert kennis aan haar eigen ontwikkelaars in de vorm van onder andere \enquote{TechNights}, kennissessies en gezamenlijke deelname aan conferenties in het buitenland. Het zijn van een kennisorganisatie werkt twee kanten op: klanten met uitdagende opdrachten weten Developers.nl hiervoor te vinden en dat maakt de werksituatie compleet om medewerkers blijvend te boeien.
-
-Klanten ervaren Developers.nl als oprecht geïnteresseerd, persoonlijk, analytisch, flexibel en vlot schakelend. Medewerkers zijn eerlijk en open, communicatief sterk, professioneel, betrouwbaar en intelligent. Het feit dat ze kunnen terugvallen op de collectieve kennis van de groep en dat ze bereid zijn om ook met de klant deze kennis te delen maakt ze extra waardevol. Fieldmanagers zijn erg sterk in het doorgeven van de opdracht naar uitvoerenden \parencite{Stageplan}. 
-
-\subsubsection{Eigen omgeving}
-Developers.nl heeft rond de 60 software ontwikkelaars. Deze zijn voornamelijk op een externe opdracht bij ene klant. Elke vrijdag zullen 5 van de zogenaamde \enquote{kennisambassadeurs} op kantoor zijn. Dit zijn de meest senior ontwikkelaars per team. Deze zijn dan in staat om stagiairs en/of andere medewerkers persoonlijk te helpen, maar ze zijn altijd bereikbaar via Slack of telefonisch.
-
-De bedrijfsbegeleider voor deze stage is \textbf{Maarten de Boer}. Dit is de algemene directeur van Developers.nl en is in 2003 afgestudeerd aan de hogeschool Inholland met Strategic marketing. Aangezien Maarten zelf geen technische kennis heeft is er ook een technische begeleider aangewezen: \textbf{Jelle van de Haterd}. Jelle is senior developer, DevOps engineer en kennisambassadeur bij Developers.nl. Hij is in 2006 afgestudeerd op de Hogeschool Rotterdam met als opleiding Grafimediatechnologie \parencite{Afstudeervoorstel}.
-
-Binnen developers.nl word iedere stagiair behandeld als een daadwerkelijk sterke medewerker die een echte bijdrage aan het bedrijf levert. Het team staat altijd voor hen klaar. Op het moment dat iemand aangeeft dat hij/zij iets nodig heeft (denk aan bijvoorbeeld een macbook voor het programmeren) zal het team er zo veel mogelijk aan doen dat er een goede oplossing wordt aangeboden. Het team staat open voor feedback en behandelen dit op serieuze wijze.
-
-Voor technische vragen zijn de kennisambassadeurs altijd bereikbaar, bij een vraag zullen zij hun best doen om het zo duidelijk mogelijk over te brengen, en zorgen ervoor dat ik het ook daadwerkelijk begrijp. De kennisambassadeurs kijken code inhoudelijk na en geven hier feedback op \parencite{Stageplan}.
-
-\subsection{Taken}
-Tijdens de stageperiode zal de stagiair een leidende rol aannemen in een team van 2 part-time studenten en een stagiair. Er gaat onderzoek worden uitgevoerd naar de schaal- en onderhoudbaarheid van de infrastructuur aangaande de interne systemen die Developers.nl beheert. Dit omtrent onderzoek over de huidige situatie, technieken die gebruikt kunnen worden, en het automatiseren hiervan. Door het gehele proces moet er extra rekening gehouden worden met de veiligheid van de gekozen oplossing in verband met de gevoeligheid van een aantal systemen, zoals bijvoorbeeld het Employee Management System (EMS). Uit dit onderzoek zullen een aantal verbeteringen daadwerkelijk worden geïmplementeerd en uiteindelijk een advies worden uitgebracht over eventuele vorderingen.
+De bedrijfsbegeleider voor deze stage is Maarten de Boer. Dit is de algemene directeur van Developers.nl en is in 2003 afgestudeerd aan de hogeschool Inholland met Strategic marketing. Aangezien Maarten zelf geen technische kennis heeft is er ook een technische begeleider aangewezen: Jelle van de Haterd. Jelle is senior developer, DevOps engineer en kennisambassadeur bij Developers.nl. Hij is in 2006 afgestudeerd op de Hogeschool Rotterdam met als opleiding Grafimediatechnologie \parencite{Afstudeervoorstel}.
 
 \section{Doelstelling}
-Dit onderzoek heeft tot doel het verkrijgen van kennis en inzicht over de schaal- en onderhoudbaarheid van de interne systemen die Developers.nl beheert om vervolgens deze twee factoren in de praktijk te verbeteren.
+Dit onderzoek heeft tot doel het verkrijgen van inzicht over de schaal- en onderhoudbaarheid van de interne systemen die Developers.nl beheert, om vervolgens deze twee factoren in de praktijk te verbeteren.
 
 \section{Probleemstelling}
-Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele tijd aan de interne projecten. Dit heeft te maken met het feit dat de ontwikkelaars die eraan werken vaak tussen twee opdrachten in zitten. Dit betekent dat het van hoog belang is dat een ontwikkelaar de omgevingen sneller kan opzetten en op korte termijn een kwalitatieve toevoeging kan leveren die in productie staat. Developers.nl als product owner wil een nieuwe toevoeging of zelfs volledig nieuwe applicatie kunnen bedenken en deze zo snel mogelijk geïmplementeerd zien. De workflow qua integratie en deployment moet verder geoptimaliseerd worden om ontwikkelaars deze snelheid te beloven.
+Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele tijd aan de interne projecten. Dit heeft te maken met het feit dat de ontwikkelaars die eraan werken vaak tussen twee opdrachten in zitten. Dit betekent dat het van hoog belang is dat een ontwikkelaar de omgevingen sneller kan opzetten en op korte termijn een kwalitatieve toevoeging kan leveren die in productie staat.
 
 \section{Hoofd- en Deelvragen}
 \subsubsection{Hoofdvraag}
