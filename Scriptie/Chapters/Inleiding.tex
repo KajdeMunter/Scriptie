@@ -2,10 +2,8 @@
 
 \label{Chapter1}
 
-
 \section{Aanleiding}
-
-\enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt van de interne software bij Developers.nl. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethode van hoge kwaliteit zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage. Het open-source maken van de website betekent dat elke potentiële klant en/of nieuwe medewerker de mogelijkheid heeft om te bekijken wat Developers.nl qua kennis in huis heeft. Het is dus van groot belang dat de kwaliteit gewaarborgd wordt, en dat zo veel mogelijk nieuwe en opkomende technieken worden gebruikt. Daarnaast heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source software voordelen heeft als:
+\enquote{Een visitekaartje voor het bedrijf}. Dat is het uitgangspunt van de interne software bij Developers.nl. Niet alleen qua uiterlijk, maar ook van binnen moet de code, de infrastructuur en de werkmethode van hoge kwaliteit zijn. Dit heeft te maken met het feit dat de code uit de website en infrastructuur van Developers.nl open-source wordt gemaakt gedurende deze stage. Het open-source maken van de website betekent dat elke potentiële klant en/of nieuwe medewerker de mogelijkheid heeft om te bekijken wat Developers.nl qua kennis in huis heeft. Het is dus van groot belang dat de kwaliteit gewaarborgd wordt, en dat zo veel mogelijk nieuwe en opkomende technieken worden gebruikt. Dit vereist constant onderhoudswerk. Daarnaast heeft Wheeler \parencite{WhyOpenSource} geconcludeerd dat open-source software voordelen heeft als:
 \begin{itemize}
 	\item Betere beveiliging
 	\item Betere betrouwbaarheid 
@@ -14,32 +12,16 @@
 	\item Mindere onderhoudskosten
 \end{itemize}
 
-Dit betekent dat onderzoek op de kwaliteit van de huidige website belangrijk is. Bovendien zijn er meerdere interne systemen dan alleen de website, zoals bijvoorbeeld het Employee Management System (EMS). Het onderhouden van deze systemen vereist veel tijd en moeite. Dit wordt voornamelijk door stagiairs of tijdelijke hulpkrachten uitgevoerd.
+Developers.nl organiseert maandelijks een \enquote{TechNight}. Op deze TechNight ontvangt de website van Developers.nl een piek aantal bezoekers, het is belangrijk dat deze pieken goed worden afgehandeld zonder enige downtime. Dit betekent dat onderzoek op de kwaliteit van de huidige website belangrijk is. Bovendien zijn er meerdere interne systemen dan alleen de website, zoals bijvoorbeeld het Employee Management System (EMS). Het onderhouden van deze systemen vereist veel tijd en moeite. Dit wordt voornamelijk door stagiairs of tijdelijke hulpkrachten uitgevoerd.
 
 \section{Belang}
-
-De afhankelijkheid van stagiairs of tijdelijke hulpkrachten is niet ideaal, maar onvermijdelijk. Developers.nl heeft nog veel te verbeteren aan haar interne systemen dus is het belangrijk dat dit goed verloopt.
-
-De systemen zijn op eerste gezicht van de buitenkant vrij eenvoudig. Developers.nl wilt -- om indruk te wekken op potentiële klanten en nieuwe medewerkers -- onder water een applicatie draaien dat \enquote{te complex} is. Maar; omdat de ontwikkelaars óf \enquote{minder ervaren} stagiairs zijn, óf een tijdelijke hulpkracht zijn kost het onderhouden -- vooral met 5 verschillende systemen -- erg veel tijd, moeite, en als gevolg hiervan: geld. 
-
-\section{Opdrachtgever}
-
-Deze scriptie is geschreven in opdracht van Developers.nl.
-
-\subsection{Core business}
-Developers.nl neemt software ontwikkelaars in dienst. De ontwikkelaars die worden aangenomen zullen voornamelijk gespecialiseerd zijn in PHP, Python, Java of front-end. Ze worden uitgezet naar een klant (een extern bedrijf) die naar een ontwikkelaar zoekt. Developers.nl kiest hier voor de beste ontwikkelaar voor de taak en zal deze inzetten bij een klant. De opdrachten van de ontwikkelaars zijn op locatie van de klant en duren voornamelijk langer dan een jaar, maar op uitzondering zijn er ook kortere opdrachten. Zodra de ontwikkelaar klaar is met zijn of haar taak zal Developers.nl zo snel mogelijk een nieuwe opdracht toewijzen \parencite{Stageplan}. Concreet zegt het positioneringsprofiel \parencite{Positioneringsprofiel}: \enquote{Detachering van developers die software applicaties bouwen voor verschillende klanten.}
-
-\subsection{Eigen omgeving}
-
-Tijdens de stageperiode zal de stagiair een leidende rol aannemen in een team van 2 part-time studenten en een stagiair. Developers.nl heeft rond de 60 software ontwikkelaars. Deze zijn voornamelijk op een externe opdracht bij ene klant. Elke vrijdag zullen 5 van de zogenaamde \enquote{kennisambassadeurs} op kantoor zijn. Dit zijn de meest senior ontwikkelaars per team. Deze zijn dan in staat om stagiairs en/of andere medewerkers persoonlijk te helpen. Hoewel ze maar één keer per week op kantoor aanwezig zijn, zijn ze altijd telefonisch bereikbaar of via Slack. Daarnaast kijken de kennisambassadeurs code van de interne systemen inhoudelijk na en geven hier feedback op.
-
-De bedrijfsbegeleider voor deze stage is Maarten de Boer. Dit is de algemene directeur van Developers.nl en is in 2003 afgestudeerd aan de hogeschool Inholland met Strategic marketing. Aangezien Maarten zelf geen technische kennis heeft is er ook een technische begeleider aangewezen: Jelle van de Haterd. Jelle is senior developer, DevOps engineer en kennisambassadeur bij Developers.nl. Hij is in 2006 afgestudeerd op de Hogeschool Rotterdam met als opleiding Grafimediatechnologie \parencite{Afstudeervoorstel}.
+De interne systemen zijn op eerste gezicht van de buitenkant vrij eenvoudig. Developers.nl wilt -- om indruk te wekken op potentiële klanten en nieuwe medewerkers -- onder water een applicatie draaien dat \enquote{te complex} is. Maar; omdat de ontwikkelaars óf \enquote{minder ervaren} stagiairs zijn, óf een tijdelijke hulpkracht zijn kost het onderhouden -- vooral met 5 verschillende systemen -- erg veel tijd, moeite, en als gevolg hiervan: geld.
 
 \section{Doelstelling}
-Dit onderzoek heeft tot doel het verkrijgen van inzicht over de schaal- en onderhoudbaarheid van de interne systemen die Developers.nl beheert, om vervolgens deze twee factoren in de praktijk te verbeteren.
+Dit onderzoek heeft tot doel het verkrijgen van inzicht over de schaal- en onderhoudbaarheid van websites die Developers.nl beheert, om vervolgens deze twee factoren in de praktijk te verbeteren.
 
 \section{Probleemstelling}
-Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele tijd aan de interne projecten. Dit heeft te maken met het feit dat de ontwikkelaars die eraan werken vaak tussen twee opdrachten in zitten. Dit betekent dat het van hoog belang is dat een ontwikkelaar de omgevingen sneller kan opzetten en op korte termijn een kwalitatieve toevoeging kan leveren die in productie staat. De workflow moet verder geoptimaliseerd worden om Developers.nl dit te beloven.
+Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele tijd aan de interne projecten. Dit heeft te maken met het feit dat de ontwikkelaars die eraan werken vaak tussen twee opdrachten in zitten. Dit betekent dat het van hoog belang is dat een ontwikkelaar de omgeving snel kan opzetten en op korte termijn een kwalitatieve toevoeging kan leveren die in productie staat. De workflow moet verder geoptimaliseerd worden om Developers.nl dit te beloven.
 
 \section{Hoofd- en Deelvragen}
 \subsubsection{Hoofdvraag}
@@ -56,7 +38,9 @@ Bij Developers.nl werken veel verschillende ontwikkelaars voor een erg variabele
 \end{itemize}
 
 \section{Methodologie}
-Om antwoord te geven op de hoofdvraag \enquote{\hoofdvraagname} is voornamelijk kwalitatief onderzoek uitgevoerd. Vooronderzoek is uitgevoerd door bestaande literatuur te bestuderen om zo een beter beeld te verkrijgen en om een basis te leggen van de belangrijkste begrippen. Alle bronnen zijn handmatig gecontroleerd op kwaliteit en relevantie. Voor het definiëren van functionele schaalbaarheid is veel overlegt met verschillende software-ontwikkelaars, en zijn zowel formele als informele bronnen samengevoegd om zo tot één concrete definitie te komen. Om technieken te vinden die behoren bij schaal- en onderhoudbaarheid is deskresearch uitgevoerd door middel van interviews met ontwikkelaars en bestaande onderzoeken te verzamelen. Hierna zijn deze technieken afgebakend tot de meest relevante die bij dit onderzoek horen. Vervolgens is een beschrijvend onderzoek uitgevoerd op de huidige infrastructuur in hoofdstuk \ref{Chapter4}. Hier zijn bestaande kenmerken en elementen van de huidige infrastructuur tegen de gevonden standaarden en technieken uit hoofdstuk \ref{Chapter3} afgewogen. Om verschillende verbeteringen te vinden is net als hoofdstuk \ref{Chapter3} deskresearch uitgevoerd. Dit bevat voornamelijk interviews met senior ontwikkelaars die deze technieken in de praktijk gebruiken. Hierna zijn de gevonden methodes kwalitatief onderbouwd.
+Om antwoord te geven op de hoofdvraag \enquote{\hoofdvraagname} is voornamelijk kwalitatief onderzoek uitgevoerd. Vooronderzoek is uitgevoerd door bestaande literatuur te bestuderen om zo een beter beeld te verkrijgen en om een basis te leggen van de belangrijkste begrippen. Alle bronnen zijn handmatig gecontroleerd op kwaliteit en relevantie. Voor het definiëren van functionele schaalbaarheid is veel overlegd met verschillende software-ontwikkelaars, veel feedback gevraagd aan de community, en zijn zowel formele als informele bronnen samengevoegd om zo tot één concrete definitie te komen. 
+
+Om technieken te vinden die behoren bij schaal- en onderhoudbaarheid is deskresearch uitgevoerd door middel van interviews met ontwikkelaars en bestaande onderzoeken te verzamelen. Hierna zijn deze technieken afgebakend tot de meest relevante die bij dit onderzoek horen. Vervolgens is een beschrijvend onderzoek uitgevoerd op de huidige infrastructuur in hoofdstuk \ref{Chapter4}. Hier zijn bestaande kenmerken en elementen van de huidige infrastructuur tegen de gevonden standaarden en technieken uit hoofdstuk \ref{Chapter3} afgewogen. Om verschillende verbeteringen te vinden is net als hoofdstuk \ref{Chapter3} deskresearch uitgevoerd. Dit bevat voornamelijk interviews met senior ontwikkelaars die deze technieken in de praktijk gebruiken. Hierna zijn de gevonden methodes kwalitatief onderbouwd.
 
 Voor de daadwerkelijke implementatie is allereerst exploratief onderzoek gedaan naar de bijbehorende technieken en hun best-practices. Het doel hiervan is vooral om ideeën op te doen naar mogelijke implementaties.
 
@@ -86,3 +70,16 @@ In tabel \ref{tab:planning} is de vooraf opgestelde planning te vinden. Het is m
 \section{Leeswijzer}
 
 Vóór het \enquote{echte onderzoek} is eerst in het theoretisch kader (hoofdstuk in \ref{Chapter2}) een literatuuronderzoek uitgevoerd naar definities van de meest belangrijke begrippen: \textbf{Schaalbaarheid}, \textbf{onderhoudbaarheid}, en \textbf{infrastructuur}. Hierdoor is een concrete basis gelegd voor de opvolgende deelvragen. In hoofdstuk \ref{Verwachtingen} zijn de wensen en eisen van Developers.nl vastgelegd en requirements opgesteld. Daarna is in \ref{Chapter3} onderzoek gedaan naar de mogelijke technieken, met de deelvraag: \enquote{\deeltechnieken}. Hier zijn standaarden en best-practices besproken om te kunnen bewijzen dat de hoofdvraag daadwerkelijk beantwoord is. In het volgende hoofdstuk (\ref{Chapter4}) met deelvraag \enquote{\deelhuidig} zijn deze standaarden afgewogen tegen de huidige infrastructuur. Vervolgens wordt in hoofdstuk \ref{Chapter5} onderzocht welke verbeteringen hier op toe te passen zijn, hierbij hoort de deelvraag \enquote{\deelverbetering}. In hoofdstuk \ref{Chapter6} wordt de daadwerkelijke implementatie van deze verbeteringen besproken door verschillende opties met elkaar af te wegen. Hier wordt antwoord gegeven op de deelvraag \enquote{\deelverbetering}. Hierna zijn de geïmplementeerde verbeteringen geëvalueerd in hoofdstuk \ref{Chapter7}, bijbehorende deelvraag \enquote{\deelrequirements}. Nu alle deelvragen zijn beantwoord worden er in hoofdstuk \ref{Chapter8} aanbevelingen toegelicht voor toekomstige verbeteringen. Ten slotte wordt in hoofdstuk \ref{Chapter9} antwoord gegeven op de hoofdvraag \enquote{\hoofdvraagname} door alle deelconclusies samen te binden tot één hoofdconclusie.
+
+\section{Opdrachtgever}
+
+Deze scriptie is geschreven in opdracht van Developers.nl.
+
+\subsection{Core business}
+Developers.nl neemt software ontwikkelaars in dienst. De ontwikkelaars die worden aangenomen zullen voornamelijk gespecialiseerd zijn in PHP, Python, Java of front-end. Ze worden uitgezet naar een klant (een extern bedrijf) die naar een ontwikkelaar zoekt. Developers.nl kiest hier voor de beste ontwikkelaar voor de taak en zal deze inzetten bij een klant. De opdrachten van de ontwikkelaars zijn op locatie van de klant en duren voornamelijk langer dan een jaar, maar op uitzondering zijn er ook kortere opdrachten. Zodra de ontwikkelaar klaar is met zijn of haar taak zal Developers.nl zo snel mogelijk een nieuwe opdracht toewijzen \parencite{Stageplan}. Concreet zegt het positioneringsprofiel \parencite{Positioneringsprofiel}: \enquote{Detachering van developers die software applicaties bouwen voor verschillende klanten.}
+
+\subsection{Eigen omgeving}
+
+Tijdens de stageperiode neemt de stagiair een leidende rol aan in een team van 2 part-time studenten, een derdejaars-stagiair, en de tijdelijke hulpkrachten. Developers.nl heeft rond de 60 software ontwikkelaars. Deze zijn voornamelijk op een externe opdracht bij een klant. Elke vrijdag zullen 5 \enquote{kennisambassadeurs} op kantoor zijn. Dit zijn de meest senior ontwikkelaars per team. Deze zijn dan in staat om stagiairs en/of andere medewerkers persoonlijk te helpen. Hoewel ze maar één keer per week op kantoor aanwezig zijn, zijn ze altijd telefonisch bereikbaar of via Slack. Daarnaast kijken de kennisambassadeurs code van de interne systemen inhoudelijk na en geven hier feedback op.
+
+De bedrijfsbegeleider voor deze stage is Maarten de Boer. Dit is de algemene directeur van Developers.nl en is in 2003 afgestudeerd aan de hogeschool Inholland met Strategic marketing. Aangezien Maarten zelf geen technische kennis heeft is er ook een technische begeleider aangewezen: Jelle van de Haterd. Jelle is senior developer, DevOps engineer en kennisambassadeur bij Developers.nl. Hij is in 2006 afgestudeerd op de Hogeschool Rotterdam met als opleiding Grafimediatechnologie \parencite{Afstudeervoorstel}.

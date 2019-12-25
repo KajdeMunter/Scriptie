@@ -1,14 +1,43 @@
 % Appendix B
 
-\chapter{Feedback} % Main appendix title
+\chapter{Gesprekken} % Main appendix title
 
 \label{Feedback} 
+
+\section{Requirements}
+
+\label{FeedbackRequirements}
+
+Dit zijn de gemaakte aantekeningen tijdens discussies over de requirements:
+\begin{itemize}
+	\item schaalbaarheid: meerdere omgevingen (feature branches)
+	\item Merge train -> automatische merges en deploys
+	\item Pulumi
+	\item Generieke boilerplate voor een CI/CD Pipeline
+	\item segregation of duties
+	\item docker swarm voor performance curves te laten zien
+	\item Advies over deployment targets
+	\item testbaarheid -> static code analysis -> integratie tests ->
+	\item Hoeveelheid coverage -> pipeline 
+	\item Probleemstelling \& requirements
+	\item Functional scalability
+	\item Wat te monitoren?
+	\item Product owner validatie \& automatisch testen apart
+	\item Validaties zo veel mogelijk automatisch (policies, segregation of duties)
+	\item Kwaliteit waarborgen -> concreter
+	\item Functional scalability -> Extensibility
+	\item Extensibility functioneel? niet functioneel? Vragen stellen feedback online!
+	\item Monitoring: Metrics als ruimte -> cpu -> memory uiteindelijk verkeer, etc. promethius
+	\item terraform (firewalls, netwerken) voor alles tot aan de VM en ansible om de vm af te configureren
+	\item TransIP Terraform API
+	\item Nexpertise Terraform
+\end{itemize}
 
 \section{(niet-)functionele schaalbaarheid}
 
 \label{feedbackschaalbaarheid}
 
-Na het promoten van de geschreven blog\footnote{https://developers.nl/blog/69/Defining-software-scalability-using-requirements} is dit de meest populaire blog van Developers.nl in 2019 geworden. Dit heeft het volgende feedbackpuntje opgeleverd: \enquote{Scalability is a two way thing, so adding and removing should be in the definition (and thought lines)}. Waar ik het volledig mee eens ben, en zal verbeteren in de toekomst. Ook is er een leuke discussie uit gekomen. Marlon Etheredge, MSc schreef:
+Na het promoten van de geschreven blog\footnote{https://developers.nl/blog/69/Defining-software-scalability-using-requirements} is dit de meest populaire blog van Developers.nl in 2019 geworden. Dit heeft het volgende feedbackpuntje opgeleverd: \enquote{Scalability is a two way thing, so adding and removing should be in the definition (and thought lines)}. Waar ik het volledig mee eens ben, en zal verbeteren in de toekomst. Ook is er een leuke discussie uit gekomen. Marlon Etheredge, MSc vroeg:
 \begin{minted}[bgcolor=codebg, breaklines, breaksymbolleft=]{text}
 Hi Kaj,
 
@@ -27,7 +56,7 @@ Mijn concrete vraag aan jou is als volgt; je schrijft:
 
 Is verandering (bijvoorbeeld in de vorm van verbetering) noodzakelijk voor schaalbaarheid, of is het mogelijk schaalbaarheid te toetsen los van verandering?
 \end{minted}
-Mijn antwoord:
+\\Mijn antwoord:
 \begin{minted}[bgcolor=codebg,breaklines, breaksymbolleft=]{text}
 Schaalbaarheid in jouw context sluit goed aan op mijn twee definities: Je noemt "het niet schenden van tijdsgrenzen ... onafhankelijk van de hoeveelheid data"; in dit geval zijn de berekeningen een functionele requirement, en deze moeten voldoende blijven functioneren naarmate het hoeveelheid gebruik toe neemt. In deze context gaat het functioneren dus over het niet schenden van tijdsgrenzen, en de hoeveelheid gebruik over de hoeveelheid data.
 
@@ -38,3 +67,7 @@ Om antwoord te geven op je vraag: Schaalbaarheid is een kwaliteitskenmerk, het d
 Ik hoop dat ik hiermee je vraag voldoende heb beantwoord, zo niet hoor ik het graag uiteraard.
 \end{minted}
 
+Marlon was tevreden met dit antwoord:
+\begin{minted}[bgcolor=codebg,breaklines, breaksymbolleft=]{text}
+Duidelijk, dank voor je antwoord, erg interessant.
+\end{minted}
