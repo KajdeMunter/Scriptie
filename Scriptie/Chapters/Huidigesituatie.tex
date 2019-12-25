@@ -5,7 +5,7 @@
 Dit hoofdstuk gaat over de deelvraag \enquote{\deelhuidig}.
 
 \section{Huidige Architectuur}
-De huidige website is een combinatie van een PHP \& Symfony back-end API en Content Management Systeem, samen met een React + next.js front-end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
+In dit onderzoek wordt voornamelijk gefocussed op de website. Dit is de applicatie die het meest frequent gebruikt wordt, en dus de meeste aandacht verdiend. De huidige website is een combinatie van een PHP \& Symfony back-end API en Content Management Systeem, samen met een React + next.js front-end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
 
 In figuur \ref{fig:infra} is een component diagram te vinden van de huidige website structuur. De front-en backend structuur bevat 5 docker containers:
 \begin{itemize}
@@ -35,9 +35,7 @@ Ook heeft Developers.nl een \enquote{Employee Management Systeem} (EMS) gebouwd.
 Nu de infrastructuur in kaart is gebracht luidt de vraag; hoe schaalbaar is deze infrastructuur eigenlijk? Om dit te beantwoorden worden de verschillende definities van schaalbaarheid individueel behandeld.
 
 \subsection{Structural scalability}
-Definitie: Het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur.
-
-Bij structural scalability horen factor 2 \textbf{(API First)} en 5 \textbf{(Configuration, credentials, and code)} van de 15-factor app. 
+Definitie: Het vermogen van een systeem om uit te breiden in een gekozen dimensie zonder ingrijpende wijzigingen in de architectuur. Bij structural scalability horen factor 2 \textbf{(API First)} en 5 \textbf{(Configuration, credentials, and code)} van de 15-factor app.
 
 \subsubsection{API First}
 De website van Developers.nl is momenteel in 2 delen gesplitst: de React Front-end en de PHP API als back-end. Deze worden apart ontwikkeld, waardoor dus het principe altijd wordt toegepast. Daarnaast heeft het EMS geen API, en is dus out-of-scope voor deze factor.
@@ -59,7 +57,7 @@ Factor 12 vereist dat de applicatie als één of meerdere \enquote{stateless pro
 Voor factor 13 is het van belang dat een applicatie horizontaal uit te schalen is. Zolang de applicatie aan factor 7 (Disposability) en 12 (Stateless processes) voldoet, zit deze factor goed \parencite{Beyond12Factor}. Er is alleen nog geen manier geïmplementeerd om daadwerkelijk meerdere Docker containers naast elkaar te draaien of te managen.
 
 \subsubsection{Disposability}
-Voor factor 7 moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet. \textcolor{red}{TODO: HOE SNEL?} % TODO: Hoe snel?
+Voor factor 7 moet een applicatie opstarttijd minimaliseren. Zodra de docker images de initiële buildtime voorbij zijn kan de applicatie snel uit en aan worden gezet.
 
 Ook vereist factor 7 dat processen netjes worden afgesloten zodra ze een \texttt{SIGTERM} ontvangen. Zodra een docker container met \texttt{docker stop <container>} gestopt wordt zal er een SIGTERM worden gestuurd naar de draaiende processen. De vier containers met processen zijn PostgreSQL, PHP-FPM, Nginx en Redis. Deze sluiten allemaal netjes af, de outputs zijn te zien in Bijlage \ref{DockerExits}.
 
@@ -150,4 +148,8 @@ Voor de 15-Factor app geldt Factor 4 \textbf{(Design, build, release and run)}, 
 Er is een implementatie om test-coverage te visualiseren, maar er is niks in de ontwikkelstraat dat ervoor zorgt dat de coverage minimaal hetzelfde blijft. 
 
 \section{Conclusie}
-Een punt van verbetering in de schaalbaarheid is de hoeveelheid opslag van de server. Deze kan snel vol raken door ongebruikte Docker volumes en images die ontstaan bij een deployment. Ook wordt factor 1 \textbf{(One codebase, one application)} van de 15-Factor App niet volledig opgevolgd. De infrastructuur wordt op meerdere plekken opgebouwd en zou netter staan in een aparte codebase. De applicaties voldoen aan factor 13 \textbf{(Concurrency)} maar er wordt nog geen gebruik van gemaakt. Factor 11 \textbf{(Port binding)} is voor PHP geen goed idee aangezien PHP juist ontworpen is om een webserver ervoor te hebben, dit verlaagt dus juist de onderhoudbaarheid. Er is geen concrete manier om tests uit te voeren of aan testcriteria is voldaan. Hierdoor is de Testbaarheid van de systemen minimaal.
+Om de deelvraag \enquote{\deelhuidig} te beantwoorden zijn door dit onderzoek meerdere punten van verbetering gevonden. Een verbeterpunt in de schaalbaarheid is de hoeveelheid opslag van de server. Deze kan snel vol raken door ongebruikte Docker volumes en images die ontstaan bij een deployment. 
+
+Ook wordt factor 1 \textbf{(One codebase, one application)} van de 15-Factor App niet volledig opgevolgd. De infrastructuur wordt op meerdere plekken opgebouwd en zou netter staan in een aparte codebase. De applicaties voldoen aan factor 13 (Concurrency) maar er wordt nog geen gebruik van gemaakt. 
+
+Factor 11 \textbf{(Port binding)} is voor PHP geen goed idee aangezien PHP juist ontworpen is om een webserver ervoor te hebben, dit verlaagt dus juist de onderhoudbaarheid. Er zijn voor zowel het EMS als de website geen monitoring tools in gebruik voor performance, dat betekend dat factor 14 \textbf{(Telemetry)} beter kan. Er is geen concrete manier om tests uit te voeren of aan testcriteria is voldaan. Hierdoor is de Testbaarheid van de systemen minimaal.

@@ -18,21 +18,42 @@ Om de snelheid te verhogen waarop ontwikkelaars hun toevoegingen kunnen laten zi
 
 \section{Waar wilt Developers.nl meer over te weten komen?}
 
-Developers.nl wil weten of de best-practices van de 12-factor app toepasselijk zijn op de huidige infrastructuur. Ook wil Developers.nl meer te weten komen over verschillende standaarden die zij kunnen opvolgen om de kwaliteit van hun infrastructuur te waarborgen.
+Developers.nl wil weten of de best-practices van de 12-Factor App toepasselijk zijn op de huidige infrastructuur. Ook wil Developers.nl meer te weten komen over verschillende standaarden die zij kunnen opvolgen om de kwaliteit van hun infrastructuur te waarborgen.
 
 \section{Wat zijn de concrete requirements waar de oplossing aan moet voldoen?}
 
-Om schaalbaarheid te realiseren moet de onderhoudbaarheid van de infrastructuur ook op een voldoende niveau zijn, hier \textbf{moeten} kwaliteitsstandaarden voor onderzocht worden. Daarnaast moet de oplossing zo generiek mogelijk zijn, en dus voor meerdere applicaties toe te passen zijn. Dit betekend dus ook dat de oplossing geschikt moet zijn voor applicaties met veel verkeer. Concreet moet de oplossing aan het eind van de stageperiode;
+Om schaalbaarheid te realiseren moet de onderhoudbaarheid van de infrastructuur ook op een voldoende niveau zijn, hier moeten kwaliteitsstandaarden voor onderzocht worden. Daarnaast moet de oplossing zo generiek mogelijk zijn, en dus voor meerdere applicaties toe te passen zijn. Dit betekend dus ook dat de oplossing geschikt moet zijn voor applicaties met veel verkeer.
 
+Om requirements op te stellen wordt gebruik gemaakt van de MoSCoW-methode. Deze afkorting staat voor: \textbf{M}ust haves, \textbf{S}hould haves, \textbf{C}ould haves, en \textbf{W}on't haves \parencite{Moscow}.
+
+\subsubsection{Must haves}
 \begin{itemize}
-	\item Méér dan twee unieke instanties van een applicatie naast elkaar kunnen draaien, en deze automatisch kunnen aanmaken.
-	\item Generiek genoeg zijn zodat meerdere applicaties er gebruik van kunnen maken.
-	\item Een manier bevatten om kwaliteit van nieuwe toevoegingen aan de infrastructuur automatisch te waarborgen.
-	\item Horizontaal kunnen schalen bij een toe- of afnemende hoeveelheid verkeer.
+	\item De oplossing moet méér dan twee unieke instanties van de website naast elkaar kunnen draaien.
+	\item De oplossing moete moet unieke instanties van de website automatisch kunnen aanmaken.
+	\item De oplossing moet een methode bevatten om kwaliteit van nieuwe toevoegingen aan de infrastructuur automatisch te waarborgen.
+	\item Logging en monitoring tools.
+	\item De oplossing moet voldoen aan één of meerdere kwaliteitsstandaarden.
+\end{itemize}
+
+\subsubsection{Should haves}
+\begin{itemize}
+	\item De oplossing moet generiek genoeg zijn zodat meerdere applicaties er gebruik van kunnen maken.
+	\item De oplossing moet de website horizontaal kunnen laten schalen bij een toe- of afnemende hoeveelheid verkeer. De efficiëntie moet 1:1 zijn. Bijvoorbeeld: Éen extra instantie moet 50\% van het verkeer opvangen.
+\end{itemize}
+
+\subsubsection{Could haves}
+\begin{itemize}
+	\item De oplossing moet de website \textit{automatisch} laten schalen.
+	\item De website moet op een cloud provider draaien.
+	\item De website moet serverless draaien.
+\end{itemize}
+
+\subsubsection{Won't haves}
+\begin{itemize}
+	\item Een \enquote{boilerplate} voor het opzetten van nieuwe (schaal- en onderhoudbare) projecten.
 \end{itemize}
 
 \section{Conclusie}
-
 Developers.nl wilt onderhoudbaarheid bereiken door kwaliteitsstandaarden af te dwingen. Ook wilt Developers.nl twee soorten schaalbaarheid. Eén in de vorm van het deployen van verschillende branches in aparte omgevingen, en één in de vorm van horizontaal schalen om meer verkeer aan te kunnen. Deze twee soorten kunnen niet gerealiseerd worden zonder de onderhoudbaarheid te waarborgen. Er zijn vier concrete requirements:
 
 \begin{itemize}
