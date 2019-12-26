@@ -8,7 +8,7 @@
 
 \label{FeedbackRequirements}
 
-Dit zijn de gemaakte aantekeningen tijdens discussies over de requirements:
+Dit zijn de gemaakte aantekeningen tijdens discussies over de requirements met Jelle:
 \begin{itemize}
 	\item schaalbaarheid: meerdere omgevingen (feature branches)
 	\item Merge train -> automatische merges en deploys
@@ -33,6 +33,57 @@ Dit zijn de gemaakte aantekeningen tijdens discussies over de requirements:
 	\item Nexpertise Terraform
 \end{itemize}
 
+\section{Feature environments}
+\label{FeedbackFeatureEnvironments}
+
+Slack conversatie met Jelle:
+\begin{minted}[bgcolor=codebg, breaklines, breaksymbolleft=]{text}
+Hey ik heb denk ik iets gevonden wat mij wel een leuke oplossing lijkt:
+https://github.com/jwilder/nginx-proxy
+Het luistert naar je docker run commands om daaruit environment variabelen te halen; waaronder VIRTUAL_HOST , waardoor het dus iets als VIRTUAL_HOST=${BITBUCKET_BRANCH}.${HOSTNAME} kan worden. Wat vind jij hiervan? Een mogelijke oplossing? Of tenminste een deel hiervan.... zodat er niet een volledige abstractielaag op zit
+\end{minted}
+\\Reactie van Jelle:
+\begin{minted}[bgcolor=codebg, breaklines, breaksymbolleft=]{text}
+Zou idd een oplossing zijn, kijk anders ook ffe naar traefik.io
+\end{minted}
+\\Conversatie over het beveiligen van de Docker Socket:
+\begin{minted}[bgcolor=codebg, breaklines, breaksymbolleft=]{text}
+Kaj: 
+Oke dit lijkt mij wel een probleem:
+https://github.com/containous/traefik/issues/4174
+Zowel de nginx-proxy als traefik hebben dit.. is dit: https://github.com/Tecnativa/docker-socket-proxy écht de beste oplossing hiervoor, of heb jij toevallig nog een geniale ingeving?
+
+Jelle:
+Zou ik me even in moeten verdiepen, met de oplossing die ik met nginx aan het rommelen was gebruikte ik docker labels en docker inspect
+
+Kaj:
+Hmm oke oke
+Misschien is dat ook wel een goeie, want nginx moet er toch inblijven aangezien traefik geen fastCGI support heeft
+
+Jelle:
+Ja maar das dan achter traefik als load balancer zegmaar
+
+Kaj:
+Oh.. dus dan heb je traefik statisch geconfigureerd?
+
+Jelle:
+Bekijk de docker-compose file: https://medium.com/@luiscoutinh/reverse-proxy-com-docker-traefik-nginx-php-mysql-mosquitto-phpmyadmin-basic-34c95b690f5c
+
+Kaj:
+Ja precies, dat is ongeveer hoe het wordt aangeraden. Maar ook die oplossing exposed de docker socket
+
+Jelle:
+ja idd dat is een probleem, iig voor productie
+Expose the Docker socket over TCP, instead of the default Unix socket file
+
+Kaj:
+Dat is eigenlijk het enige waar ik tegenaan loop, want een oplossing met traefik lijkt mij bijna precies wat ik zoek
+
+Jelle:
+dat kan wel, via certificaten beveiligen:
+https://docs.traefik.io/providers/docker/#docker-api-access
+
+\end{minted}
 \section{(niet-)functionele schaalbaarheid}
 
 \label{feedbackschaalbaarheid}

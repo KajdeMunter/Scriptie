@@ -8,13 +8,13 @@ Dit hoofdstuk gaat over de deelvraag \enquote{\deelverwachtingen}. Om de verwach
 
 Om de workflow sneller te laten verlopen moeten zo veel mogelijk processen geautomatiseerd worden. Hieronder valt voornamelijk het automatiseren van de kwaliteitswaarborging. Het is belangrijk dat een nieuwe toevoeging of applicatie aan een aantal standaarden voldoet, zodat ontwikkelaars snel aan de slag kunnen. Jelle vind ten opzichte van daadwerkelijke code voornamelijk dat de infrastructuur aan verbetering toe is.
 
-Developers.nl als product owner wil een nieuwe toevoeging of zelfs volledig nieuwe applicatie kunnen bedenken en deze zo snel mogelijk geïmplementeerd zien. De workflow qua integratie en deployment moet verder geoptimaliseerd worden om Developers.nl deze snelheid te beloven.
+Developers.nl als product owner wil een nieuwe toevoeging of eventueel een volledig nieuwe applicatie kunnen bedenken en deze zo snel mogelijk geïmplementeerd zien. De workflow qua integratie en deployment moet verder geoptimaliseerd worden om Developers.nl deze snelheid te beloven.
 
 \section{Hoe ziet Developers.nl schaalbaarheid?}
 
 Developers.nl als product owner wil de voortgang van nieuwe toevoegingen of applicaties nauw kunnen volgen, zodat de kwaliteit hiervan op tijd gevalideerd kan worden. Dit heeft te maken met de agile werkmethodiek die Developers.nl gebruikt voor het ontwikkelen van haar interne applicaties.
 
-Om de snelheid te verhogen waarop ontwikkelaars hun toevoegingen kunnen laten zien, ziet Developers.nl graag het concept van \enquote{Feature environments}. Dit wil zeggen dat er per aangemaakte git branch gelijk gedeployed wordt naar een aparte omgeving, die dan te bekijken is door de product owner. Dit betekent dat er dus meerdere (verschillende) instanties van de applicatie naast elkaar moeten kunnen draaien. Daarnaast ziet Developers.nl graag de mogelijkheid om rekenkracht van de server te verdelen over deze instanties, waardoor er dus horizontaal geschaald moet kunnen worden.
+Om de snelheid te verhogen waarop ontwikkelaars hun toevoegingen kunnen laten zien, ziet Developers.nl graag het concept van \enquote{Feature environments}. Dit wil zeggen dat er per aangemaakte git branch gelijk gedeployed wordt naar een aparte omgeving, die dan te bekijken is door de product owner. Dit betekent dat er dus meerdere (verschillende) instanties van de applicatie naast elkaar moeten kunnen draaien. Daarnaast ziet Developers.nl graag de mogelijkheid om rekenkracht van de server te verdelen over deze instanties, waardoor er dus horizontaal geschaald moet kunnen worden. Developers.nl prioriteert de feature environments boven het verdelen van de rekenkracht, omdat het implementeren van feature environments \enquote{twee vliegen in één klap} is. Dit zorgt namelijk voor onderhoudbaarheid én het betekent dat de oplossing schaalbaar is.
 
 \section{Waar wilt Developers.nl meer over te weten komen?}
 
@@ -29,7 +29,7 @@ Om requirements op te stellen wordt gebruik gemaakt van de MoSCoW-methode. Deze 
 \subsubsection{Must haves}
 \begin{itemize}
 	\item De oplossing moet méér dan twee unieke instanties van de website naast elkaar kunnen draaien.
-	\item De oplossing moete moet unieke instanties van de website automatisch kunnen aanmaken.
+	\item De oplossing moet moet unieke instanties van de website automatisch kunnen aanmaken.
 	\item De oplossing moet een methode bevatten om kwaliteit van nieuwe toevoegingen aan de infrastructuur automatisch te waarborgen.
 	\item Logging en monitoring tools.
 	\item De oplossing moet voldoen aan één of meerdere kwaliteitsstandaarden.

@@ -2,11 +2,30 @@
 
 \label{Chapter5}
 
-Dit hoofdstuk gaat over de deelvraag \enquote{\deelverbetering}.
+Dit hoofdstuk gaat over de deelvraag \enquote{\deelverbetering}. Gebaseerd op de conclusie uit hoofdstuk \ref{Chapter4} en de requirements van Developers.nl zijn verschillende technieken onderzocht om de gevonden verbeterpunten te verbeteren. Daarna zijn deze gevonden technieken op prioriteit geordend door middel van de requirements. 
 
 \section{Feature-environments}
+Met feature-environments is het mogelijk om een staging-omgeving te creëren voor elke individuele feature branch. Dit betekent dat de product owners en developers elke feature afzonderlijk van andere features kunnen testen, om deze daarna naar productie te deployen. De feature-environment workflow is niet erg conventioneel of populair, aannemelijk omdat het niet gemakkelijk is om te implementeren. De meest relevante informatie voor dit onderzoek is een blog van Christian Lüdemann \parencite{FeatureEnvs}, hoewel de implementatie niet past bij de huidige situatie van Developers.nl. Uit onderzoek over verschillende technieken zijn de volgende opties gekomen:
+\begin{itemize}
+	\item Een Kubernetes cluster met individuele namespaces voor elke environment
+	\item Een dynamische reverse proxy die requests naar verschillende docker netwerken stuurt
+	\item Een dynamische reverse proxy die requests naar verschillende aparte VM's stuurt die gemanaged worden met Proxmox, of een cloud provider.
+	\item Betaalde opties als \texttt{https://platform.sh/} of \texttt{https://continuouspipe.io/}
+\end{itemize}
 
-\textcolor{red}{TODO: reverse proxy, diagram, ansible, etc. etc.} % TODO feature environemnts
+Een kube....
+
+
+Verschillende reverse proxies:
+\begin{itemize}
+	\item Traefik
+	\item jwilder/Nginx-Proxy
+	\item HAProxy	
+\end{itemize}
+
+%Momenteel heeft Developers.nl twee servers beschikbaar voor de website, een testserver en een productieserver. 
+
+In bijlage \ref{FeedbackFeatureEnvironments} zijn Slack conversaties met Jelle te vinden die te maken hebben met de feature environments, en over het beveiligen van de Docker socket.
 
 \section{Éen generieke infrastructuur}
 One codebase, One application is Factor 1 van de 15-Factor App en zorgt voor herbruikbaarheid van ISO 25010. De huidige infrastructuur van de Website en het EMS wordt opgebouwd met Ansible. \enquote{Ansible is a radically simple IT automation engine that automates cloud provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs} \parencite{Ansible}. Kort gezegd is Ansible een Configuration Management (CM) tool.
@@ -32,6 +51,7 @@ Het automatiseren van deze kwaliteitscontroles verhoogt de onderhoudbaarheid aan
 Er zijn twee technieken om PaC te implementeren. HashiCorps \enquote{Sentinel} en \enquote{Open Policy Agent} (OPA). In verband met de reden dat Sentinel closed-source is, is OPA de betere keuze. Dit past beter bij de bedrijfscultuur, slogan en budgetwensen van Developers.nl. Ook is Sentinel alleen toepasbaar op hashiCorp producten, waardoor de techniek een stuk beperkter is.
 
 \section{Container Orchestration}
+\label{ContainerOrchestration}
 Om gebruik te maken van Factor 13 \textbf{(Concurrency)} moet de applicatie horizontaal en verticaal kunnen schalen. Dit heeft ook te maken met de should-requirement \enquote{De oplossing moet de website horizontaal kunnen laten schalen bij een toe- of afnemende hoeveelheid}. Omdat de systemen bij Developers.nl op Docker containers draaien moet er een manier zijn om deze te beheren. \enquote{Container orchestration} platforms helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Dit doen zij door meerdere containers als één entiteit te beschouwen -- voor doeleinden van beschikbaarheid, schaalbaarheid, netwerken en de initiële containerimplementatie \parencite{ContainerOrchestration}.
 
 Er zijn twee technieken voor container orchestration leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is. Als er gekeken wordt naar de wensen van Developers.nl en de scope van dit onderzoek is Swarm de meest passende keuze. De meeste prioriteit qua schalen gaat niet specifiek naar het automatiseren en managen van hoge hoeveelheden verkeer maar naar het draaien van meerderen omgevingen naast elkaar, om zo verschillende features apart te deployen of A/B te testen.
@@ -53,7 +73,13 @@ Om de juiste keuze van monitoring tool te maken is het belangrijk om te specific
 Om de testbaarheid te verbeteren moet een tool worden gebruikt om de testcoverage van nieuwe toevoegingen te waarborgen. De meest prominente tool hiervoor is codecov. Het zorgt voor een duidelijk overzicht van de coverage tools en kan direct bij pull-requests nakijken of de nieuwe features wel voldoende zijn getest.
 
 \section{Prioriteiten}
-Om te beslissen welke verbeteringen worden geïmplementeerd zijn de verbeteringen gekoppeld aan de opgezette requirements.
+Feature Environments
+Generieke infrastructuur
+Policy-as-code
+Container orchestration
+Opschonen docker volumes en iages
+Logging \& Monitoring
+Codecov
 
 \section{Conclusie}
 Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC. Om de testbaarheid te waarborgen kan een tool als Codecov worden gebruikt.
