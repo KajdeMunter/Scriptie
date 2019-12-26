@@ -7,14 +7,15 @@ Dit hoofdstuk gaat over de deelvraag \enquote{\deelverbetering}. Gebaseerd op de
 \section{Feature-environments}
 Met feature-environments is het mogelijk om een staging-omgeving te creëren voor elke individuele feature branch. Dit betekent dat de product owners en developers elke feature afzonderlijk van andere features kunnen testen, om deze daarna naar productie te deployen. De feature-environment workflow is niet erg conventioneel of populair, aannemelijk omdat het niet gemakkelijk is om te implementeren. De meest relevante informatie voor dit onderzoek is een blog van Christian Lüdemann \parencite{FeatureEnvs}, hoewel de implementatie niet past bij de huidige situatie van Developers.nl. Uit onderzoek over verschillende technieken zijn de volgende opties gekomen:
 \begin{itemize}
-	\item Een Kubernetes cluster met individuele namespaces voor elke environment
-	\item Een dynamische reverse proxy die requests naar verschillende docker netwerken stuurt
+	\item Een Kubernetes cluster met individuele namespaces voor elke environment.
+	\item Tools als \texttt{https://platform.sh/} of \texttt{https://continuouspipe.io/}.
+	\item Een dynamische reverse proxy die requests naar verschillende docker netwerken stuurt.
 	\item Een dynamische reverse proxy die requests naar verschillende aparte VM's stuurt die gemanaged worden met Proxmox, of een cloud provider.
-	\item Betaalde opties als \texttt{https://platform.sh/} of \texttt{https://continuouspipe.io/}
 \end{itemize}
 
-Een kube....
+Een kubernetes cluster net namespaces valt af, dit heeft te maken met het onderhoudswerk van een cluster. Meer hierover is te lezen in paragraaf \ref{ContainerOrchestration}. Ook Docker Swarm is geen optie, Swarm heeft geen equivalent van kubernetes namespaces en er kunnen niet meerdere nodes op één machine staan. Tools als Platform.sh of Continuouspipe.io hebben een geïntegreerde oplossing voor feature environments, maar voegen veel overhead toe. Bovendien kost Platform.sh geld, waar Developers.nl het niet voor over heeft.
 
+Er zijn twee opties voor het maken van feature environments met een reverse proxy. Het gebruik maken van aparte VM's versus het aanmaken van docker netwerken.
 
 Verschillende reverse proxies:
 \begin{itemize}
