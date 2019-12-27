@@ -15,14 +15,16 @@ Met feature-environments is het mogelijk om een staging-omgeving te creëren voo
 
 Een kubernetes cluster net namespaces valt af, dit heeft te maken met het onderhoudswerk van een cluster. Meer hierover is te lezen in paragraaf \ref{ContainerOrchestration}. Ook Docker Swarm is geen optie, Swarm heeft geen equivalent van kubernetes namespaces en er kunnen niet meerdere nodes op één machine staan. Tools als Platform.sh of Continuouspipe.io hebben een geïntegreerde oplossing voor feature environments, maar voegen veel overhead toe. Bovendien kost Platform.sh geld, waar Developers.nl het niet voor over heeft.
 
-Er zijn twee opties voor het maken van feature environments met een reverse proxy. Het gebruik maken van aparte VM's versus het aanmaken van docker netwerken.
+Er zijn twee opties voor het maken van feature environments met een reverse proxy. Het gebruik maken van aparte VM's versus het aanmaken van docker netwerken. Het zusterbedrijf van Developers.nl -- gemvision -- maakt gebruik van Proxmox om hun Virtual Machines te beheren. Hoewel Proxmox een goede tool is om de VM's te beheren, is het echt gebaseerd op enterprise settings. Dit maakt het lastiger voor andere ontwikkelaars om goed gebruik te maken van deze tool. Aangezien Docker netwerken al geïntegreerd zijn in Docker voegt deze oplossing veel minder overhead toe. Dit is dus de beste optie.
 
-Verschillende reverse proxies:
+Er zijn verschillende reverse proxies. Relevante voor dit project zijn:
 \begin{itemize}
 	\item Traefik
 	\item jwilder/Nginx-Proxy
 	\item HAProxy	
 \end{itemize}
+
+Elke reverse proxy heeft zijn voor- en nadelen. De Website en het EMS maken al gebruik van Nginx als FastCGI webserver voor PHP-FPM. Daarom is nginx-proxy een interessante optie\footnote{https://github.com/jwilder/nginx-proxy}. Nginx-proxy is een abstractielaag boven Nginx die gebruik maakt van de Docker socket om op die manier requests naar de juiste plek te sturen. Het nadeel is dat Nginx hier niet expliciet voor bedoeld is, waardoor een aantal tekortkomingen aanwezig zijn. Traefik werkt goed samen met Docker (swarm), aangezien Traefik ingebouwde service-discovery heeft voor docker containers en Let's Encrypt. Bovendien heeft Traefik een minder steile learning curve door de aanwezige documentatie. Het nadeel is dat het meer overhead creëert doordat het een compleet aparte en nieuwe tool is die moet worden toegevoegd. Dit nadeel is ook aanwezig bij HAProxy. HAProxy is snel en capabel voor load balancing, maar is complex om op te zetten zodra het op feature environments toekomt. \textcolor{red}{TODO: Nakijken} % TODO: nakijkenl
 
 %Momenteel heeft Developers.nl twee servers beschikbaar voor de website, een testserver en een productieserver. 
 
