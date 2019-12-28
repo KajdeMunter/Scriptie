@@ -57,10 +57,12 @@ Er zijn twee technieken om PaC te implementeren. HashiCorps \enquote{Sentinel} e
 \label{ContainerOrchestration}
 Om gebruik te maken van Factor 13 \textbf{(Concurrency)} moet de applicatie horizontaal en verticaal kunnen schalen. Dit heeft ook te maken met de should-requirement \enquote{De oplossing moet de website horizontaal kunnen laten schalen bij een toe- of afnemende hoeveelheid}. Omdat de systemen bij Developers.nl op Docker containers draaien moet er een manier zijn om deze te beheren. \enquote{Container orchestration} platforms helpen bij het automatiseren van alle aspecten behorend bij het beheren van containers. Dit doen zij door meerdere containers als één entiteit te beschouwen -- voor doeleinden van beschikbaarheid, schaalbaarheid, netwerken en de initiële containerimplementatie \parencite{ContainerOrchestration}.
 
-Er zijn twee technieken voor container orchestration leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is. Als er gekeken wordt naar de wensen van Developers.nl en de scope van dit onderzoek is Swarm de meest passende keuze. De meeste prioriteit qua schalen gaat niet specifiek naar het automatiseren en managen van hoge hoeveelheden verkeer maar naar het draaien van meerderen omgevingen naast elkaar, om zo verschillende features apart te deployen of A/B te testen.
+Er zijn twee technieken voor container orchestration leidend in de context van Docker, namelijk Docker Swarm of Kubernetes (K8s). Over het algemeen is Swarm een stuk gemakkelijker en minder complex dan K8s. Dit zou betekenen dat als er rekening word gehouden met onderhoudbaarheid, swarm de beste keuze is om te gebruiken. Maar om de grootste hoeveelheid controle over de containers te hebben is K8s de juiste tool. Ook wordt K8s beter ondersteund door cloud providers doordat AWS, GCP, en Azure een speciale service bieden om K8s toe te passen. Dit heeft te maken met het feit dat de community van K8s ook een stuk groter is vergeleken met Swarm. Het is wel mogelijk om Swarm te gebruiken met de cloud services maar het er is geen out-of-the-box service zoals er bij K8s wel is. 
+
+Als er gekeken wordt naar de wensen van Developers.nl en de scope van dit onderzoek is Swarm de meest passende keuze. De meeste prioriteit qua schalen gaat niet specifiek naar het automatiseren en managen van hoge hoeveelheden verkeer maar naar het draaien van meerderen omgevingen naast elkaar, om zo verschillende features apart te deployen of A/B te testen.
 
 \section{Opschonen Docker volumes en images}
-De images en volumes moeten automatisch worden opgeschoond.
+De images en volumes moeten automatisch worden opgeschoond. Dit is mogelijk om periodiek uit te voeren met een \texttt{systemd} timer of een \texttt{cron job}, maar omdat Developers.nl al gebruik maakt van Ansible in hun websites kan het gemakkelijk geïmplementeerd worden met een Ansible taak die bij elke deployment gebruik maakt van de \texttt{docker\_prune} module.
 
 \section{Logging \& Monitoring}
 Logging en monitoring is een verplichtte requirement vanuit Developers.nl. Uit onderzoek in hoofdstuk \ref{Chapter4} blijkt dat Telemetry, Factor 14 van de 15-Factor app nog aan verbetering toe is. \parencite{Beyond12Factor} noemt drie verschillende categorieën van data om te monitoren in een applicatie:
@@ -76,13 +78,16 @@ Om de juiste keuze van monitoring tool te maken is het belangrijk om te specific
 Om de testbaarheid te verbeteren moet een tool worden gebruikt om de testcoverage van nieuwe toevoegingen te waarborgen. De meest prominente tool hiervoor is codecov. Het zorgt voor een duidelijk overzicht van de coverage tools en kan direct bij pull-requests nakijken of de nieuwe features wel voldoende zijn getest.
 
 \section{Prioriteiten}
-Feature Environments
-Generieke infrastructuur
-Policy-as-code
-Container orchestration
-Opschonen docker volumes en iages
-Logging \& Monitoring
-Codecov
+\textcolor{red}{TODO: PRIORITEITEN MET REQUIREMENTS SAMEN}
+\begin{enumerate}
+	\item Feature Environments
+	\item Policy-as-code
+	\item Opschonen docker volumes en iages
+	\item Logging \& Monitoring
+	\item Codecov
+	\item Container orchestration
+	\item Generieke infrastructuur
+\end{enumerate}
 
 \section{Conclusie}
 Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC. Om de testbaarheid te waarborgen kan een tool als Codecov worden gebruikt.
