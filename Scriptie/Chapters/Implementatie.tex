@@ -25,12 +25,12 @@ Nieuwe infrastructuur:
 \section{Codecov}
 Code voor het implementeren is te zien in bijlage \ref{codecov}
 
-\section{Opschonen Docker volumes en images}
-\texttt{developers.nl/ansible/group\_vars/all.yml}
+\section{Opschonen Docker images}
+In het bestand \texttt{developers.nl/ansible/group\_vars/all.yml} is een variabele geplaatst om de images te filteren, images die ouder zijn dan 4 uur worden verwijderd.
 \begin{minted}[linenos=true, bgcolor=codebg]{yaml}
 image_delete_until_time: 4h
 \end{minted}
-\texttt{developers.nl/ansible/deploy.yml}
+\\In \texttt{developers.nl/ansible/deploy.yml} is een ansible taak geplaatst die gebruik maakt van de \texttt{docker\_prune} module, om zo alle dangling images te verwijderen.
 \begin{minted}[linenos=true, bgcolor=codebg]{yaml}
 - name: "Clean up images older than {{ image_delete_until_time }}"
   docker_prune:

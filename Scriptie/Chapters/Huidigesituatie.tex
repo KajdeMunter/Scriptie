@@ -94,27 +94,35 @@ Omdat 27G nogal veel leek voor wat er op de server draait is er onderzoek uitgev
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/vda1        49G   13G   34G  28% /
 \end{minted}
-Qua schaalbaarheid is dit dus een verbeterpunt. De images en volumes moeten automatisch worden opgeschoond.
+Qua schaalbaarheid is dit dus een verbeterpunt. De volumes, maar voornamelijk images moeten automatisch worden opgeschoond.
 
-Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook kan worden toegepast. 
+Een andere factor zou kunnen zijn dat de rate-limits van externe API's wordt bereikt. De twee externe API's die nu worden gebruikt zijn \texttt{meetup.com} voor de TechNights en \texttt{bullhorn.com} voor de vacatures. Voor Bullhorn heeft Developers.nl de \enquote{Enterprise Edition}, dit betekend dat Developers.nl 50 API sessies tegelijk kan hebben, en maximaal 2.000.000 calls per dag heeft. Aangezien de website niet dichtbij deze getallen komt, en hoogstwaarschijnlijk op lange termijn niet gaat halen zit dit goed. Toch worden de responses gecached in Redis waardoor de calls nog minder zullen zijn. Voor de API van Meetup zijn er maximaal 200 requests per uur en maximaal 200 results per request. Ook dit verkeer heeft de website voorlopig nog niet, maar om toch zeker te zijn dat dit niet wordt bereikt worden ook deze responses in Redis opgeslagen. De cachemethode is generiek genoeg opgezet waardoor het voor toekomstige API's ook kan worden toegepast.
 
 Om de schaalbaarheid nog verder te analyseren is een SWOT analyse uitgevoerd op basis van de aanbeveling van Weinstock en Goodenough.
 
 \subsubsection{Strengths}
-- Stateless processes
-- Concurrency
-- Disposability
+\begin{itemize}
+	\item Stateless processes
+	\item Concurrency
+	\item Disposability
+\end{itemize}
 
 \subsubsection{Weaknesses}
-- De hoeveelheid opslag
-- Hoge hoeveelheid verkeer
-- Nog geen manier van automatisch schalen geïmplementeerd
+\begin{itemize}
+	\item De hoeveelheid opslag
+	\item Piekmomenten in de hoeveelheid verkeer
+	\item Nog geen manier van automatisch schalen geïmplementeerd
+\end{itemize}
 
 \subsubsection{Opportunities}
-- Het daadwerkelijk schalen door middel van container orchestration
+\begin{itemize}
+	\item Het daadwerkelijk schalen door middel van container orchestration
+\end{itemize}
 
 \subsubsection{Threats}
-- De hoeveelheid onderhoud dat een nieuwe schaalstrategie met zich mee brengt.
+\begin{itemize}
+	\item De hoeveelheid onderhoud dat een nieuwe schaalstrategie met zich mee brengt.
+\end{itemize}
 
 
 \subsection{Onderhoudbaarheid}

@@ -61,8 +61,8 @@ Er zijn twee technieken voor container orchestration leidend in de context van D
 
 Als er gekeken wordt naar de wensen van Developers.nl en de scope van dit onderzoek is Swarm de meest passende keuze. De meeste prioriteit qua schalen gaat niet specifiek naar het automatiseren en managen van hoge hoeveelheden verkeer maar naar het draaien van meerderen omgevingen naast elkaar, om zo verschillende features apart te deployen of A/B te testen.
 
-\section{Opschonen Docker volumes en images}
-De images en volumes moeten automatisch worden opgeschoond. Dit is mogelijk om periodiek uit te voeren met een \texttt{systemd} timer of een \texttt{cron job}, maar omdat Developers.nl al gebruik maakt van Ansible in hun websites kan het gemakkelijk geïmplementeerd worden met een Ansible taak die bij elke deployment gebruik maakt van de \texttt{docker\_prune} module.
+\section{Opschonen Docker images}
+De Docker images moeten automatisch worden opgeschoond. Dit is mogelijk om periodiek uit te voeren met een \texttt{systemd} timer of een \texttt{cron job}, maar omdat Developers.nl al gebruik maakt van Ansible in hun websites kan het gemakkelijk geïmplementeerd worden met een Ansible taak die bij elke deployment gebruik maakt van de \texttt{docker\_prune} module.
 
 \section{Logging \& Monitoring}
 Logging en monitoring is een verplichtte requirement vanuit Developers.nl. Uit onderzoek in hoofdstuk \ref{Chapter4} blijkt dat Telemetry, Factor 14 van de 15-Factor app nog aan verbetering toe is. \parencite{Beyond12Factor} noemt drie verschillende categorieën van data om te monitoren in een applicatie:
