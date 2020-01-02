@@ -78,16 +78,58 @@ Om de juiste keuze van monitoring tool te maken is het belangrijk om te specific
 Om de testbaarheid te verbeteren moet een tool worden gebruikt om de testcoverage van nieuwe toevoegingen te waarborgen. De meest prominente tool hiervoor is codecov. Het zorgt voor een duidelijk overzicht van de coverage tools en kan direct bij pull-requests nakijken of de nieuwe features wel voldoende zijn getest.
 
 \section{Prioriteiten}
-\textcolor{red}{TODO: PRIORITEITEN MET REQUIREMENTS SAMEN}
-\begin{enumerate}
-	\item Feature Environments
-	\item Policy-as-code
-	\item Opschonen docker volumes en iages
-	\item Logging \& Monitoring
-	\item Codecov
-	\item Container orchestration
-	\item Generieke infrastructuur
-\end{enumerate}
+Om te beslissen welke verbeteringen geïmplementeerd worden voor dit onderzoek worden ze op prioriteit geordend door middel van ze onder de requirements te verdelen.
+
+% Feature Environments
+% Policy-as-code
+% Opschonen docker images
+% Logging \& Monitoring
+% Codecov
+% Container orchestration
+% Generieke infrastructuur
+
+\subsubsection{Must-requirements:}
+\begin{itemize}
+	\item De oplossing moet méér dan twee unieke instanties van de website naast elkaar kunnen draaien.
+	\begin{itemize}
+		\item Feature Environments
+	\end{itemize}
+	
+	\item De oplossing moet moet unieke instanties van de website automatisch kunnen aanmaken.
+	\begin{itemize}
+		\item Feature Environments
+	\end{itemize}
+
+	\item De oplossing moet een methode bevatten om kwaliteit van nieuwe toevoegingen aan de infrastructuur automatisch te waarborgen.
+	\begin{itemize}
+		\item Policy-as-code
+		\item Codecov
+	\end{itemize}
+
+	\item Minimaal één monitoring tool voor het monitoren van performance.
+	\begin{itemize}
+		\item Logging \& Monitoring
+	\end{itemize}
+
+	\item De oplossing moet voldoen aan één of meerdere kwaliteitsstandaarden.
+	\begin{itemize}
+		\item Opschonen Docker images
+		\item Logging \& monitoring
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{Should-requirements:}
+\begin{itemize}
+	\item De oplossing moet generiek genoeg zijn zodat meerdere applicaties er gebruik van kunnen maken.
+	\begin{itemize}
+		\item Generieke infrastructuur
+	\end{itemize}
+
+	\item De oplossing moet de website horizontaal kunnen laten schalen bij een toe- of afnemende hoeveelheid verkeer. De efficiëntie moet 1:1 zijn. Bijvoorbeeld: Éen extra instantie moet 50\% van het verkeer opvangen.
+	\begin{itemize}
+		\item Container orchestration
+	\end{itemize}
+\end{itemize}
 
 \section{Conclusie}
 Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC. Om de testbaarheid te waarborgen kan een tool als Codecov worden gebruikt.

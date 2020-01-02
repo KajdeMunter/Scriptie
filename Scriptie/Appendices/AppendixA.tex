@@ -9,7 +9,7 @@
 \label{Bijlagek6}
 
 Om de loadtest met k6, influxDB en grafana op te stellen heeft Loadimpact een docker-compose opstelling gemaakt. Na wat onderzoek is het opgevallen dat deze opstelling erg verouderd is. Daarom is ervoor gekozen om een eigen opstelling te maken:
-\begin{minted}[linenos=true, bgcolor=codebg]{yaml}
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
 version: '3.4'
 
 networks:
@@ -38,7 +38,7 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_BASIC_ENABLED=false
     volumes:
-      - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml
+      - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources /datasource.yml
   
   k6:
     image: loadimpact/k6:0.25.1
@@ -62,6 +62,9 @@ export let options = {
     { duration: "10s", target: 20 },
     { duration: "10s", target: 40 },
     { duration: "10s", target: 60 },
+    { duration: "10s", target: 80 },
+    { duration: "10s", target: 100 },
+    { duration: "10s", target: 120 },
   ]
 };
 
@@ -72,6 +75,36 @@ export default function() {
   sleep(1);
 };
 \end{minted}
+
+\section{k6 load test resultaten}
+
+\label{bijlageloadtest}
+
+In figuur \ref{fig:loadtestcli} is de CLI output van de loadtest te vinden. In figuur \ref{fig:loadtestvus} zijn de oplopende hoeveelheid VUs uitgebeeld in Grafana, en in figuur \ref{fig:loadtestresultaten} is in Grafana te zien hoe lang de requests duren.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{Figures/loadtest}
+	\decoRule
+	\caption[k6 loadtest CLI resultaten]{k6 loadtest CLI resultaten}
+	\label{fig:loadtestcli}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{Figures/loadtestusers}
+	\decoRule
+	\caption[k6 loadtest hoeveelheid VUs en requests]{k6 loadtest hoeveelheid VUs en requests}
+	\label{fig:loadtestvus}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{Figures/loadtestrequests}
+	\decoRule
+	\caption[k6 loadtest resultaten]{k6 loadtest resultaten}
+	\label{fig:loadtestresultaten}
+\end{figure}
+
 
 \section{Docker container exits}
 
