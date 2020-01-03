@@ -15,9 +15,7 @@ Met feature-environments is het mogelijk om een staging-omgeving te creëren voo
 
 Een kubernetes cluster net namespaces valt af, dit heeft te maken met het onderhoudswerk van een cluster. Meer hierover is te lezen in paragraaf \ref{ContainerOrchestration}. Ook Docker Swarm is geen optie, Swarm heeft geen equivalent van kubernetes namespaces en er kunnen niet meerdere nodes op één machine staan. Tools als Platform.sh of Continuouspipe.io hebben een geïntegreerde oplossing voor feature environments, maar voegen veel overhead toe. Bovendien kost Platform.sh geld, waar Developers.nl het niet voor over heeft.
 
-Er zijn twee opties voor het maken van feature environments met een reverse proxy. Het gebruik maken van aparte VM's versus het aanmaken van docker netwerken. Het zusterbedrijf van Developers.nl -- gemvision -- maakt gebruik van Proxmox om hun Virtual Machines te beheren. Hoewel Proxmox een goede tool is om de VM's te beheren, is het echt gebaseerd op enterprise settings. Dit maakt het lastiger voor andere ontwikkelaars om goed gebruik te maken van deze tool. Aangezien Docker netwerken al geïntegreerd zijn in Docker voegt deze oplossing veel minder overhead toe. Dit is dus de beste optie.
-
-Er zijn verschillende reverse proxies. Relevante voor dit project zijn:
+Er zijn twee opties voor het maken van feature environments met een reverse proxy. Het gebruik maken van aparte VM's versus het aanmaken van docker netwerken. Het zusterbedrijf van Developers.nl -- gemvision -- maakt gebruik van Proxmox om hun Virtual Machines te beheren. Hoewel Proxmox een goede tool is om de VM's te beheren, is het echt gebaseerd op enterprise settings. Dit maakt het lastiger voor andere ontwikkelaars om goed gebruik te maken van deze tool. Aangezien Docker netwerken al geïntegreerd zijn in Docker voegt deze oplossing veel minder overhead toe. Dit is dus de beste optie. Er zijn verschillende reverse proxies. Relevante voor dit project zijn:
 \begin{itemize}
 	\item Traefik
 	\item jwilder/Nginx-Proxy
