@@ -5,6 +5,7 @@
 Dit hoofdstuk gaat over de deelvraag \enquote{\deelverbetering}. Gebaseerd op de conclusie uit hoofdstuk \ref{Chapter4} en de requirements van Developers.nl zijn verschillende technieken onderzocht om de gevonden verbeterpunten te verbeteren. Daarna zijn deze gevonden technieken op prioriteit geordend door middel van de requirements. 
 
 \section{Feature-environments}
+\label{VerbeteringFeatureEnvironments}
 Met feature-environments is het mogelijk om een staging-omgeving te creëren voor elke individuele feature branch. Dit betekent dat de product owners en developers elke feature afzonderlijk van andere features kunnen testen, om deze daarna naar productie te deployen. De feature-environment workflow is niet erg conventioneel of populair, aannemelijk omdat het niet gemakkelijk is om te implementeren. De meest relevante informatie voor dit onderzoek is een blog van Christian Lüdemann \parencite{FeatureEnvs}, hoewel de implementatie niet past bij de huidige situatie van Developers.nl. Uit onderzoek over verschillende technieken zijn de volgende opties gekomen:
 \begin{itemize}
 	\item Een Kubernetes cluster met individuele namespaces voor elke environment.

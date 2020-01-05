@@ -1,6 +1,6 @@
 % Appendix A
 
-\chapter{Code} % Main appendix title
+\chapter{Implementatie en resultaten} % Main appendix title
 
 \label{BijlageCode} 
 
@@ -192,8 +192,7 @@ ca510c065d11
 \end{minted}
 
 \section{Codecov implementatie} \label{codecov}
-Om codecov te implementeren in de website is het volgende gebeurd:\\
-De README.md is bijgewerkt:
+README.MD:
 \begin{minted}[linenos=true, bgcolor=codebg, breaklines]{text}
 ## Tests
 
@@ -204,7 +203,7 @@ ster/graph/badge.svg?token=DzAv79t9Gd)](https://codecov.io/bb/developer
 s_nl/developers.nl)
 \end{minted}
 
-Bitbucket en codecoverage environment variabelen moesten worden doorgegeven door build arguments. Het builden van de Docker images gebeurd met Ansible:
+Het builden van de Docker images met Ansible, inclusief de build arguments nodig voor codecov:
 \begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
 docker_images:
   - dockerfile: docker/php7-fpm/Dockerfile
@@ -273,7 +272,7 @@ RUN apk add \
  && curl -s https://codecov.io/bash | bash -s - -X coveragepy
 \end{minted}
 
-Er is een script geschreven om pcov te installeren zodat dit kan hergebruikt worden zowel in de `develop.sh` entrypoint als in de test-stage van de dockerfile.
+pcov script:
 \begin{minted}[linenos=true, bgcolor=codebg, breaklines]{bash}
 #!/bin/sh
 
@@ -295,4 +294,18 @@ then
 fi
 \end{minted}
 
-Om BitBucket een betere ondersteuning te geven met codecov is hier ook een Pull-Request naar codecov-bash gemaakt. Deze is te zien op:\\ \texttt{https://github.com/codecov/codecov-bash/pull/225}. De maintainers van codecov waren tevreden met deze verbeteringen en hebben de Pull-Request geaccepteerd en gemerged.
+\section{Feature-environments}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{Figures/Traefik}
+	\decoRule
+	\caption[Traefik Infrastructure]{Nieuwe infrastructuur met Traefik reverse proxy}
+	\label{fig:traefikinfrastructure}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{Figures/Activitydiagram}
+	\decoRule
+	\caption[Pipeline Activity Diagram]{Activity Diagram voor de pipeline}
+	\label{fig:activitydiagram}
+\end{figure}

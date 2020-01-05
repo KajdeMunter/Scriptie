@@ -2,28 +2,17 @@
 
 \label{Chapter6}
 
-Dit hoofdstuk gaat over de deelvraag \enquote{\deelimplementatie}
+Dit hoofdstuk gaat over de deelvraag \enquote{\deelimplementatie}. In dit hoofdstuk staan ontwerpen van implementaties en de bijbehorende gedachtegang. Code is te vinden in Bijlage \ref{BijlageCode}.
 
 \section{Feature-environments}
-Nieuwe infrastructuur:
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=13cm]{Figures/Traefik}
-	\decoRule
-	\caption[Traefik Infrastructure]{Nieuwe infrastructuur met Traefik reverse proxy}
-	\label{fig:traefikinfrastructure}
-\end{figure}
-\\Activity Diagram:
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=13cm]{Figures/Activitydiagram}
-	\decoRule
-	\caption[Pipeline Activity Diagram]{Activity Diagram voor de pipeline}
-	\label{fig:activitydiagram}
-\end{figure}
+
+Om te helpen met de ontwikkelfase en documentatie zijn allereerst twee diagrammen gemaakt. Een component diagram voor de docker containers samen met de reverse proxy, figuur \ref{fig:traefikinfrastructure}. Dit is een bijgewerkte versie van figuur \ref{fig:infra}. Daarnaast is een activity diagram ontworpen om de deployment workflow te visualiseren, figuur \ref{fig:activitydiagram}.
+
 
 \section{Codecov}
-Code voor het implementeren is te zien in bijlage \ref{codecov}
+Code voor het implementeren is te zien in bijlage \ref{codecov}. De README is bijgewerkt, Bitbucket en codecoverage environment variabelen moesten worden doorgegeven door build arguments. Het builden van de Docker images gebeurt met Ansible. In de php7-fpm dockerfile zijn de build args omgezet naar environment variablen, een aantal apk packages toegevoegd en is het codecov script toegevoegd. Er is een script geschreven om pcov te installeren zodat dit kan hergebruikt worden zowel in de `develop.sh` entrypoint als in de test-stage van de dockerfile.
+
+Om BitBucket een betere ondersteuning te geven met codecov is hier ook een Pull-Request naar codecov-bash gemaakt. Deze is te zien op:\\ \texttt{https://github.com/codecov/codecov-bash/pull/225}. De maintainers van codecov waren tevreden met deze verbeteringen en hebben de Pull-Request geaccepteerd en gemerged.
 
 \section{Opschonen Docker images}
 In het bestand \texttt{developers.nl/ansible/group\_vars/all.yml} is een variabele geplaatst om de images te filteren, images die ouder zijn dan 4 uur worden verwijderd.
