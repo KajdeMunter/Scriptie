@@ -2,12 +2,21 @@
 
 \label{Chapter6}
 
-Dit hoofdstuk gaat over de deelvraag \enquote{\deelimplementatie}. In dit hoofdstuk staan ontwerpen van implementaties en de bijbehorende gedachtegang. Code is te vinden in Bijlage \ref{BijlageCode}.
+Dit hoofdstuk gaat over de deelvraag \enquote{\deelimplementatie}. In dit hoofdstuk staat de bijbehorende gedachtegang met referenties naar de code en ontwerpen in bijlage \ref{BijlageCode}.
 
 \section{Feature-environments}
 
-Om te helpen met de ontwikkelfase en documentatie zijn allereerst twee diagrammen gemaakt. Een component diagram voor de docker containers samen met de reverse proxy, figuur \ref{fig:traefikinfrastructure}. Dit is een bijgewerkte versie van figuur \ref{fig:infra}. Daarnaast is een activity diagram ontworpen om de deployment workflow te visualiseren, figuur \ref{fig:activitydiagram}.
+Alle code en ontwerpen zijn te vinden in bijlage \ref{CodeFeatureEnvironments}. Om te helpen met de ontwikkelfase en documentatie zijn allereerst twee diagrammen gemaakt. Een component diagram voor de docker containers samen met de reverse proxy, figuur \ref{fig:traefikinfrastructure}. Dit is een bijgewerkte versie van figuur \ref{fig:infra}. Daarnaast is een activity diagram ontworpen om de deployment workflow te visualiseren, figuur \ref{fig:activitydiagram}.
 
+Hierna is de Docker opstelling gemaakt voor Traefik. De bestaande drie docker-compose bestanden zijn aangepast door de Nginx service labels te geven die zorgen voor de service-discovery van Traefik. Vervolgens zijn basis, productie, en development docker-compose bestanden aangemaakt voor Traefik. Het afhandelen van SSL in development gebeurt niet meer via Nginx maar via Traefik, daarom is de development\_ssl service hier naar verplaatst. Deze service is tevens ook aangepast om wildcard certificaten te genereren, en niet meer afhankelijk te zijn van een image uit een derde partij. Hierdoor is ook de Nginx configuratie aangepast om de afhandeling van SSL niet meer te ondersteunen. Ook is een configuratiebestand voor traefik toegevoegd voor de TLS instellingen. Om de development omgeving te ondersteunen is de Makefile bijgewerkt en een script gemaakt om de omgeving op te zetten. Dit script gebruikt de development Docker-compose bestanden om de containers te draaien en verbind vervolgens Nginx met Traefik.
+
+Traefik runt standaard als root, dit is geen best-practice voor het gebruiken van Docker Containers \parencite{DockerBestPractices}. Daarom is een Dockerfile toegevoegd die verder bouwt op de Traefik image. Deze dockerfile maakt een user en group aan om deze vervolgens te gebruiken om het proces mee te runnen. Deze user en group komen overeen met users op de host machine, waardoor deze rechten heeft tot de Docker client certificaten.
+
+Vervolgens is er een Ansible role ontwikkeld om de Docker Daemon te beveiligen via TLS\footnote{https://github.com/ansible/role-secure-docker-daemon is gebruikt voor inspiratie, maar omdat dit project erg verouderd is, is besloten om een verbeterde versie te ontwikkelen.}. Om te helpen bij de ontwikkeling is eerst een Vagrantfile toegevoegd om met Virtualbox lokaal de Ansible role te kunnen testen. Deze role genereert een Certificate Authority (CA), server, en client keys door middel van OpenSSL. Ook zorgt deze role er voor dat de Docker Daemon correct is ingesteld om deze certificaten te kunnen gebruiken, en dat de permissions van alle bestanden juist zijn ingesteld. Er wordt gebruik gemaakt van Ansible-Vault om de passphrase van de certificaten veilig op te slaan.
+
+Om de implementatie te deployen naar productie zijn de bestaande Ansible roles aangepast om gebruik te maken van de Traefik proxy en beveiligde Docker Daemon. In de frontend-images role is de dockerfile toegevoegd met de relevante build arguments. De frontend role haalt de environment variabelen uit de Bitbucket Pipeline en parsed deze om zo de correcte subdomein, Fully Qualified Domain Name (FQDN), en network name te registreren. Deze worden gebruikt als variabelen in de docker-compose bestanden om zo de correcte subdomeinen aan te maken. Vervolgens worden de containers gebuild en Nginx aan de Traefik en PHP-FPM containers verbonden. Zodra de naam van de git branch geen \enquote{Feature/WEB-} bevat wordt er geen aparte feature-environment gebruikt voor de deployment.
+
+De Bitbucket Pipeline is aangepast om Traefik te updaten bij een deployment of bootstrap.
 
 \section{Codecov}
 Code voor het implementeren is te zien in bijlage \ref{codecov}. De README is bijgewerkt, Bitbucket en codecoverage environment variabelen moesten worden doorgegeven door build arguments. Het builden van de Docker images gebeurt met Ansible. In de php7-fpm dockerfile zijn de build args omgezet naar environment variablen, een aantal apk packages toegevoegd en is het codecov script toegevoegd. Er is een script geschreven om pcov te installeren zodat dit kan hergebruikt worden zowel in de `develop.sh` entrypoint als in de test-stage van de dockerfile.
@@ -29,3 +38,7 @@ image_delete_until_time: 4h
       until: "{{ image_delete_until_time }}"
   register: prune_result
 \end{minted}
+
+\section{Policy as Code}
+
+\textcolor{red}{TODO: PoC} % TODO: POLICIES AS CODE
