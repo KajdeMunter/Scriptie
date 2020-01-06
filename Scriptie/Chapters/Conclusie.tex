@@ -2,7 +2,7 @@
 
 \label{Chapter9}
 
-\subsection{Verwachtingen}
+\section{Verwachtingen}
 Developers.nl wilt onderhoudbaarheid bereiken door kwaliteitsstandaarden af te dwingen. Ook wilt Developers.nl twee soorten schaalbaarheid. Eén in de vorm van het deployen van verschillende branches in aparte omgevingen, en één in de vorm van horizontaal schalen om meer verkeer aan te kunnen. Deze twee soorten kunnen niet gerealiseerd worden zonder de onderhoudbaarheid te waarborgen. Er zijn vijf must-have requirements:
 
 \begin{itemize}
@@ -13,20 +13,20 @@ Developers.nl wilt onderhoudbaarheid bereiken door kwaliteitsstandaarden af te d
 	\item De oplossing moet voldoen aan één of meerdere kwaliteitsstandaarden.
 \end{itemize}
 
-\subsection{Technieken}
+\section{Technieken}
 De 12-Factor App is een methodologie die twaalf best-practices samenvoegt om moderne, schaal- en onderhoudbare web-applicaties te bouwen. Het boek \enquote{Beyond the 12-factor app} \parencite{Beyond12Factor} is hierop verder gegaan door nog een drietal factoren toe te voegen. Door een applicatie te evalueren op deze vijftien factoren, samen met de definitie van ISO-25010 \parencite{ISO25010} is te beoordelen of deze schaal- en onderhoudbaar is. Om de schaalbaarheid van een systeem te waarborgen zijn  de methoden van Weinstock en Goodenough \parencite{OnSystemScalability} een geschikte manier.
 
-\subsection{Huidige situatie}
+\section{Huidige situatie}
 Om de deelvraag \enquote{\deelhuidig} te beantwoorden zijn door dit onderzoek meerdere punten van verbetering gevonden. Een verbeterpunt in de schaalbaarheid is de hoeveelheid opslag van de server. Deze kan snel vol raken door ongebruikte Docker volumes en images die ontstaan bij een deployment. 
 
 Ook wordt factor 1 \textbf{(One codebase, one application)} van de 15-Factor App niet volledig opgevolgd. De infrastructuur wordt op meerdere plekken opgebouwd en zou netter staan in een aparte codebase. De applicaties voldoen aan factor 13 (Concurrency) maar er wordt nog geen gebruik van gemaakt. 
 
 Factor 11 \textbf{(Port binding)} is voor PHP geen goed idee aangezien PHP juist ontworpen is om een webserver ervoor te hebben, dit verslechtert dus juist de onderhoudbaarheid. Er zijn voor zowel het EMS als de website geen monitoring tools in gebruik voor performance, dat betekend dat factor 14 \textbf{(Telemetry)} beter kan. Er is geen concrete manier om tests uit te voeren of aan testcriteria is voldaan. Hierdoor is de Testbaarheid van de systemen minimaal.
 
-\subsection{Verbeteringen}
+\section{Verbeteringen}
 Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC. Om de testbaarheid te waarborgen kan een tool als Codecov worden gebruikt. Om onderhoudbaarheid te verbeteren en schaalbaarheid te bewijzen is het concept van feature-environments erg geschikt. Developers.nl ziet dit concept graag in de praktijk, dit heeft dan ook de hoogste prioriteit als uitkomst van dit onderzoek.
 
-\subsection{Implementatie}
+\section{Implementatie}
 
-\subsection{Requirements}
+\section{Requirements}
 
