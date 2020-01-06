@@ -6,7 +6,7 @@ Dit hoofdstuk gaat over de deelvraag \enquote{\deelverbetering}. Gebaseerd op de
 
 \section{Feature-environments}
 \label{VerbeteringFeatureEnvironments}
-Met feature-environments is het mogelijk om een staging-omgeving te creëren voor elke individuele feature branch. Dit betekent dat de product owners en developers elke feature afzonderlijk van andere features kunnen testen, om deze daarna naar productie te deployen. De feature-environment workflow is niet erg conventioneel of populair, aannemelijk omdat het niet gemakkelijk is om te implementeren. De meest relevante informatie voor dit onderzoek is een blog van Christian Lüdemann \parencite{FeatureEnvs}, hoewel de implementatie niet past bij de huidige situatie van Developers.nl. Uit onderzoek over verschillende technieken zijn de volgende opties gekomen:
+Met feature-environments is het mogelijk om een staging-omgeving te creëren voor elke individuele feature branch. Dit betekent dat de product owners en developers elke feature afzonderlijk van andere features kunnen testen, om deze daarna naar productie te deployen. Deze manier van werken kan het ontwikkelproces erg versnellen, waardoor de onderhoudbaarheid verbeterd wordt. Ook betekenen feature-environments dat de applicatie schaalbaar moet zijn, dit heeft te maken met het feit dat de applicatie meerdere instanties van zichzelf moet kunnen draaien. Oftewel; horizontaal moet kunnen schalen. De feature-environment workflow is niet erg conventioneel of populair, aannemelijk omdat het niet gemakkelijk is om te implementeren. De meest relevante informatie voor dit onderzoek is een blog van Christian Lüdemann \parencite{FeatureEnvs}, hoewel de implementatie niet past bij de huidige situatie van Developers.nl. Uit onderzoek over verschillende technieken zijn de volgende opties gekomen:
 \begin{itemize}
 	\item Een Kubernetes cluster met individuele namespaces voor elke environment.
 	\item Tools als \texttt{https://platform.sh/} of \texttt{https://continuouspipe.io/}.
@@ -61,7 +61,7 @@ Er zijn twee technieken voor container orchestration leidend in de context van D
 Als er gekeken wordt naar de wensen van Developers.nl en de scope van dit onderzoek is Swarm de meest passende keuze. De meeste prioriteit qua schalen gaat niet specifiek naar het automatiseren en managen van hoge hoeveelheden verkeer maar naar het draaien van meerderen omgevingen naast elkaar, om zo verschillende features apart te deployen of A/B te testen.
 
 \section{Opschonen Docker images}
-De Docker images moeten automatisch worden opgeschoond. Dit is mogelijk om periodiek uit te voeren met een \texttt{systemd} timer of een \texttt{cron job}, maar omdat Developers.nl al gebruik maakt van Ansible in hun websites kan het gemakkelijk geïmplementeerd worden met een Ansible taak die bij elke deployment gebruik maakt van de \texttt{docker\_prune} module.
+De Docker images moeten automatisch worden opgeschoond om de functionele schaalbaarheid te verbeteren. Dit is mogelijk om periodiek uit te voeren met een \texttt{systemd} timer of een \texttt{cron job}, maar omdat Developers.nl al gebruik maakt van Ansible in hun websites kan het gemakkelijk geïmplementeerd worden met een Ansible taak die bij elke deployment gebruik maakt van de \texttt{docker\_prune} module.
 
 \section{Logging \& Monitoring}
 Logging en monitoring is een verplichtte requirement vanuit Developers.nl. Uit onderzoek in hoofdstuk \ref{Chapter4} blijkt dat Telemetry, Factor 14 van de 15-Factor app nog aan verbetering toe is. \parencite{Beyond12Factor} noemt drie verschillende categorieën van data om te monitoren in een applicatie:
@@ -129,6 +129,13 @@ Om te beslissen welke verbeteringen geïmplementeerd worden voor dit onderzoek w
 		\item Container orchestration
 	\end{itemize}
 \end{itemize}
+Hier is de volgende prioriteitvolgorde uit op te maken:
+\begin{enumerate}
+    \item Feature Environments
+    \item Logging \& Monitoring
+    \item PaC -- Codecov -- Opschonen Docker images
+    \item Generieke infrastructuur -- Container orchestration
+\end{enumerate}
 
 \section{Conclusie}
-Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC. Om de testbaarheid te waarborgen kan een tool als Codecov worden gebruikt.
+Om de kenmerken modulariteit en herbruikbaarheid van ISO 25010 te verbeteren kan er een centrale infrastructuur IaC repository gemaakt worden met Ansible. Om de kenmerken analyseerbaarheid, testbaarheid en wijzigbaarheid te verbeteren kunnen policies worden afgedwongen door middel van PaC. Om de testbaarheid te waarborgen kan een tool als Codecov worden gebruikt. Om onderhoudbaarheid te verbeteren en schaalbaarheid te bewijzen is het concept van feature-environments erg geschikt. Developers.nl ziet dit concept graag in de praktijk, dit heeft dan ook de hoogste prioriteit als uitkomst van dit onderzoek.

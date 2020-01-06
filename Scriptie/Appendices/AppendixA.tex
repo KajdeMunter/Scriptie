@@ -1633,3 +1633,27 @@ definitions:
     docker:
       memory: 3072
 \end{minted}
+
+docker/docker-compose.proxy.prod.yml
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
+  grafana:
+    image: "grafana/grafana:6.4.1"
+    networks:
+      - grafana
+    expose:
+      - 5000
+    environment:
+      - GF_AUTH_BASIC_ENABLED=true
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy_grafana
+      - traefik.http.routers.proxy_grafana.rule= Host(`grafana.${root_server_name}`)
+      - traefik.http.routers.proxy_grafana.entrypoints=http
+      - traefik.http.routers.proxy_grafana.middlewares= grafana-https-redirect
+      - traefik.http.middlewares.grafana-https-redirect. redirectscheme.scheme=https
+      - traefik.http.middlewares.grafana-https-redirect. redirectscheme.permanent=true
+      - traefik.http.routers.proxy_grafana-secure.rule= Host(`grafana.${root_server_name}`)
+      - traefik.http.routers.proxy_grafana-secure.entrypoints=https
+      - traefik.http.routers.proxy_grafana-secure.tls=true
+      - traefik.http.routers.proxy_grafana-secure.tls.options= myTLSOptions@file
+\end{minted}

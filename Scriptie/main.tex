@@ -45,7 +45,7 @@ headsepline, % Uncomment to get a line under the header
 \usepackage[backend=biber,style=ieee]{biblatex} % Use bibtext and IEEE reference style
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{minted} % Code highlighting
-
+\usepackage[none]{hyphenat}
 
 \addbibresource{literatuurlijst.bib} % The filename of the bibliography
 
@@ -114,6 +114,8 @@ headsepline, % Uncomment to get a line under the header
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+
+\sloppy
 
 %----------------------------
 %	OMSLAG
@@ -234,7 +236,13 @@ headsepline, % Uncomment to get a line under the header
 %----------------------------
 
 \begin{samenvatting}
-	Samenvatting van de scriptie die ik als laatst pas ga schrijven\ldots Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Dit onderzoek heeft tot doel het verkrijgen van inzicht over de schaal- en onderhoudbaarheid van de website van Developers.nl, om vervolgens deze twee factoren in de praktijk te verbeteren.
+
+De definitie van onderhoudbaarheid in de ogen van Developers.nl is het versnellen van de workflow, voornamelijk door het afdwingen van kwaliteitsstandaarden. De definitie van schaalbaarheid van Developers.nl is voornamelijk de mogelijkheid om te schalen, boven het daadwerkelijk schalen. Een manier om zowel schaal- als onderhoudbaarheid te realiseren is het implementeren van \enquote{feature-environments}. 
+
+Feature environments zijn aparte deployments en omgevingen voor elke individuele nieuwe feature die wordt toegevoegd. Dit is gerealiseerd door middel van een reverse proxy, Traefik.
+
+Verder is Codecov geimplementeerd om code-coverage te waarborgen, worden Docker images periodiek opgeruimd om ruimte op de server vrij te houden, is Grafana geïmplementeerd om monitoring data te visualiseren, en is Open Policy Agent gebruikt om beveiliging van nieuwe toevoegingen te waarborgen.
 \end{samenvatting}
 
 %----------------------------
@@ -242,7 +250,13 @@ headsepline, % Uncomment to get a line under the header
 %----------------------------
 
 \begin{abstract}
-	Samenvatting van de scriptie die ik als laatst pas ga schrijven\ldots Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+The purpose of this research is to gain insight into the scalability and maintainability belonging to the website of Developers.nl, in order to subsequently improve these two factors in practice.
+
+The definition of maintainability in the eyes of Developers.nl is the improvement of the workflow, mainly through the enforcement of quality standards. The definition of scalability of Developers.nl is primarily the ability to scale, instead of actually scaling. One way to achieve both scalability and maintainability is to implement \enquote{feature environments}.
+
+Feature environments are separate deployments and environments for each individual new feature that is in process of being added. This has been achieved through a reverse proxy, Traefik.
+
+Furthermore, Codecov has been implemented to ensure code-coverage, Docker images are periodically cleaned up to keep space free on the server, Grafana has been implemented to visualize monitoring data, and Open Policy Agent has been used to guarantee security of new additions.
 \end{abstract}
 
 %------------------------------------------------
