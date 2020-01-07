@@ -50,3 +50,5 @@ Bij de implementatie van Prometheus blijkt dat er twee dingen moeten gebeuren vo
     \item Docker moet in Swarm mode draaien
 \end{enumerate}
 Docker raad het volgende aan \parencite{DockerExperimental}: \enquote{Experimental features must not be used in production environments}. Verder draait de website (nog) niet in Swarm mode. Door deze redenen is gekozen om te wachten met de implementatie van Prometheus. Wel is Grafana geïmplementeerd door gebruik te maken van de Grafana Docker image en labels toe te voegen waardoor Traefik weet waar de request heen moet. Hier is een subdomein voor aangemaakt op \texttt{grafana.<root\_server\_name>}.
+
+\section{Conclusie}
