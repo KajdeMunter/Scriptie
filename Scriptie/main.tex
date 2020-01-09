@@ -46,6 +46,7 @@ headsepline, % Uncomment to get a line under the header
 \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 \usepackage{minted} % Code highlighting
 \usepackage[none]{hyphenat}
+\usepackage{amsmath}
 
 \addbibresource{literatuurlijst.bib} % The filename of the bibliography
 
@@ -275,43 +276,44 @@ Furthermore, Codecov has been implemented to ensure code-coverage, Docker images
 %----------------------------
 %	GLOSSARY
 %----------------------------
+{\renewcommand{\arraystretch}{1.3} 
 \begin{begrippen}{p{3cm}|p{10cm}} % Include a list of begrippen (a table of two columns)
 	\textbf{Slack} & Het communicatiemiddel waar Developers.nl gebruik van maakt.\\
-	
+\hline
 	\textbf{Proxmox} & Proxmox VE is a complete open-source platform for enterprise virtualization \parencite{Proxmox}\\
-		
+\hline
 	\textbf{Service Discovery} & Service discovery is the process of automatically detecting devices and services on a network \parencite{ServiceDiscovery}\\		
-
+\hline
 	\textbf{Kubernetes} & Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications \parencite{Kubernetes}.\\
-	
+\hline	
 	\textbf{Docker} & Docker is a tool designed to make it easier to create, deploy, and run applications by using containers \parencite{Docker}.\\
-	
+\hline	
 	\textbf{Ansible} & Ansible is a radically simple IT automation engine that automates cloud provisioning, configuration management, application deployment, intra-service orchestration, and many other IT needs \parencite{Ansible}.\\
-	
+\hline	
 	\textbf{Docker Swarm} & Docker Swarm provides native clustering functionality for Docker containers, which lets you turn a group of Docker engines into a single, virtual Docker engine \parencite{DockerSwarm}.\\
-
+\hline
     \textbf{Nginx} & High performance load balancer, webserver, and reverse proxy \parencite{Nginx}.\\
-
+\hline
     \textbf{Vagrant} & Leverages a declarative configuration file which describes all your software requirements, packages, operating system configuration, users, and more \parencite{Vagrant}.\\
-
+\hline
 	\textbf{Serverless Computing} & En application defined as a set of event-triggered functions that execute without requiring the user to explicitly manage servers \parencite{ServerlessComputing}.\\
-	
+\hline	
 	\textbf{Infrastructure as Code} & Infrastructure as code describes the idea of using a high-level programming language to control IT systems \parencite{IaC}.\\
 	
 	%\textbf{Ansible Tower} & Red Hat Ansible Tower helps you scale IT automation, manage complex deployments and speed productivity. Centralize and control your IT infrastructure with a visual dashboard, role-based access control, job scheduling, integrated notifications and graphical inventory management \parencite{AnsibleTower}.\\
-	
+\hline	
 	\textbf{Chef} & Deploy new code faster and more efficiently. Automate infrastructure and applications \parencite{Chef}.\\
-	
+\hline	
 	\textbf{Puppet} & Powerful infrastructure automation and delivery \parencite{Puppet}.\\
-	
+\hline	
 	\textbf{Terraform} & Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform can manage existing and popular service providers as well as custom in-house solutions \parencite{Terraform}.\\
-	
+\hline	
 	\textbf{Cloud computing providers} & Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction \parencite{CloudComputing}.\\
-	
+\hline	
 	\textbf{12-factor app} & Een methodologie voor het bouwen van Software as a Service (SaaS) applications \parencite{12Factor}. \\
-	
+\hline	
 	\textbf{The Open Group Architecture Framework} & A generic framework to build different IT architectures frameworks \parencite{TOGAF}.\\
-	
+\hline
 	\textbf{4+1 architectural view model} & A model for describing the architecture of software-intensive systems, based on the use of multiple, concurrent views \parencite{4plus1}. \\
 \end{begrippen}
 

@@ -6,7 +6,23 @@ Dit hoofdstuk gaat over de deelvraag \enquote{\deelimplementatie}. In dit hoofds
 
 \section{Feature-environments}
 
-Alle code en ontwerpen zijn te vinden in bijlage \ref{CodeFeatureEnvironments}. Om te helpen met de ontwikkelfase en documentatie zijn allereerst twee diagrammen gemaakt. Een component diagram voor de docker containers samen met de reverse proxy, figuur \ref{fig:traefikinfrastructure}. Dit is een bijgewerkte versie van figuur \ref{fig:infra}. Daarnaast is een activity diagram ontworpen om de deployment workflow te visualiseren, figuur \ref{fig:activitydiagram}.
+Alle code en ontwerpen zijn te vinden in bijlage \ref{CodeFeatureEnvironments}. Om te helpen met de ontwikkelfase en documentatie zijn allereerst twee diagrammen ontworpen. Een component diagram voor de Docker containers samen met de reverse proxy (figuur \ref{traefikinfrastructure}). Dit is een bijgewerkte versie van figuur \ref{fig:infra}. Daarnaast is een activity diagram ontworpen om de deployment workflow te visualiseren (figuur \ref{activitydiagram}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=9cm]{Figures/Traefik}
+	\decoRule
+	\caption[Traefik Infrastructure]{Nieuwe infrastructuur met Traefik reverse proxy}
+	\label{traefikinfrastructure}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{Figures/Activitydiagram}
+	\decoRule
+	\caption[Pipeline Activity Diagram]{Activity Diagram voor de pipeline}
+	\label{activitydiagram}
+\end{figure}
 
 Hierna is de Docker opstelling gemaakt voor Traefik. De bestaande drie docker-compose bestanden zijn aangepast door de Nginx service labels te geven die zorgen voor de service-discovery van Traefik. Vervolgens zijn basis, productie, en development docker-compose bestanden aangemaakt voor Traefik. Het afhandelen van SSL in development gebeurt niet meer via Nginx maar via Traefik, daarom is de development\_ssl service hier naar verplaatst. Deze service is tevens ook aangepast om wildcard certificaten te genereren, en niet meer afhankelijk te zijn van een image uit een derde partij. Hierdoor is ook de Nginx configuratie aangepast om de afhandeling van SSL niet meer te ondersteunen. Ook is een configuratiebestand voor traefik toegevoegd voor de TLS instellingen. Om de development omgeving te ondersteunen is de Makefile bijgewerkt en een script gemaakt om de omgeving op te zetten. Dit script gebruikt de development Docker-compose bestanden om de containers te draaien en verbind vervolgens Nginx met Traefik.
 
@@ -49,6 +65,6 @@ Bij de implementatie van Prometheus blijkt dat er twee dingen moeten gebeuren vo
     \item De Docker Daemon moet in \enquote{experimental} mode draaien
     \item Docker moet in Swarm mode draaien
 \end{enumerate}
-Docker raad het volgende aan \parencite{DockerExperimental}: \enquote{Experimental features must not be used in production environments}. Verder draait de website (nog) niet in Swarm mode. Door deze redenen is gekozen om te wachten met de implementatie van Prometheus. Wel is Grafana geïmplementeerd door gebruik te maken van de Grafana Docker image en labels toe te voegen waardoor Traefik weet waar de request heen moet. Hier is een subdomein voor aangemaakt op \texttt{grafana.<root\_server\_name>}.
+Docker raad het volgende aan \parencite{DockerExperimental}: \enquote{Experimental features must not be used in production environments}. Verder draait de website (nog) niet in Swarm mode. Door deze is het verstandig om te wachten met de implementatie van Prometheus. Wel is Grafana geïmplementeerd door gebruik te maken van de Grafana Docker image en labels toe te voegen waardoor Traefik weet waar de request heen moet. Traefik maakt een subdomein aan op \texttt{grafana.<root\_server\_name>}. De implementatie staat in bijlage \ref{GrafanaImplementatie}.
 
 \section{Conclusie}

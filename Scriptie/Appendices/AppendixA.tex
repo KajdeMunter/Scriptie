@@ -15,7 +15,7 @@ version: '3.4'
 networks:
   k6:
   grafana:
-
+https://www.linkedin.com/
 services:
   influxdb:
     image: influxdb:1.5.4
@@ -36,7 +36,7 @@ services:
     environment:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_BASIC_ENABLED=false
+      - GF_AUTH_BASIC_ENABLED=falsehttps://www.linkedin.com/
     volumes:
       - ./grafana/datasource.yml:/etc/grafana/provisioning/datasources /datasource.yml
   
@@ -1634,6 +1634,7 @@ definitions:
       memory: 3072
 \end{minted}
 
+\section{Grafana implementatie} \label{GrafanaImplementatie}
 docker/docker-compose.proxy.prod.yml
 \begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
   grafana:

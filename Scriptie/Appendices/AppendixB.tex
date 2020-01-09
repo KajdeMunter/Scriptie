@@ -15,19 +15,33 @@ In deze tabel worden de 15 factoren behandeld.
 	\textbf{Factor} & \textbf{Naam} & \textbf{Gevolg} & \textbf{Waarom?} \\
 	\midrule		
 	1 & One codebase, one application & Onderhoudbaarheid (Modulariteit) & Een applicatie is een losstaand component waardoor wijzigingen minimale impact hebben op andere componenten. \\
+\hline
 	2 & API first & Structural scalability & Door de API op de eerste rang te zetten van het development proces wordt de mogelijkheid gecreëerd om met elkaars contracten te communiceren zonder interne ontwikkelingsprocessen te verstoren. Zo kunnen veel nieuwe services gemakkelijker worden toegevoegd. \\
+\hline
 	3 & Dependency management & Onderhoudbaarheid (modulariteit) & Gemakkelijk opzetten van project voor nieuwe ontwikkelaars. \\
+\hline
 	4 & Design, build, release, and run & Onderhoudbaarheid (wijzigbaarheid) & Door duidelijke stadia te definiëren worden wijzigingen aan de applicatie sneller in productie geplaatst. \\
+\hline
 	5 & Configuration, credentials, and code & Structural scalability & Environment variabelen zijn niet in omgevingen maar per deployment opgezet, zo maakt de hoeveelheid omgevingen niet uit. \\
+\hline
 	6 & Logs & Onderhoudbaarheid (analyseerbaarheid) & Door logs naar de \texttt{stdout} te sturen is het gemakkelijker om specifieke fouten te vinden, overzicht te creëren en actief meldingen te versturen naar ontwikkelaars. \\
+\hline
 	7 & Disposability & Load scalability & Door processen gemakkelijk te laten stoppen en starten gaat het schalen een stuk sneller. \\
+\hline
 	8 & Backing services & Onderhoudbaarheid (modulariteit) & Door backing services als \enquote{attached resources} te behandelen maakt het niet uit welke techniek er wordt gebruikt en zijn deze dus los gekoppeld. \\
+\hline
 	9 & Environment parity & Onderhoudbaarheid (wijzigbaarheid) & Er kan een stuk vaker gedeployed worden naar een specifieke omgeving, doordat alle omgevingen zo goed als gelijk aan elkaar zijn. \\
+\hline
 	10 & Administrative processes & Onderhoudbaarheid (analyseerbaarheid) & Door commands in versiebeheer op te slaan is er een duidelijk overzicht en een geschiedenis van alle \enquote{one-off processes} die gebeuren. \\
+\hline
 	11 & Port binding & Onderhoudbaarheid (wijzigbaarheid) & Door HTTP als een service te beschouwen ontstaat er meer controle over lagere levels van de infrastructuur (HTTP \& TCP). \\
+\hline
 	12 & Stateless processes & Load scalability & Mede door de shared-nothing architectuur kan het systeem gemakkelijker schalen. \\
+\hline
 	13 & Concurrency & Load scalability &  Door het horizontaal of verticaal schalen kan de applicatie een groeiende hoeveelheid verkeer beter aan. \\
+\hline
 	14 & Telemetry & Onderhoudbaarheid (Analyseerbaarheid) & Door gegevens van de applicatie in productie goed te kunnen monitoren is op te maken hoe de applicatie zich gedraagt. Zodra er iets fout is kan er meteen op worden gereageerd. \\
+\hline
 	15 & Authentication and authorization & Security & Een cloud-native applicatie moet veilig zijn, aangezien de code over meerdere data centers wordt getransporteerd en door veel verschillende cliënten wordt benaderd. \\
 	\bottomrule\\
 \end{longtable}
