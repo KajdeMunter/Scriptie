@@ -5,12 +5,12 @@
 Dit hoofdstuk gaat over de deelvraag \enquote{\deelhuidig}.
 
 \section{Huidige Architectuur}
-In dit onderzoek wordt voornamelijk gefocussed op de website. Dit is de applicatie die het meest frequent gebruikt wordt, en dus de meeste aandacht verdiend. De huidige website is een combinatie van een PHP \& Symfony back-end API en Content Management Systeem, samen met een React + next.js front-end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
+In dit onderzoek wordt voornamelijk gefocussed op de website. Dit is de applicatie die het meest frequent gebruikt wordt, en dus de meeste aandacht verdiend. De huidige website is een combinatie van een PHP \& Symfony back-end API en Content Management Systeem, samen met een React + next.js front- end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
 
-In figuur \ref{fig:infra} is een component diagram te vinden van de huidige website structuur. De front-en backend structuur bevat 5 docker containers:
+In figuur \ref{fig:infra} is een component diagram te vinden van de huidige website structuur. De front- en back-end structuur bevat 5 docker containers:
 \begin{itemize}
 	\item \textbf{PHP-FPM} (back-end)
-	\item \textbf{Nginx} (front-en backend)
+	\item \textbf{Nginx} (front- en back-end)
 	\item \textbf{Redis} (back-end)
 	\item \textbf{NodeJS} (front-end)
 	\item \textbf{PostgreSQL} (back-end)
@@ -20,13 +20,13 @@ In figuur \ref{fig:infra} is een component diagram te vinden van de huidige webs
 	\centering
 	\includegraphics[width=13cm]{Figures/Infrastructure}
 	\decoRule
-	\caption[Infrastructuur]{Infrastructuur website front-en backend \parencite{Documentation}}
+	\caption[Infrastructuur]{Infrastructuur website front- en back-end \parencite{Documentation}}
 	\label{fig:infra}
 \end{figure}
 
 PHP-FPM is een FastCGI Process Manager, deze Container serveert de Symfony “FosREST” API en het Content Management Systeem. De NodeJS container serveert een statische Next.js React applicatie en maakt gebruik van Server Side Rendering. Er zit een Nginx reverse proxy in die kiest om een request naar de back-end of de front-end te laten gaan. Redis is een Key-Value Database die gebruikt wordt voor het cachen, en een PostgreSQL container als database. De Bitbucket Pipeline gebruikt Ansible om op de servers de geüpdatete containers te pullen en te starten.
 
-Voor zowel de front- als backend is één monitoring tool genaamd \enquote{Sentry} geïmplementeerd. Sentry creëert een duidelijk overzicht voor alle errors die opkomen in productie.
+Voor zowel de front- als back-end is één monitoring tool genaamd \enquote{Sentry} geïmplementeerd. Sentry creëert een duidelijk overzicht voor alle errors die opkomen in productie.
 
 Ook heeft Developers.nl een \enquote{Employee Management Systeem} (EMS) gebouwd. Deze heeft een soortgelijke structuur aan de website. Het EMS bevat zeer veel gevoelige informatie en het is dus van hoog belang dat dit goed beveiligd is.
 
@@ -131,7 +131,7 @@ De definitie van onderhoudbaarheid waarvan wordt uitgegaan in dit onderzoek luid
 \subsubsection{Modulariteit} % TODO: Deze subdefinities komen ook uit wikipedia
 \textit{De mate waarin een systeem of computerprogramma opgebouwd is in losstaande componenten zodat wijzigingen van een component minimale impact heeft op andere componenten.}
 
-De website van Developers.nl is opgebouwd in twee applicaties, de Node \& React frontend samen met de PHP \& Symfony backend. Een wijziging in één van de API endpoints van de backend zou kunnen betekenen dat de frontend breekt. Om dit te voorkomen is een versioning systeem \footnote{Voor de API wordt FOSRestBundle gebruikt, deze heeft een eigen implementatie van versioning, zie: https://symfony.com/doc/master/bundles/FOSRestBundle/versioning.html} geïmplementeerd waardoor er zonder problemen individueel de front-of backend gedeployed kan worden.
+De website van Developers.nl is opgebouwd in twee applicaties, de Node \& React front-end samen met de PHP \& Symfony back-end. Een wijziging in één van de API endpoints van de back-end zou kunnen betekenen dat de front-end breekt. Om dit te voorkomen is een versioning systeem \footnote{Voor de API wordt FOSRestBundle gebruikt, deze heeft een eigen implementatie van versioning, zie: https://symfony.com/doc/master/bundles/FOSRestBundle/versioning.html} geïmplementeerd waardoor er zonder problemen individueel de front-of back-end gedeployed kan worden.
 
 Voor de 15-Factor App geldt Factor 1 \textbf{(One codebase, one application)}, 3 \textbf{(Dependency management)} en 8 \textbf{(Backing services)}. Factor 1 vereist dat er per applicatie één enkele codebase is. De huidige situatie is dat er één repository is voor de back-end van de website, één voor de front-end van de website, en één voor het EMS. De regel wordt gebroken omdat het opbouwen van de infrastructuur met Ansible op elke repository voorkomt. Om aan Factor 3 te voldoen wordt Composer gebruikt voor het managen van de dependencies. Daarnaast worden waardes als de database host of het Redis adres in environment variabelen opgeslagen, waardoor factor 8 wordt voldaan. Om dit te implementeren worden backing services gedefinieerd als een handle, deze ziet er voor de database als volgt uit:\\ \texttt{postgresql://username:password@developers.nl/database}
 

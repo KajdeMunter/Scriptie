@@ -240,7 +240,7 @@
 \newcommand{\HRule}{\rule{.9\linewidth}{.6pt}} % New command to make the lines in the title page
 \newcommand{\decoRule}{\rule{.8\textwidth}{.4pt}} % New command for a rule to be used under figures
 
-\setcounter{tocdepth}{2} % The depth to which the document sections are printed to the table of contents
+\setcounter{tocdepth}{1} % The depth to which the document sections are printed to the table of contents
 \ProvideDocumentCommand{\addchaptertocentry}{ m }{%
 	\addcontentsline{toc}{chapter}{#1}%
 }
@@ -401,16 +401,16 @@ KOMA-script documentation for details.}]{fancyhdr}
 		#1%added to be able to have abstract more than one page long
 		\thispagestyle{plain}
 		\begin{center}
-			{\normalsize \MakeUppercase{\univname} \par}% University name in capitals
+			{\normalsize \MakeUppercase{University of Applied Sciences Rotterdam} \par}% University name in capitals
 			\bigskip
 			{\huge\textit{\abstractname} \par}
 			\bigskip
 			{\normalsize \facname \par}% Faculty name
-			{\normalsize \deptname \par}% Department name
+			{\normalsize Communication, Media, and Information Technology \par}% Department name
 			\bigskip
-			{\normalsize \degreename\par}% Degree name
+			{\normalsize Computer Science\par}% Degree name
 			\bigskip
-			{\normalsize\bfseries \@title \par}% Thesis title
+			{\normalsize\bfseries Improvement of scalability and maintainability in the infrastructure of Developers.nl \par}% Thesis title
 			\medskip
 			{\normalsize \byname{} \authorname \par}% Author name
 			\bigskip
@@ -453,6 +453,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 \DeclareDocumentCommand{\abstractauthorfont}{}{}
 \DeclareDocumentCommand{\abstracttitlefont}{}{}
 \newcommand{\samenvattingname}{Samenvatting}
+\newcommand{\doorname}{door}
 \ifbool{consistentlayout}{
 	\DeclareDocumentEnvironment{samenvatting}{ O{} }{%
 		\addchap*{\samenvattingname}%
@@ -480,7 +481,7 @@ KOMA-script documentation for details.}]{fancyhdr}
 			\bigskip
 			{\normalsize\bfseries \@title \par}% Thesis title
 			\medskip
-			{\normalsize \byname{} \authorname \par}% Author name
+			{\normalsize \doorname{} \authorname \par}% Author name
 			\bigskip
 		\end{center}
 	}
