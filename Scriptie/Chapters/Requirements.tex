@@ -8,7 +8,7 @@ Dit hoofdstuk gaat over de deelvraag \enquote{\deelrequirements}. De must-requir
 De opstelling van de reverse proxy door middel van Traefik maakt het mogelijk om requests te verdelen over docker containers in aparte netwerken. Omdat deze containers in aparte netwerken zitten is het mogelijk om oneindig veel unieke instanties van de website naast elkaar te draaien. Deze requirement is behaald.
 
 \section{Unieke instanties van de website automatisch kunnen aanmaken}
-Door de Bitbucket-Pipeline en de ansible roles voor het beveiligen van de Docker Daemon, en het Deployen van de applicatie worden deze unieke instanties automatisch gedeployed naar een server. Deze instanties zijn dan bereikbaar via <subdomein>.developers.nl of <subdomein>.test.developers.nl.
+Door de Bitbucket-Pipeline en de ansible roles voor het beveiligen van de Docker Daemon, en het Deployen van de applicatie worden deze unieke instanties automatisch gedeployed naar een server. Deze instanties zijn dan bereikbaar via \texttt{<subdomein>.developers.nl} of \texttt{<subdomein>.test.developers.nl}.
 
 De enige tekortkoming is dat de instanties van de website nog niet automatisch worden verwijderd zodra een branch gemerged wordt. Deze requirement is tot op zekere hoogte behaald, maar er is nog ruimte voor verbetering.
 
@@ -23,7 +23,7 @@ Om kwaliteit van code te waarborgen is Codecov geïmplementeerd. Codecov zorgt e
 	\label{fig:coverage}
 \end{figure}
 
-Verder is er veel rekening gehouden met de beveiliging van de oplossing. Traefik draait niet als root in de container en de Docker Socket is beveiligd via TLS. Verder is OPA geïmplementeerd om beveiliging automatisch te waarborgen. \textcolor{red}{TODO: Policy-as-code} %TODO: PaC
+Verder is er veel rekening gehouden met de beveiliging van de oplossing. Traefik draait niet als root in de container en de Docker Socket is beveiligd via TLS. Verder is OPA geïmplementeerd om beveiliging te waarborgen door middel van het limiteren van users die Docker commando's kunnen gebruiken. Ook is er een opzet gemaakt dat policies build-time kan evalueren zodat kwaliteit afgedwongen kan worden vóórdat het wordt gedeployed. Deze requirement is behaald.
 
 \section{Monitoren van performance}
 
@@ -36,4 +36,32 @@ Schalen in de context van horizontaal schalen is ook niet geïmplementeerd, maar
 
 \section{Conclusie}
 
-\textcolor{red}{TODO: Conclusie} %TODO: Conclusie
+Must-requirements:
+\begin{itemize}
+	\item De oplossing moet méér dan twee unieke instanties van de website naast elkaar kunnen draaien.
+    \begin{itemize}
+        \item Gehaald.
+    \end{itemize}
+
+	\item De oplossing moet moet unieke instanties van de website automatisch kunnen aanmaken.
+    \begin{itemize}
+        \item Behaald tot op zekere hoogte, de instanties kunnen nog niet automatisch worden verwijderd. Hier is een aanbeveling over gemaakt.
+    \end{itemize}
+
+	\item De oplossing moet een methode bevatten om kwaliteit van nieuwe toevoegingen aan de infrastructuur automatisch te waarborgen.
+    \begin{itemize}
+        \item Behaald. Er is een aanbeveling gemaakt om hier verder op in te gaan.
+    \end{itemize}
+
+	\item Minimaal één monitoring tool voor het monitoren van performance.
+    \begin{itemize}
+        \item Niet volledig behaald. Grafana is geïmplementeerd om data te visualiseren, maar er is nog geen data. 
+    \end{itemize}
+
+	\item De oplossing moet voldoen aan één of meerdere kwaliteitsstandaarden.
+    \begin{itemize}
+        \item Behaald, maar er zijn nog verbeteringen. Hier is een aanbeveling over gemaakt.
+    \end{itemize}
+\end{itemize}
+
+Over de Should, Could en Won't requirements zijn aanbevelingen gemaakt in hoofdstuk \ref{Chapter8}.
