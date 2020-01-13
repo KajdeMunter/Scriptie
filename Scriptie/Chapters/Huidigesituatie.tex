@@ -5,9 +5,9 @@
 Dit hoofdstuk gaat over de deelvraag \enquote{\deelhuidig}.
 
 \section{Huidige Architectuur}
-In dit onderzoek wordt voornamelijk gefocussed op de website. Dit is de applicatie die het meest frequent gebruikt wordt, en dus de meeste aandacht verdiend. De huidige website is een combinatie van een PHP \& Symfony back-end API en Content Management Systeem, samen met een React + next.js front- end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
+In dit onderzoek wordt voornamelijk gefocussed op de website. Dit is de applicatie die het meest frequent gebruikt wordt, en dus de meeste aandacht verdiend. De huidige website is een combinatie van een PHP plus Symfony back-end API met Content Management Systeem (CMS), samen met een React plus Next.js front-end. De infrastructuur is momenteel gebouwd op Docker(-compose) + Ansible. Bitbucket pipeline wordt gebruikt voor het Continuous Integration / Deployment. 
 
-In figuur \ref{fig:infra} is een component diagram te vinden van de huidige website structuur. De front- en back-end structuur bevat 5 docker containers:
+In figuur \ref{fig:infra} staat een component diagram van de huidige website-structuur. De front- en back-end structuur bevat 5 Docker containers:
 \begin{itemize}
 	\item \textbf{PHP-FPM} (back-end)
 	\item \textbf{Nginx} (front- en back-end)
@@ -28,7 +28,7 @@ PHP-FPM is een FastCGI Process Manager, deze Container serveert de Symfony “Fo
 
 Voor zowel de front- als back-end is één monitoring tool genaamd \enquote{Sentry} geïmplementeerd. Sentry creëert een duidelijk overzicht voor alle errors die opkomen in productie.
 
-Ook heeft Developers.nl een \enquote{Employee Management Systeem} (EMS) gebouwd. Deze heeft een soortgelijke structuur aan de website. Het EMS bevat zeer veel gevoelige informatie en het is dus van hoog belang dat dit goed beveiligd is.
+Ook heeft Developers.nl een \enquote{Employee Management Systeem} (EMS) gebouwd. Deze heeft een soortgelijke structuur als de website. Het EMS bevat zeer veel gevoelige informatie en het is dus van hoog belang dat dit goed beveiligd is.
 
 \section{Metingen}
 
@@ -76,7 +76,7 @@ Om de performance curves te visualiseren zal een load-test worden uitgevoerd. Er
 
 De gratis versie van loader.io is niet genoeg voor de wensen van de test, voor gatling.io is Ruby kennis nodig, en voor Tsung worden de tests in XML geschreven wat het lastig maakt om de load op te schalen. Uiteindelijk is gekozen voor K6 omdat zo goed als elke ontwikkelaar genoeg Javascript kennis heeft om deze tool te gebruiken. Ook heeft k6 een eenvoudige manier om de hoeveelheid Virtual Users (VU) geleidelijk te verhogen. Om de uitkomsten te visualiseren is InfluxDB samen met Grafana gebruikt. 
 
-In bijlage \ref{Bijlagek6} is de implementatie hiervan te vinden, in bijlage \ref{bijlageloadtest} de resultaten. In verband met de implementaties tegen DDoS-aanvallen zijn 43\% van de requests geblokkeerd. De VUs lopen op van 20 naar 120. Op 12:02:28 is te zien dat de minimum waarde van de request duration spontaan daalt. Het is mogelijk dat TransIP hier iets mee te maken heeft, maar het is apart dat de maximum waardes niet dalen, de echte reden van de daling is onduidelijk. Ook is te zien dat de request duration geen significante stijging heeft naarmate de hoeveelheid VUs oplopen. Dit kan te maken hebben met het feit dat de server te krachtig is om te vertragen. Hier is uit op te maken dat het opschalen van de website wellicht niet veel effect gaat hebben.
+In bijlage \ref{Bijlagek6} is de implementatie hiervan te vinden, in bijlage \ref{bijlageloadtest} de resultaten. In verband met de implementaties tegen DDoS-aanvallen zijn 43\% van de requests geblokkeerd. De VUs lopen op van 20 naar 120. Op 12:02:28 is te zien dat de minimum waarde van de request duration spontaan daalt. Het is mogelijk dat TransIP hier iets mee te maken heeft, maar het is apart dat de maximum waardes niet dalen. De echte reden van de daling is vooralsnog onduidelijk. Ook is te zien dat de request duration geen significante stijging heeft naarmate de hoeveelheid VUs oplopen. Dit kan te maken hebben met het feit dat de server te krachtig is om te vertragen. Hier is uit op te maken dat het opschalen van de website wellicht niet veel effect gaat hebben.
 
 Één limiterende factor bij het schalen van de website is de hoeveelheid opslag. Voornamelijk omdat het CMS dubbel functioneert als \enquote{file-server}. Daarnaast bevat de content van de website een grote hoeveelheid foto's en video's, waardoor het opslaggebruik snel kan oplopen. Door het commando \texttt{\$ df -h} is te zien dat 27G -- oftewel 57\% -- van de totale 49G wordt gebruikt.
 \begin{minted}[bgcolor=codebg, breaklines]{text}
@@ -121,7 +121,7 @@ Om de schaalbaarheid nog verder te analyseren is een SWOT analyse uitgevoerd op 
 
 \subsubsection{Threats}
 \begin{itemize}
-	\item De hoeveelheid onderhoud dat een nieuwe schaalstrategie met zich mee brengt.
+	\item De hoeveelheid onderhoud die een nieuwe schaalstrategie met zich mee brengt.
 \end{itemize}
 
 
@@ -138,12 +138,12 @@ Voor de 15-Factor App geldt Factor 1 \textbf{(One codebase, one application)}, 3
 \subsubsection{Herbruikbaarheid}
 \textit{De mate waarin een bestaand onderdeel gebruikt kan worden in meer dan één systeem of bij het bouwen van een nieuw onderdeel.}
 
-Hoewel de Docker containers en Ansible infrastructuur generiek zijn opgesteld zijn er toch specifieke aanpassingen voor de website en voor het EMS. Dit betekent dat bijvoorbeeld de PHP Docker image van de website niet dezelfde is als de PHP Docker image voor het EMS. Ook is de door-ansible-opgebouwde infrastructuur nog niet herbruikbaar voor meerdere projecten, aangezien het in dezelfde codebase zit als de applicatie.
+Hoewel de Docker containers en Ansible infrastructuur generiek zijn opgesteld zijn er toch specifieke aanpassingen voor de website en voor het EMS. Dit betekent dat de PHP Docker image van de website niet precies gelijk is aan de PHP Docker image voor het EMS. Ook is de door-Ansible-opgebouwde infrastructuur nog niet herbruikbaar voor meerdere projecten, aangezien het in dezelfde codebase zit als de applicatie.
 
 \subsubsection{Analyseerbaarheid}
 \textit{De mate waarin het mogelijk is om effectief en efficiënt de impact, van een geplande verandering van één of meer onderdelen, op een product of systeem te beoordelen, om afwijkingen en/of foutoorzaken van een product vast te stellen of om onderdelen te identificeren die gewijzigd moeten worden.}
 
-Voor de 15-Factor App geldt Factor 6 \textbf{(Logs)}, 10 \textbf{(Administrative processes)} en 14 \textbf{(Telemetry)}. Voor factor 6 is het belangrijk dat alle relevante logs naar de \texttt{stdout} worden gestuurd, dit gebeurt voor alle containers waardoor de logs gemakkelijk te zien zijn via \texttt{\$ docker logs <container>}. Voor factor 10 moeten alle administrative processes als individuele processen gedraaid worden. Deze processen als bijvoorbeeld database migrations zijn een simpel commando. In het geval van database migrations is dit \texttt{\$ bin/console doctrine:migrations:migrate} \footnote{Dit is onderdeel van de DoctrineMigrationsBundle, zie:\\ https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html\\voor meer informatie.}. Deze commando's worden meegenomen bij het bouwen van de docker image waardoor het automatisch wordt uitgevoerd, maar wél als een apart proces. Factor 14 vertelt dat de applicatie voldoende moet gemonitord worden. Er zijn voor zowel het EMS als de website geen monitoring tools in gebruik voor performance. Wel is Sentry geïmplementeerd, een monitoring tool die gericht is op errors.
+Voor de 15-Factor App geldt Factor 6 \textbf{(Logs)}, 10 \textbf{(Administrative processes)} en 14 \textbf{(Telemetry)}. Voor factor 6 is het belangrijk dat alle relevante logs naar de \texttt{stdout} worden gestuurd, dit gebeurt voor alle containers. Hierdoor zijn de logs gemakkelijk te bereiken via \texttt{\$ docker logs <container>}. Voor factor 10 moeten alle \enquote{administrative processes} als individuele processen gedraaid worden. Deze processen als bijvoorbeeld database migrations zijn een simpel commando. In het geval van database migrations is dit \texttt{\$ bin/console doctrine:migrations:migrate}\footnote{Dit is onderdeel van de DoctrineMigrationsBundle, zie:\\ https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html\\voor meer informatie.}. Deze commando's worden meegenomen bij het bouwen van de Docker image waardoor het automatisch wordt uitgevoerd, maar wél als een apart proces. Factor 14 vertelt dat de applicatie voldoende gemonitord moet worden. Er zijn voor zowel het EMS als de website geen monitoring tools in gebruik voor performance. Wel is Sentry geïmplementeerd, een monitoring tool die gericht is op errors.
 
 \subsubsection{Wijzigbaarheid}
 \textit{De mate waarin een product of systeem effectief en efficiënt gewijzigd kan worden zonder fouten of kwaliteitsvermindering tot gevolg.}
