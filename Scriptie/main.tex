@@ -223,7 +223,7 @@ headsepline, % Uncomment to get a line under the header
 	
 	Ik ben ongelofelijk trots op het eindresultaat. Ik ben altijd met plezier aan de slag gegaan met het onderzoek, en heb veel geleerd deze periode. Ik heb dit niet in mijn eentje kunnen bereiken, daarom wil ik graag een dankwoord uitschrijven.
 	
-	Bedankt aan iedereen die mij in de afgelopen periode koffie heeft gebracht, geluisterd heeft naar mijn gesteun zodra het even tegenzat, maar ook naar mijn gejuich voor elke kleinste vordering. Ik wil graag mijn stage- en bedrijfsbegeleiders Tanja Ubert, Judith Lemmens, Jelle van de Haterd, en Maarten de Boer bedanken voor alle hulp en steun. Daarnaast wil ik alle collega's bij Developers.nl bedanken voor alle aanmoedigingen en gezelligheid. In het bijzonder mijn mede-stagiair Lex de Willigen, voor het aanhoren van al mijn ideeën, het meedenken, en zijn proeflezingen. Tevens gaat een dankwoord naar Maarten van der Heijden, voor zijn code-reviews en ideeën. Ook bedank ik mijn studiegenoten Steven Drost en Anthony Dijkhoff voor hun gezelligheid en aanmoediging. Tot slot wil ik mijn familie bedanken voor hun motiverende woorden gedurende mijn gehele opleiding.
+	Bedankt aan iedereen die mij in de afgelopen periode koffie heeft gebracht en geluisterd heeft naar mijn gesteun zodra het even tegenzat, maar ook naar mijn gejuich voor elke kleinste vordering. Ik wil graag mijn stage- en bedrijfsbegeleiders Tanja Ubert, Judith Lemmens, Jelle van de Haterd, en Maarten de Boer bedanken voor alle hulp en steun. Daarnaast wil ik alle collega's bij Developers.nl bedanken voor alle aanmoedigingen en gezelligheid. In het bijzonder mijn mede-stagiair Lex de Willigen, voor het aanhoren van al mijn ideeën, het meedenken, en zijn proeflezingen. Tevens gaat een dankwoord naar Maarten van der Heijden, voor zijn code-reviews en ideeën. Ook bedank ik mijn studiegenoten Steven Drost en Anthony Dijkhoff voor hun gezelligheid en aanmoediging. Tot slot wil ik mijn familie bedanken voor hun motiverende woorden gedurende mijn gehele opleiding.
 	
 	Ik wens u evenveel leesplezier toe als dat ik plezier heb gehad tijdens het schrijven.
 	\begin{flushright}
@@ -243,7 +243,7 @@ De definitie van onderhoudbaarheid in de ogen van Developers.nl is het versnelle
 
 Feature environments zijn aparte deployments en omgevingen voor elke individuele nieuwe feature die wordt toegevoegd. Dit is gerealiseerd door middel van een reverse proxy, Traefik.
 
-Verder is Codecov geimplementeerd om code-coverage te waarborgen, worden Docker images periodiek opgeruimd om ruimte op de server vrij te houden, is Grafana geïmplementeerd om monitoring data te visualiseren, en is Open Policy Agent gebruikt om beveiliging van nieuwe toevoegingen te waarborgen.
+Verder is Codecov geimplementeerd om code-coverage te waarborgen, worden Docker images periodiek opgeruimd om ruimte op de server vrij te houden, is Grafana geïmplementeerd om monitoring data te visualiseren, en is Open Policy Agent gebruikt om beveiliging en kwaliteit van nieuwe toevoegingen te waarborgen.
 \end{samenvatting}
 
 %----------------------------
@@ -253,11 +253,11 @@ Verder is Codecov geimplementeerd om code-coverage te waarborgen, worden Docker 
 \begin{abstract}
 The purpose of this research is to gain insight into the scalability and maintainability belonging to the website of Developers.nl, in order to subsequently improve these two factors in practice.
 
-The definition of maintainability in the eyes of Developers.nl is the improvement of the workflow, mainly through the enforcement of quality standards. The definition of scalability of Developers.nl is primarily the ability to scale, instead of actually scaling. One way to achieve both scalability and maintainability is to implement \enquote{feature environments}.
+The definition of maintainability through the eyes of Developers.nl is the improvement of the workflow, mainly through the enforcement of quality standards. The definition of scalability of Developers.nl is primarily the ability to scale, instead of actually scaling. One way to achieve both scalability and maintainability is to implement \enquote{feature environments}.
 
 Feature environments are separate deployments and environments for each individual new feature that is in process of being added. This has been achieved through a reverse proxy, Traefik.
 
-Furthermore, Codecov has been implemented to ensure code-coverage, Docker images are periodically cleaned up to keep space free on the server, Grafana has been implemented to visualize monitoring data, and Open Policy Agent has been used to guarantee security of new additions.
+Furthermore, Codecov has been implemented to ensure code-coverage, Docker images are periodically cleaned up to keep space free on the server, Grafana has been implemented to visualize monitoring data, and Open Policy Agent has been used to guarantee security and quality of new additions.
 \end{abstract}
 
 %------------------------------------------------
@@ -310,11 +310,15 @@ Furthermore, Codecov has been implemented to ensure code-coverage, Docker images
 \hline	
 	\textbf{Cloud computing providers} & Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction \parencite{CloudComputing}.\\
 \hline	
-	\textbf{12-factor app} & Een methodologie voor het bouwen van Software as a Service (SaaS) applications \parencite{12Factor}. \\
+	\textbf{12-factor app} & Een methodologie voor het bouwen van Software as a Service (SaaS) applications \parencite{12Factor}.\\
 \hline	
 	\textbf{The Open Group Architecture Framework} & A generic framework to build different IT architectures frameworks \parencite{TOGAF}.\\
 \hline
-	\textbf{4+1 architectural view model} & A model for describing the architecture of software-intensive systems, based on the use of multiple, concurrent views \parencite{4plus1}. \\
+	\textbf{4+1 architectural view model} & A model for describing the architecture of software-intensive systems, based on the use of multiple, concurrent views \parencite{4plus1}.\\
+\hline
+    \textbf{Jinja2} & Ansible uses Jinja2 templating to enable dynamic expressions and access to variables. Ansible greatly expands the number of filters and tests available, as well as adding a new plugin type: lookups \parencite{Jinja2}.\\
+\hline
+    \textbf{Ansible-vault} & Ansible Vault is a feature of ansible that allows you to keep sensitive data such as passwords or keys in encrypted files, rather than as plaintext in playbooks or roles. These vault files can then be distributed or placed in source control \parencite{AnsibleVault}.\\
 \end{begrippen}
 
 

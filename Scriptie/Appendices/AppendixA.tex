@@ -198,9 +198,7 @@ README.MD:
 
 We enforce that code coverage stays acceptable using codecov:
 
-[![codecov](https://codecov.io/bb/developers_nl/developers.nl/branch/ma
-ster/graph/badge.svg?token=DzAv79t9Gd)](https://codecov.io/bb/developer
-s_nl/developers.nl)
+[![codecov](https://codecov.io/bb/developers_nl/developers.nl/branch/m aster/graph/badge.svg?token=DzAv79t9Gd)](https://codecov.io/bb/dev elopers_nl/developers.nl)
 \end{minted}
 
 Het builden van de Docker images met Ansible, inclusief de build arguments nodig voor codecov:
@@ -294,7 +292,7 @@ then
 fi
 \end{minted}
 
-\section{Feature-environments} \label{CodeFeatureEnvironments}
+\section{Feature-environments implementatie} \label{CodeFeatureEnvironments}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=13cm]{Figures/Traefik}
@@ -1658,3 +1656,308 @@ docker/docker-compose.proxy.prod.yml
       - traefik.http.routers.proxy_grafana-secure.tls=true
       - traefik.http.routers.proxy_grafana-secure.tls.options= myTLSOptions@file
 \end{minted}
+
+\section{Open Policy Agent implementatie} \label{OPAImplementatie}
+
+frontend-images/tasks/evaluate\_policies.yml
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
+- name: Ensure policy directory
+  file:
+    path: "{{ clone_dir }}/policies"
+    state: directory
+    owner: root
+    group: root
+
+- name: Ensure policies
+  template:
+    src: policies/containers.rego.j2
+    dest: "{{ clone_dir }}/policies/containers.rego"
+    owner: root
+    group: root
+
+- name: Run Open Policy Agent
+  docker_container:
+    detach: false
+    name: OPA
+    state: started
+    image: openpolicyagent/opa:0.16.0
+    command: "eval --format=pretty -d /policies 'data.containers'"
+    volumes:
+      - "{{ clone_dir }}/policies:/policies"
+    cleanup: yes
+  register: opa_container
+  failed_when: "'\"allow\": true' not in opa_container.ansible_facts.docker_container.Output"
+\end{minted}
+
+frontend-images/tasks/main.yml
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
+---
+- import_tasks: "build.yml"
+- import_tasks: "publish.yml"
+- import_tasks: "evaluate_policies.yml"
+- import_tasks: "publish.yml"
+\end{minted}
+
+frontend-images/templates/policies/containers.rego.j2
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{text}
+package containers
+
+allow {
+    not deny
+}
+
+deny {
+    poc
+}
+
+poc {
+    1 == 2
+}
+\end{minted}
+
+secure-daemon/tasks/evaluate\_policies.yml
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
+- name: Ensure policy directory
+  file:
+    path: "/etc/docker/policies"
+    recurse: yes
+    state: directory
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+
+- name: Ensure policies
+  template:
+    src: etc/docker/policies/authz.rego.j2
+    dest: /etc/docker/policies/authz.rego
+    owner: "{{ default_user }}"
+    group: "{{ default_group }}"
+
+- name: Ensure .docker directories
+  file:
+    path: "{{ item }}/.docker"
+    state: directory
+  loop:
+    - "/home/{{ default_user }}"
+    - "/home/{{ default_users[1].name }}"
+    - "/root"
+
+- name: Ensure docker http headers
+  template:
+    src: config.json.j2
+    dest: "/home/{{ item }}/.docker/config.json"
+  vars:
+    user: "{{ item }}"
+  loop:
+    - "{{ default_user }}"
+    - "{{ default_users[1].name }}"
+
+- name: Ensure root docker http headers
+  template:
+    src: config.json.j2
+    dest: "/root/.docker/config.json"
+  vars:
+    user: "root"
+
+- name: Install OPA plugin
+  command: 'docker plugin install --grant-all-permissions openpolicyagent/opa-docker-authz-v2:0.4 opa-args="-policy-file /opa/policies/authz.rego"'
+\end{minted}
+
+secure-daemon/templates/config.json.j2
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{json}
+{
+  "HttpHeaders": {
+    "Authz-User": "{{ user }}"
+  }
+}
+\end{minted}
+
+secure-daemon/templates/etc/docker/daemon.json.j2
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{json}
+{
+  "tlsverify": true,
+  "tlscacert": "{{ server_cert_path }}/ca.pem",
+  "tlscert": "{{ server_cert_path }}/server-cert.pem",
+  "tlskey": "{{ server_cert_path }}/server-key.pem",
+  "hosts": ["0.0.0.0:2376", "fd://"],
+  "authorization-plugins": ["openpolicyagent/opa-docker-authz-v2:0.4"]
+}
+\end{minted}
+
+
+secure-daemon/templates/etc/docker/policies/authz.rego.j2
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{text}
+package docker.authz
+
+default allow = false
+
+allow = true {
+    input.Headers["Authz-User"] == "{{ default_user }}"
+}
+
+allow = true {
+    input.Headers["Authz-User"] == "{{ default_users[1].name }}"
+}
+
+allow = true {
+    input.Headers["Authz-User"] == "root"
+}
+
+# Needed for Traefik to communicate through TLS.
+allow = true {
+    input.User == "client"
+}
+\end{minted}
+
+bitbucket-pipelines.yml
+\begin{minted}[linenos=true, bgcolor=codebg, breaklines]{yaml}
+pipelines:
+  default:
+    - step:
+        name: 'Build'
+        image: survivorbat/ansible:v0.3
+        caches:
+          - docker
+        script:
+          - 'echo -e $VAULT_PASSWORD > ../.vault-password'
+          - 'ansible-galaxy install -r ansible/requirements.yml'
+          - 'ansible-playbook
+            -e node_tag=website-latest
+            -e nginx_tag=website-latest
+            -e traefik_tag=website-latest
+            -e clone_dir=$BITBUCKET_CLONE_DIR
+            -i ansible/inventories/local.yml
+            --vault-password-file=../.vault-password
+            -e add_latest_tag=false
+            --tags=build_images ansible/site.yml'
+
+  custom:
+    e2e@test.developers.nl:
+      - step:
+          name: 'E2E @test.developers.nl'
+          image: cypress/included:3.2.0
+          caches:
+            - node
+          artifacts:
+            - e2e/cypress/screenshots/**/*
+          script:
+            - 'cd e2e && CYPRESS_baseUrl=https://test.developers.nl cypress run'
+    e2e@developers.nl:
+      - step:
+          name: 'E2E @developers.nl'
+          image: cypress/included:3.2.0
+          caches:
+            - node
+          artifacts:
+            - e2e/cypress/screenshots/**/*
+          script:
+            - 'cd e2e && CYPRESS_baseUrl=https://developers.nl cypress run'
+    deploy@test.developers.nl:
+      - step:
+          name: 'Deploy @test.developers.nl'
+          deployment: test
+          image: survivorbat/ansible:v0.3
+          caches:
+            - docker
+          script:
+            - 'echo -e $VAULT_PASSWORD > ../.vault-password'
+            - 'ansible-galaxy install -r ansible/requirements.yml'
+            - 'ansible-playbook
+              -e node_tag=test-website-$BITBUCKET_BUILD_NUMBER
+              -e nginx_tag=test-website-$BITBUCKET_BUILD_NUMBER
+              -e traefik_tag=test-website-$BITBUCKET_BUILD_NUBER
+              -e publish_images=true
+              -e clone_dir=$BITBUCKET_CLONE_DIR
+              -e bootstrap_proxy=false
+              --vault-password-file=../.vault-password
+              -i ansible/inventories/test.yml
+              --skip-tags server_install
+              ansible/site.yml'
+      - step:
+          name: 'E2E @test.developers.nl'
+          image: cypress/included:3.2.0
+          caches:
+            - node
+          artifacts:
+            - e2e/cypress/screenshots/**/*
+          script:
+            - 'cd e2e && CYPRESS_baseUrl=https://test.developers.nl cypress run'
+    deploy@developers.nl:
+      - step:
+          name: 'Deploy @developers.nl'
+          deployment: production
+          image: survivorbat/ansible:v0.3
+          caches:
+            - docker
+          script:
+            - 'echo -e $VAULT_PASSWORD > ../.vault-password'
+            - 'ansible-galaxy install -r ansible/requirements.yml'
+            - 'ansible-playbook
+              -e node_tag=website-$BITBUCKET_BUILD_NUMBER
+              -e nginx_tag=website-$BITBUCKET_BUILD_NUMBER
+              -e traefik_tag=website-$BITBUCKET_BUILD_NUMBER
+              -e publish_images=true
+              -e clone_dir=$BITBUCKET_CLONE_DIR
+              -e bootstrap_proxy=false
+              --vault-password-file=../.vault-password
+              -i ansible/inventories/production.yml
+              --skip-tags server_install
+              ansible/site.yml'
+      - step:
+          name: 'E2E @developers.nl'
+          image: cypress/included:3.2.0
+          caches:
+            - node
+          artifacts:
+            - e2e/cypress/screenshots/**/*
+          script:
+            - 'cd e2e && CYPRESS_baseUrl=https://developers.nl cypress run'
+    bootstrap@test.developers.nl:
+      - step:
+          name: 'Bootstrap @test.developers.nl'
+          deployment: test
+          image: survivorbat/ansible:v0.3
+          caches:
+            - docker
+          script:
+            - 'echo -e $VAULT_PASSWORD > ../.vault-password'
+            - 'ansible-galaxy install -r ansible/requirements.yml'
+            - 'ansible-playbook
+              -e node_tag=test-website-$BITBUCKET_BUILD_NUMBER
+              -e nginx_tag=test-website-$BITBUCKET_BUILD_NUMBER
+              -e traefik_tag=test-website-$BITBUCKET_BUILD_NUMBER
+              -e publish_images=true
+              -e clone_dir=$BITBUCKET_CLONE_DIR
+              -e bootstrap_proxy=true
+              --vault-password-file=../.vault-password
+              -i ansible/inventories/test.yml
+              ansible/site.yml'
+    bootstrap@developers.nl:
+      - step:
+          name: 'Bootstrap @developers.nl'
+          deployment: production
+          image: survivorbat/ansible:v0.3
+          caches:
+            - docker
+          script:
+            - 'echo -e $VAULT_PASSWORD > ../.vault-password'
+            - 'ansible-galaxy install -r ansible/requirements.yml'
+            - 'ansible-playbook
+                -e node_tag=website-$BITBUCKET_BUILD_NUMBER
+                -e nginx_tag=website-$BITBUCKET_BUILD_NUMBER
+                -e traefik_tag=website-$BITBUCKET_BUILD_NUMBER
+                -e publish_images=true
+                -e clone_dir=$BITBUCKET_CLONE_DIR
+                -e bootstrap_proxy=true
+                --vault-password-file=../.vault-password
+                -i ansible/inventories/production.yml
+                ansible/site.yml'
+options:
+  docker: true
+
+definitions:
+  services:
+    docker:
+      memory: 3072
+\end{minted}
+
+
