@@ -5,10 +5,10 @@
 Dit hoofdstuk gaat over de deelvraag \enquote{\deelrequirements}. De must-requirements worden per paragraaf behandeld om zo individueel te beoordelen of de implementaties adequaat zijn.
 
 \section{Unieke instanties van de website naast elkaar}
-De opstelling van de reverse proxy door middel van Traefik maakt het mogelijk om requests te verdelen over docker containers in aparte netwerken. Omdat deze containers in aparte netwerken zitten is het mogelijk om oneindig veel unieke instanties van de website naast elkaar te draaien. Deze requirement is behaald.
+De opstelling van de reverse proxy door middel van Traefik maakt het mogelijk om requests te verdelen over Docker containers in aparte netwerken. Omdat deze containers in aparte netwerken zitten is het mogelijk om oneindig veel unieke instanties van de website naast elkaar te draaien. Deze requirement is behaald.
 
 \section{Unieke instanties van de website automatisch kunnen aanmaken}
-Door de Bitbucket-Pipeline en de ansible roles voor het beveiligen van de Docker Daemon, en het Deployen van de applicatie worden deze unieke instanties automatisch gedeployed naar een server. Deze instanties zijn dan bereikbaar via \texttt{<subdomein>.developers.nl} of \texttt{<subdomein>.test.developers.nl}.
+Door de Bitbucket-Pipeline en de Ansible roles voor het beveiligen van de Docker Daemon, en het Deployen van de applicatie worden deze unieke instanties automatisch gedeployed naar een server. Deze instanties zijn dan bereikbaar via \texttt{<subdomein>.developers.nl} of \texttt{<subdomein>.test.developers.nl}.
 
 De enige tekortkoming is dat de instanties van de website nog niet automatisch worden verwijderd zodra een branch gemerged wordt. Deze requirement is tot op zekere hoogte behaald, maar er is nog ruimte voor verbetering.
 

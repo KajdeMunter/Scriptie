@@ -34,8 +34,8 @@ In verband met de lage hoeveelheid verkeer op het EMS is \enquote{serverless com
 \section{Container Orchestration}
 Container Orchestration met Docker Swarm zou het mogelijk maken om de website op te schalen. Er is bewezen dat de website schaalbaar is, dus er zijn geen implicaties voorzien bij het implementeren. Wel moet er rekening gehouden worden met Traefik, en de integratie hiervan met Docker Swarm.
 
-\section{Één generieke infrastructuur}
-Het maken van een enkele ansible infrastructuur zou het concept \enquote{one codebase, one application} van de 15-factor app verbeteren. Ook zou dit onderhoudbaarheid verbeteren omdat nieuwe applicaties gelijk een infrastructuur op hoog niveau tot beschikking hebben.
+\section{Eén generieke infrastructuur}
+Het maken van een enkele ansible infrastructuur zou het concept \enquote{one codebase, one application} van de 15-factor app verbeteren. Ook zou dit onderhoudbaarheid verbeteren omdat nieuwe applicaties gelijk een infrastructuur op hoog niveau tot beschikking hebben. Daarnaast is het op deze manier eenvoudiger om nog een hoger level van abstractie toe te voegen met Terraform, om de machine in te richten.
 
 \section{Policies}
 Er moet onderzoek gedaan worden naar build- en run-time policies. Met Open Policy Agent is veel meer mogelijk dan wat er in dit onderzoek is geïmplementeerd. Bijvoorbeeld policies die kijken of een container niet als de \texttt{root} user draait of die evalueren of er geen onveilige poorten worden geopend.
