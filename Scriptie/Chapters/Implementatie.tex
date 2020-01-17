@@ -63,7 +63,7 @@ Voor het evalueren van build-time policies wordt gebuik gemaakt van de \texttt{o
 
 De run-time policy is geplaatst in de Ansible \texttt{secure-daemon} role. Meer informatie over deze role is te vinden in paragraaf \ref{implementatieFeatureEnvs}. Deze role configureert de Docker Daemon van verschillende users door een \texttt{config.json} te plaatsen in de home directory van de toegestane users. De JSON wordt gevuld met variabelen uit Ansible, door middel van een Jinja2 template. Deze configuratie stuurt een HttpHeader mee met uitgevoerde Docker commando's die OPA vertelt wie de uitvoerende user is. OPA evalueert hierna of deze user rechten heeft om dit commando uit te voeren door middel van de \texttt{openpolicyagent/opa-docker-authz} Docker plugin. Om Traefik toegang te geven tot Docker is ook toestemming gegeven aan requests die via TLS gaan, en de subject common name \texttt{client} hebben. De combinatie van deze policy samen met het beveiligen van de Docker socket met TLS zorgt ervoor dat de oplossing klaar voor productie.
 
-\section{Logging \& Monitoring}
+\section{Logging \& Monitoring} \label{loggingmonitoring}
 Bij de implementatie van Prometheus blijkt dat er twee dingen moeten gebeuren voordat Prometheus correct kan werken in productie. 
 \begin{enumerate}
     \item De Docker Daemon moet in \enquote{experimental} mode draaien

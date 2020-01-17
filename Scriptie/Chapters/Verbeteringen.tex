@@ -29,7 +29,7 @@ Elke reverse proxy heeft zijn voor- en nadelen. De Website en het EMS maken al g
 
 Een nadeel van de service-discovery oplossingen is dat de Docker Socket moet worden geëxposeerd. Dit is een groot beveiligingslek\footnote{https://github.com/containous/traefik/issues/4174}. Zodra een hacker met kwaadaardige intenties Traefik weet te kapen betekent dat dat de hacker root toegang heeft op de host machine. Een oplossing hiervoor is het exposen van de Docker Socket door het Transmission Control Protocol (TCP) en deze te beveiligen door middel van Transport Layer Security (TLS).
 
-In bijlage \ref{FeedbackFeatureEnvironments} zijn Slack conversaties met Jelle te vinden die te maken hebben met de feature environments, en over het beveiligen van de Docker socket.
+In bijlage \ref{FeedbackFeatureEnvironments} zijn Slack conversaties te vinden die te maken hebben met de feature environments, en over het beveiligen van de Docker socket.
 
 \section{Eén generieke infrastructuur}
 One codebase, One application is Factor 1 van de 15-Factor App en zorgt voor herbruikbaarheid van ISO 25010. De huidige infrastructuur van de Website en het EMS wordt opgebouwd met Ansible. Zoals de structuur nu is opgebouwd word er voor elke applicatie een apart stuk IaC geschreven. Om modulariteit en herbruikbaarheid van ISO 25010 \parencite{ISO25010} te verbeteren is het mogelijk om één centrale, algemene infrastructuur repository te maken waar installaties als Docker of databases en user-management kunnen worden hergebruikt voor meerdere applicaties. Ook zou het mogelijk zijn om hier de reverse proxy voor de feature-environments in te stellen om alle interne applicaties te managen.
@@ -109,13 +109,13 @@ Om te beslissen welke verbeteringen geïmplementeerd worden voor dit onderzoek w
 
 	\item Minimaal één monitoring tool voor het monitoren van performance.
 	\begin{itemize}
-		\item Logging \& Monitoring
+		\item Logging \& Monitoring met Grafana en Prometheus
 	\end{itemize}
 
 	\item De oplossing moet voldoen aan één of meerdere kwaliteitsstandaarden.
 	\begin{itemize}
 		\item Opschonen Docker images
-		\item Logging \& monitoring
+		\item Logging \& monitoring met Grafana en Prometheus
 	\end{itemize}
 \end{itemize}
 

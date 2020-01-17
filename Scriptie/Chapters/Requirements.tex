@@ -10,7 +10,7 @@ De opstelling van de reverse proxy door middel van Traefik maakt het mogelijk om
 \section{Unieke instanties van de website automatisch kunnen aanmaken}
 Door de Bitbucket-Pipeline en de Ansible roles voor het beveiligen van de Docker Daemon, en het Deployen van de applicatie worden deze unieke instanties automatisch gedeployed naar een server. Deze instanties zijn dan bereikbaar via \texttt{<subdomein>.developers.nl} of \texttt{<subdomein>.test.developers.nl}.
 
-De enige tekortkoming is dat de instanties van de website nog niet automatisch worden verwijderd zodra een branch gemerged wordt. Deze requirement is tot op zekere hoogte behaald, maar er is nog ruimte voor verbetering.
+De requirement is behaald. Echter, de enige tekortkoming is dat de instanties van de website nog niet automatisch worden verwijderd zodra een branch gemerged wordt.
 
 \section{Kwaliteitswaarborging}
 Om kwaliteit van code te waarborgen is Codecov geïmplementeerd. Codecov zorgt ervoor dat er niet gemerged kan worden via een Pull Request zodra de code coverage van de tests niet voldoende is. Zie figuur \ref{fig:coverage}.
@@ -27,10 +27,10 @@ Verder is er veel rekening gehouden met de beveiliging van de oplossing. Traefik
 
 \section{Monitoren van performance}
 
-De implementatie van Grafana betekent dat er data uit allerlei verschillende databases gevisualiseerd kan worden. In dit onderzoek is als eerst besloten dat Prometheus een goede tool is om metrics te verzamelen. Uiteindelijk is geconcludeerd dat dit geen goede optie is. Daarom is de optie van monitoring vrijgesteld, maar er wordt nog niks daadwerkelijk gemonitord. Deze requirement is niet volledig behaald, daarom is er een aanbeveling gemaakt.
+De implementatie van Grafana betekent dat er data uit allerlei verschillende databases gevisualiseerd kan worden. In dit onderzoek is als eerst besloten dat Prometheus een goede tool is om metrics te verzamelen. Uiteindelijk is in paragraaf \ref{loggingmonitoring} geconcludeerd dat dit geen goede optie is. Daarom is de optie van monitoring vrijgesteld, maar er wordt nog niks daadwerkelijk gemonitord. Deze requirement is niet volledig behaald, daarom is er een aanbeveling gemaakt.
 
 \section{Kwaliteitsstandaarden}
-De mogelijkheid om performance te monitoren is geopend door de implementatie van Grafana. Hierdoor kan de factor Telementry van de 15-Factor App verbeterd worden. De factor One Codebase, One application is niet verbeterd tijdens dit onderzoek, maar door middel van een generieke ansible infrastructuur kan deze verbeterd worden. Testbaarheid van ISO 25010 is verbeterd door het toevoegen van Codecov. 
+De mogelijkheid om performance te monitoren is geopend door de implementatie van Grafana. Hierdoor kan de factor Telemetry van de 15-Factor App verbeterd worden. De factor One Codebase, One application is niet verbeterd tijdens dit onderzoek, maar door middel van een generieke ansible infrastructuur kan deze verbeterd worden. Testbaarheid van ISO 25010 is verbeterd door het toevoegen van Codecov. 
 
 Schalen in de context van horizontaal schalen is ook niet geïmplementeerd, maar door Feature-environments is wel bewezen dat de website schaalbaar is. Ook is advies uitgebracht over de methode van schalen door middel van de container orchestration tool Docker Swarm.
 
@@ -45,7 +45,7 @@ Must-requirements:
 
 	\item De oplossing moet moet unieke instanties van de website automatisch kunnen aanmaken.
     \begin{itemize}
-        \item Behaald tot op zekere hoogte, de instanties kunnen nog niet automatisch worden verwijderd. Hier is een aanbeveling over gemaakt.
+        \item De requirement is behaald. Echter, de enige tekortkoming is dat de instanties van de website nog niet automatisch worden verwijderd zodra een branch gemerged wordt. Hier is een aanbeveling over gemaakt.
     \end{itemize}
 
 	\item De oplossing moet een methode bevatten om kwaliteit van nieuwe toevoegingen aan de infrastructuur automatisch te waarborgen.

@@ -8,13 +8,13 @@ Dit hoofdstuk gaat over de deelvraag \enquote{\deelverwachtingen}. Om de verwach
 
 Om de workflow sneller te laten verlopen moeten zo veel mogelijk processen geautomatiseerd worden. Hieronder valt voornamelijk het automatiseren van de kwaliteitswaarborging. Het is belangrijk dat een nieuwe toevoeging of applicatie aan een aantal standaarden voldoet, zodat ontwikkelaars snel aan de slag kunnen. Jelle vind ten opzichte van daadwerkelijke code voornamelijk dat de infrastructuur aan verbetering toe is.
 
-Developers.nl als product owner wil een nieuwe toevoeging of eventueel een volledig nieuwe applicatie kunnen bedenken en deze zo snel mogelijk geïmplementeerd zien. De workflow qua integratie en deployment moet verder geoptimaliseerd worden om Developers.nl deze snelheid te beloven.
+Developers.nl wil een nieuwe toevoeging of eventueel een volledig nieuwe applicatie kunnen bedenken en deze zo snel mogelijk geïmplementeerd zien. De workflow qua integratie en deployment moet verder geoptimaliseerd worden om Developers.nl deze snelheid te beloven.
 
 \section{Hoe ziet Developers.nl schaalbaarheid?}
 
-Developers.nl als product owner wil de voortgang van nieuwe toevoegingen of applicaties nauw kunnen volgen, zodat de kwaliteit hiervan op tijd gevalideerd kan worden. Dit heeft te maken met de agile werkmethodiek die Developers.nl gebruikt voor het ontwikkelen van haar interne applicaties.
+Developers.nl wil de voortgang van nieuwe toevoegingen of applicaties nauw kunnen volgen, zodat de kwaliteit hiervan op tijd gevalideerd kan worden. Dit heeft te maken met de agile werkmethodiek die Developers.nl gebruikt voor het ontwikkelen van haar interne applicaties.
 
-Om de snelheid te verhogen waarop ontwikkelaars hun toevoegingen kunnen laten zien, ziet Developers.nl graag het concept van \enquote{Feature environments}. Dit wil zeggen dat er per aangemaakte git branch gelijk gedeployed wordt naar een aparte omgeving, die dan te bekijken is door de product owner. Dit betekent dat er dus meerdere (verschillende) instanties van de applicatie naast elkaar moeten kunnen draaien. Daarnaast ziet Developers.nl graag de mogelijkheid om rekenkracht van de server te verdelen over deze instanties, waardoor er dus horizontaal geschaald moet kunnen worden. Developers.nl prioriteert de feature environments boven het verdelen van de rekenkracht, omdat het implementeren van feature environments \enquote{twee vliegen in één klap} is. Dit zorgt namelijk voor onderhoudbaarheid én het betekent dat de oplossing schaalbaar is.
+Om de snelheid te verhogen waarop ontwikkelaars hun toevoegingen kunnen laten zien, ziet Developers.nl graag het concept van \enquote{Feature environments}. Dit wil zeggen dat er voor elke aangemaakte git branch gelijk gedeployed wordt naar een aparte omgeving, die dan te bekijken is door de Product Owner (PO). Dit betekent dat er dus meerdere (verschillende) instanties van de applicatie naast elkaar moeten kunnen draaien. Daarnaast ziet Developers.nl graag de mogelijkheid om rekenkracht van de server te verdelen over deze instanties, waardoor er dus horizontaal geschaald moet kunnen worden. Developers.nl prioriteert de feature environments boven het verdelen van de rekenkracht, omdat het implementeren van feature environments \enquote{twee vliegen in één klap} is. Dit zorgt namelijk voor onderhoudbaarheid én het betekent dat de oplossing schaalbaar is.
 
 \section{Waar wilt Developers.nl meer over te weten komen?}
 
@@ -22,9 +22,9 @@ Developers.nl wil weten of de best-practices van de 12-Factor App toepasselijk z
 
 \section{Wat zijn de concrete requirements waar de oplossing aan moet voldoen?}
 
-Om schaalbaarheid te realiseren moet de onderhoudbaarheid van de infrastructuur ook op een voldoende niveau zijn, hier moeten kwaliteitsstandaarden voor onderzocht worden. Daarnaast moet de oplossing zo generiek mogelijk zijn, en dus voor meerdere applicaties toe te passen zijn. Dit betekend dus ook dat de oplossing geschikt moet zijn voor applicaties met veel verkeer.
+Om schaalbaarheid te realiseren moet de onderhoudbaarheid van de infrastructuur ook op een voldoende niveau zijn, hier moeten kwaliteitsstandaarden voor onderzocht worden. Daarnaast moet de oplossing zo generiek mogelijk zijn, en dus voor meerdere applicaties toe te passen zijn. Dit betekent dus ook dat de oplossing geschikt moet zijn voor applicaties met veel verkeer.
 
-Om requirements op te stellen wordt gebruik gemaakt van de MoSCoW-methode. Deze afkorting staat voor: \textbf{M}ust haves, \textbf{S}hould haves, \textbf{C}ould haves, en \textbf{W}on't haves \parencite{Moscow}. Deze methode helpt bij het opstellen van prioriteiten om zo te beslissen wat onder de scope van dit onderzoek valt.
+Om requirements op te stellen wordt gebruik gemaakt van de MoSCoW-methode. Deze afkorting staat voor: \textbf{M}ust haves, \textbf{S}hould haves, \textbf{C}ould haves, en \textbf{W}on't haves \parencite{Moscow}. Deze methode helpt bij het opstellen van prioriteiten om zo te beslissen wat in de scope van dit onderzoek valt.
 
 \subsubsection{Must haves}
 \begin{itemize}
