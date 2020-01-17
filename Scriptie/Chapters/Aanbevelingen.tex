@@ -24,12 +24,18 @@ Cloud providers hebben de mogelijkheid voor technische problemen buiten de contr
 De mogelijkheid bestaat dat er meer kosten worden gemaakt dan nodig is. Ook is shared-hosting een risico omdat zodra een andere klant veel rekenkracht opeist de kans ontstaat dat de prestaties dalen.
 
 \subsubsection{Aanbeveling}
-Er zijn veel verschillende cloud providers, waarvan de grootste Amazon Web Services (AWS), Microsoft Azure en Google Cloud Platform (GCP) zijn. Er moet onderzoek worden uitgevoerd over de kosten van het overstappen. Het is verstandig om samen met een migratie naar een cloud provider ook zaken mee te nemen als e-mail beheer in het bedrijf, of de inbegrepen software pakketen als Microsoft Office of Google Drive.
+Er zijn veel verschillende cloud providers, waarvan de grootste Amazon Web Services (AWS), Microsoft Azure en Google Cloud Platform (GCP) zijn. Het is verstandig om samen met een migratie naar een cloud provider ook zaken mee te nemen als e-mail beheer in het bedrijf, of de inbegrepen software pakketen als Microsoft Office of Google Drive.
+
+Het grootste nadeel van GCP is dat het marktaandeel vergeleken met Azure of AWS veel minder groot is \parencite{MarketShare}. Hierdoor is het minder interessant voor de interne systemen van Developers.nl, ontwikkelaars die tussen opdrachten zitten willen voor hun persoonlijke ontwikkeling iets leren. De meest nuttige kennis in de ogen van Developers.nl zijn de tools met de meeste marktwaarde. Hierdoor is het niet verstandig om GCP te gebruiken.
+
+Zowel AWS als Azure zijn erg complete producten met veel overeenkomsten. Het grootste voordeel dat Azure met zich mee brengt is het feit dat het erg nauw samen werkt met Microsoft, hierdoor kan de rest van het bedrijf eventueel overstappen van GSuite naar Microsoft Office en op die manier kosten besparen door over een algemeen pakket te beschikken. Ook vervallen de kosten voor BitBucket, Jira, en Slack aangezien deze services ook in AWS of Azure zitten. Het grootste voordeel van AWS is dat het meer flexibiliteit bied aangezien het meer features heeft en iets populairder is.
+
+De beslissende factor (kosten niet meegenomen) is dus of Developers.nl bereid is om over te stappen van GSuite naar Microsoft Office. Verder moet er dieper onderzoek worden uitgevoerd over de kosten van het overstappen naar AWS of GSuite.
 
 \section{Serverless computing}
-Serverless computing is een \enquote{application defined as a set of event-triggered functions that execute without requiring the user to explicitly manage servers} \parencite{ServerlessComputing}.
+Serverless computing is een \enquote{application defined as a set of event-triggered functions that execute without requiring the user to explicitly manage servers} \parencite{ServerlessComputing}. In verband met de lage hoeveelheid verkeer op het EMS is \enquote{serverless computing} een goede oplossing om kosten te besparen.
 
-In verband met de lage hoeveelheid verkeer op het EMS is \enquote{serverless computing} een goede oplossing om kosten te besparen.
+Aangezien de website veel verkeer heeft is het niet verstandig om gebruik te maken van serverless computing. Het nut van serverless computing valt hierdoor weg, dit betekent dat het een stuk duurder kan uitpakken dan conventionele methodes.
 
 \section{Container Orchestration}
 Container Orchestration met Docker Swarm zou het mogelijk maken om de website op te schalen. Er is bewezen dat de website schaalbaar is, dus er zijn geen implicaties voorzien bij het implementeren. Wel moet er rekening gehouden worden met Traefik, en de integratie hiervan met Docker Swarm.
@@ -38,4 +44,6 @@ Container Orchestration met Docker Swarm zou het mogelijk maken om de website op
 Het maken van een enkele ansible infrastructuur zou het concept \enquote{one codebase, one application} van de 15-factor app verbeteren. Ook zou dit onderhoudbaarheid verbeteren omdat nieuwe applicaties gelijk een infrastructuur op hoog niveau tot beschikking hebben. Daarnaast is het op deze manier eenvoudiger om nog een hoger level van abstractie toe te voegen met Terraform, om de machine in te richten.
 
 \section{Policies}
-Er moet onderzoek gedaan worden naar build- en run-time policies. Met Open Policy Agent is veel meer mogelijk dan wat er in dit onderzoek is geïmplementeerd. Bijvoorbeeld policies die kijken of een container niet als de \texttt{root} user draait of die evalueren of er geen onveilige poorten worden geopend.
+Er moet onderzoek gedaan worden naar build- en run-time policies. Met Open Policy Agent is veel meer mogelijk dan wat er in dit onderzoek is geïmplementeerd. Bijvoorbeeld policies die evalueren of er geen onveilige poorten worden geopend.
+
+Verder is het belangrijk dat er policies in plaats komen die checken of een container als de \texttt{root} user draait. Nu is het zo dat PHP-FPM én Nginx als root draaien, terwijl dit niet nodig is\footnote{Meer informatie is te vinden in het volgende artikel:\\ https://engineering.bitnami.com/articles/why-non-root-containers-are-important-for-security.html}.
