@@ -61,7 +61,7 @@ Implementatie van Open Policy Agent staat in Bijlage \ref{OPAImplementatie}. Er 
 
 Voor het evalueren van build-time policies wordt gebuik gemaakt van de \texttt{openpolicyagent/opa} Docker image die het \texttt{eval} commando gebruikt. Deze container wordt gebuild in de Ansible role die alle Docker images voor de website build. Dit gebeurt door middel van de Ansible \texttt{docker\_container} module. Deze task faalt zodra de text \texttt{"allow": true} niet in de container stdout voorkomt. Voor deze eerste opzet is een policy aangemaakt die evalueert of 1 gelijk is aan 2. Als dat zo is, faalt de pipeline.
 
-De run-time policy is geplaatst in de Ansible \texttt{secure-daemon} role. Meer informatie over deze role is te vinden in paragraaf \ref{implementatieFeatureEnvs}. Deze role configureert de Docker Daemon van verschillende users door een \texttt{config.json} te plaatsen in de home directory van de toegestane users. De JSON wordt gevuld met variabelen uit Ansible, door middel van een Jinja2 template. Deze configuratie stuurt een HttpHeader mee met uitgevoerde Docker commando's die OPA vertelt wie de uitvoerende user is. OPA evalueert hierna of deze user rechten heeft om dit commando uit te voeren door middel van de \texttt{openpolicyagent/opa-docker-authz} Docker plugin. Om Traefik toegang te geven tot Docker is ook toestemming gegeven aan requests die via TLS gaan, en de subject common name \texttt{client} hebben.
+De run-time policy is geplaatst in de Ansible \texttt{secure-daemon} role. Meer informatie over deze role is te vinden in paragraaf \ref{implementatieFeatureEnvs}. Deze role configureert de Docker Daemon van verschillende users door een \texttt{config.json} te plaatsen in de home directory van de toegestane users. De JSON wordt gevuld met variabelen uit Ansible, door middel van een Jinja2 template. Deze configuratie stuurt een HttpHeader mee met uitgevoerde Docker commando's die OPA vertelt wie de uitvoerende user is. OPA evalueert hierna of deze user rechten heeft om dit commando uit te voeren door middel van de \texttt{openpolicyagent/opa-docker-authz} Docker plugin. Om Traefik toegang te geven tot Docker is ook toestemming gegeven aan requests die via TLS gaan, en de subject common name \texttt{client} hebben. De combinatie van deze policy samen met het beveiligen van de Docker socket met TLS zorgt ervoor dat de oplossing klaar voor productie.
 
 \section{Logging \& Monitoring}
 Bij de implementatie van Prometheus blijkt dat er twee dingen moeten gebeuren voordat Prometheus correct kan werken in productie. 
@@ -73,7 +73,7 @@ Docker raad het volgende aan \parencite{DockerExperimental}: \enquote{Experiment
 
 \section{Conclusie}
 
-er zijn vijf verbeteringen geïmplementeerd: Feature-environments, Codecov, Opschonen van Docker images, Open Policy Agent, en Grafana.
+Er zijn vijf verbeteringen geïmplementeerd: Feature-environments, Codecov, Opschonen van Docker images, Open Policy Agent, en Grafana.
 
 Codecov is in de back-end van de website geïmplementeerd om coverage te visualiseren op Pull-Requests, het genereren hiervan gebeurt in de \texttt{php7-fpm} Dockerfile in een test-buildstage.
 
