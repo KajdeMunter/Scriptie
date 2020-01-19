@@ -1,7 +1,7 @@
 \chapter{Theoretisch Kader}
 \label{Chapter2}
 
-In dit hoofdstuk worden vier belangrijke begrippen uit de onderzoeksvraag behandeld. Er wordt een literatuuronderzoek gedaan naar de bestaande definities van schaalbaarheid, onderhoudbaarheid en architectuur met betrekking tot software. Hierna wordt het begrip afgebakend tot een concrete definitie waar het onderzoek op terug kan vallen.
+In dit hoofdstuk worden vier belangrijke begrippen uit de onderzoeksvraag behandeld. Er wordt een literatuuronderzoek uitgevoerd naar de bestaande definities van schaalbaarheid, onderhoudbaarheid en architectuur met betrekking tot software. Hierna wordt het begrip afgebakend tot een concrete definitie waar het opvolgende onderzoek op terug kan vallen.
 
 \section{Schaalbaarheid} \label{TheoretischSchaalbaarheid}
 
@@ -24,7 +24,7 @@ Bondy definieert schaalbaarheid als het vermogen van een systeem om een toenemen
 
 H. El-Rewini en M. Abd-El-Barr noemen in het boek Advanced computer architecture and parallel processing \parencite{AdvancedArchitecture} ook een aantal \enquote{onconventionele} definities:
 \begin{itemize}
-	\item \textbf{Size scalability} (Meet de maximale hoeveelheid processors dat een systeem kan accommoderen)
+	\item \textbf{Size scalability} (de maximale hoeveelheid processors dat een systeem kan accommoderen)
 	\item \textbf{Application scalability} (de mogelijkheid om applicatiesoftware te draaien met verbeterde prestaties op een opgeschaalde versie van het systeem)
 	\item \textbf{Generation scalability} (de mogelijkheid om op te schalen door het gebruik van de volgende generatie (snellere) componenten)
 	\item \textbf{Heterogeneous scalability} (het vermogen van een systeem om op te schalen met behulp van hardware- en softwarecomponenten die door verschillende leveranciers zijn gemaakt)
@@ -45,7 +45,7 @@ Functionele schaalbaarheid is een term die in meerdere informele bronnen wordt g
 Omdat functionele schaalbaarheid concreet definieert over wat er precies 'extensible' moet zijn, en in zijn definitie de hoeveelheid gebruik meeneemt, is dit een meeromvattende term dan extensibility. Functionele schaalbaarheid is een \textit{onderdeel} van onderhoudbaarheid (Wijzigbaarheid) en load scalability. Daarnaast past het de definitie van extensibility toe in de context van functionele requirements. Het onderscheidt zich door de complexiteitsgraad van algoritmes en hard-coded limieten mee te nemen in zijn definitie. Meer over de definitie van onderhoudbaarheid is te vinden in paragraaf \ref{onderhoudbaarheid}.
 
 Ook is het mogelijk om een definitie te creeëren voor \textbf{Niet-functionele schaalbaarheid}. Deze definitie is buiten de scope van het onderzoek maar luidt als volgt:
-\enquote{In hoeverre een niet-functionele requirement kan worden verbeterd zonder bestaande componenten te belemmeren, en in welke mate de kwaliteit van die requirement acceptabel blijft naarmate het gebruik van het systeem toeneemt.} Om feedback te ontvangen van de gemaakte definities is een blog geschreven. Hier is ook meer informatie te vinden over niet-functionele schaalbaarheid en hoe deze twee definities tot stand zijn gekomen. \footnote{De blog is op de website van Developers.nl geplaatst:\\ https://developers.nl/blog/69/Defining-software-scalability-using-requirements} Feedback is te vinden in Bijlage \ref{feedbackschaalbaarheid}
+\enquote{In hoeverre een niet-functionele requirement kan worden verbeterd zonder bestaande componenten te belemmeren, en in welke mate de kwaliteit van die requirement acceptabel blijft naarmate het gebruik van het systeem toeneemt.} Om feedback te ontvangen van de gemaakte definities is een blog geschreven\footnote{De blog is op de website van Developers.nl geplaatst:\\ https://developers.nl/blog/69/Defining-software-scalability-using-requirements}. Feedback en discussies zijn te vinden in Bijlage \ref{feedbackschaalbaarheid}. Hier is ook meer informatie te vinden over niet-functionele schaalbaarheid en hoe deze twee definities tot stand zijn gekomen.
 
 \section{Onderhoudbaarheid} \label{onderhoudbaarheid}
 P. Grubb en A. A. Takang definiëren in hun boek \enquote{Software Maintenance: Concepts And Practice} onderhoudbaarheid als \enquote{The discipline concerned with changes related to a software system after delivery} \parencite{MaintenanceConcepts}. In 1993 heeft IEEE een \enquote{Standard Glossary of Software Engineering Terminology} opgesteld. Deze begrippenlijst definieert onderhoudbaarheid als \enquote{the ease with which a software system or component can be modified to correct faults, improve performance or other attributes, or adapt to a changed environment} \parencite{SENTerminology}. Deze twee definities komen uiteindelijk op hetzelfde neer. Grubb en Takang noemen het in de context van een discipline, terwijl IEEE het als een kwaliteitseigenschap definieert. Ook specificeren Grubb en Takang het feit dat het alleen ná het opleveren gebeurt.

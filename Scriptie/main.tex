@@ -75,7 +75,7 @@ headsepline, % Uncomment to get a line under the header
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
 \degree{Informatica} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
 \author{Kaj de Munter} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
-\version{v0.6} % Version number, used in omslag and titelblad, print it with \versionnr
+\version{v1.0} % Version number, used in omslag and titelblad, print it with \versionnr
 
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
@@ -225,7 +225,8 @@ headsepline, % Uncomment to get a line under the header
 	
 	Bedankt aan iedereen die mij in de afgelopen periode koffie heeft gebracht en geluisterd heeft naar mijn gesteun zodra het even tegenzat, maar ook naar mijn gejuich voor elke kleinste vordering. Ik wil graag mijn stage- en bedrijfsbegeleiders Tanja Ubert, Judith Lemmens, Jelle van de Haterd, en Maarten de Boer bedanken voor alle hulp en steun. Daarnaast wil ik alle collega's bij Developers.nl bedanken voor alle aanmoedigingen en gezelligheid. In het bijzonder mijn mede-stagiair Lex de Willigen, voor het aanhoren van al mijn ideeën, het meedenken, en zijn proeflezingen. Tevens gaat een dankwoord naar Maarten van der Heijden, voor zijn code-reviews en ideeën. Ook bedank ik mijn studiegenoten Steven Drost en Anthony Dijkhoff voor hun gezelligheid en aanmoediging. Tot slot wil ik mijn familie bedanken voor hun motiverende woorden gedurende mijn gehele opleiding.
 	
-	Ik wens u evenveel leesplezier toe als dat ik plezier heb gehad tijdens het schrijven.
+	Ik wens u evenveel leesplezier toe als dat ik plezier heb gehad tijdens het schrijven.\\[0.5cm]
+
 	\begin{flushright}
 		\textit{Kaj de Munter\\
 		Rotterdam, Januari 2020}
@@ -241,9 +242,9 @@ Dit onderzoek heeft tot doel het verkrijgen van inzicht over de schaal- en onder
 
 De definitie van onderhoudbaarheid in de ogen van Developers.nl is het versnellen van de workflow, voornamelijk door het afdwingen van kwaliteitsstandaarden. De definitie van schaalbaarheid van Developers.nl is voornamelijk de mogelijkheid om te schalen, boven het daadwerkelijk schalen. Een manier om zowel schaal- als onderhoudbaarheid te realiseren is het implementeren van \enquote{feature-environments}. 
 
-Feature environments zijn omgevingen die individueel gedeployed kunnen worden voor elke individuele nieuwe feature die wordt toegevoegd. Dit is gerealiseerd door middel van een reverse proxy, Traefik.
+Feature-environments zijn omgevingen die individueel gedeployed kunnen worden voor elke nieuwe feature die wordt toegevoegd. Dit is gerealiseerd door middel van een reverse proxy, Traefik.
 
-Er is onderzoek gedaan naar relevante kwaliteitsstandaarden om schaal- en onderhoudbaarheid te waarborgen. Met de gevonden standaarden zijn een aantal technieken geïmplementeerd. Codecov is geïmplementeerd om code-coverage te waarborgen, Docker images worden periodiek opgeruimd om ruimte op de server vrij te houden, Grafana is geïmplementeerd om monitoring data te visualiseren, en Open Policy Agent is gebruikt om beveiliging en kwaliteit van nieuwe toevoegingen te waarborgen. 
+Er is onderzoek uitgevoerd naar relevante kwaliteitsstandaarden om schaal- en onderhoudbaarheid te waarborgen. Door middel van de gevonden standaarden zijn een aantal technieken geïmplementeerd. Codecov om code-coverage te waarborgen, Grafana om monitoring data te visualiseren, en Open Policy Agent om beveiliging en kwaliteit van nieuwe toevoegingen te waarborgen. Daarnaast worden Docker images periodiek opgeruimd om ruimte op de server vrij te houden.
 
 Verder is er een aanbeveling gemaakt op het gebruik van cloud service providers, serverless computing, container orchestration, policies, en het ontwikkelen van een generieke infrastructuur.
 \end{samenvatting}
@@ -255,11 +256,11 @@ Verder is er een aanbeveling gemaakt op het gebruik van cloud service providers,
 \begin{abstract}
 The purpose of this research is to gain insight into the scalability and maintainability belonging to the website of Developers.nl, in order to subsequently improve these two factors in practice.
 
-The definition of maintainability through the eyes of Developers.nl is the improvement of the workflow, mainly through the enforcement of quality standards. The definition of scalability of Developers.nl is primarily the ability to scale, instead of actually scaling. One way to achieve both scalability and maintainability is to implement \enquote{feature environments}.
+The definition of maintainability through the eyes of Developers.nl is the improvement of the workflow, mainly through the enforcement of quality standards. The definition of scalability of Developers.nl is primarily the ability to scale, instead of actually scaling. One way to achieve both scalability and maintainability is to implement \enquote{feature-environments}.
 
-Feature environments are environments that can be deployed individually for each individual new feature that is added. This has been achieved through a reverse proxy, Traefik.
+Feature-environments are environments that can be deployed individually for each new feature that is added. This has been achieved through a reverse proxy, Traefik.
 
-Research has been conducted to find relevant quality standards in order to guarantee scalability and maintainability. A number of techniques have been implemented with the found standards. Codecov has been implemented to ensure code coverage, Docker images are periodically cleaned up to keep space on the server, Grafana has been implemented to visualize monitoring data, and Open Policy Agent has been used to enforce the security and quality of new additions.
+Research has been conducted for relevant quality standards to guarantee scalability and maintainability. A number of techniques have been implemented using the found standards. Codecov to ensure code coverage, Grafana to visualize monitoring data, and Open Policy Agent to ensure security and quality of new additions. In addition, Docker images are periodically cleaned up to keep space on the server free.
 
 Furthermore, a recommendation was made on the use of cloud service providers, serverless computing, container orchestration, policies, and the development of a generic infrastructure.
 \end{abstract}
@@ -332,34 +333,34 @@ Furthermore, a recommendation was made on the use of cloud service providers, se
 
 \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
 
-\textbf{MI} & \textbf{M}aintainability \textbf{I}ndex\\
-\textbf{CI} & \textbf{C}ontinuous \textbf{I}ntegration\\
-\textbf{CD} & \textbf{C}ontinuous \textbf{D}eployment\\
-\textbf{CM} & \textbf{C}onfiguration \textbf{M}anagement\\
-\textbf{VU} & \textbf{V}irtual \textbf{U}ser\\
-\textbf{VM} & \textbf{V}irtual \textbf{M}achine\\
-\textbf{CA} & \textbf{C}ertificate \textbf{A}uthority\\
-\textbf{PO} \textbf{P}roduct \textbf{O}wner\\
 \textbf{APM} & \textbf{A}pplication \textbf{P}erformance \textbf{M}onitoring\\
-\textbf{EMS} & \textbf{E}mployee \textbf{M}anagement \textbf{S}ystem\\
-\textbf{CMS} & \textbf{C}ontent \textbf{M}anagement \textbf{S}ystem\\
-\textbf{QoS} & \textbf{Q}uality \textbf{o}f \textbf{S}ervice\\
 \textbf{AWS} & \textbf{A}mazon \textbf{W}eb \textbf{S}ervices\\
+\textbf{CA} & \textbf{C}ertificate \textbf{A}uthority\\
+\textbf{CD} & \textbf{C}ontinuous \textbf{D}eployment\\
+\textbf{CI} & \textbf{C}ontinuous \textbf{I}ntegration\\
+\textbf{CLI} & \textbf{C}ommand \textbf{L}ine \textbf{I}nterface\\
+\textbf{CMS} & \textbf{C}ontent \textbf{M}anagement \textbf{S}ystem\\
+\textbf{CM} & \textbf{C}onfiguration \textbf{M}anagement\\
+\textbf{DDoS} & \textbf{D}istributed \textbf{D}enial of \textbf{S}ervice\\
+\textbf{EMS} & \textbf{E}mployee \textbf{M}anagement \textbf{S}ystem\\
+\textbf{FQDN} & \textbf{F}ully \textbf{Q}ualified \textbf{D}omain \textbf{N}ame\\
+\textbf{FastCGI} & \textbf{F}ast \textbf{C}ommon \textbf{G}ateway \textbf{I}nterface\\
 \textbf{GCP} & \textbf{G}oogle \textbf{C}loud \textbf{P}latform\\
-\textbf{OPA} & \textbf{O}pen \textbf{P}olicy \textbf{A}gent\\
-\textbf{PaC} & \textbf{P}olicies \textbf{a}s \textbf{C}ode\\
 \textbf{IaC} & \textbf{I}nfrastructure \textbf{A}s \textbf{C}ode\\
+\textbf{IaaS} & \textbf{I}nfrastructure \textbf{a}s \textbf{a} \textbf{S}ervice\\
 \textbf{K8s} & \textbf{K}ubernete\textbf{s}\\
+\textbf{MI} & \textbf{M}aintainability \textbf{I}ndex\\
+\textbf{OPA} & \textbf{O}pen \textbf{P}olicy \textbf{A}gent\\
+\textbf{PO} & \textbf{P}roduct \textbf{O}wner\\
+\textbf{PaC} & \textbf{P}olicies \textbf{a}s \textbf{C}ode\\
+\textbf{PaaS} & \textbf{P}latform \textbf{a}s \textbf{a} \textbf{S}ervice\\
+\textbf{QoS} & \textbf{Q}uality \textbf{o}f \textbf{S}ervice\\
+\textbf{SaaS} & \textbf{S}oftware \textbf{a}s \textbf{a} \textbf{S}ervice\\
 \textbf{TCP} & \textbf{T}ransmission \textbf{C}ontrol \textbf{P}rotocol\\
 \textbf{TLS} & \textbf{T}ransport \textbf{L}ayer \textbf{S}ecurity\\
-\textbf{CLI} & \textbf{C}ommand \textbf{L}ine \textbf{I}nterface\\
-\textbf{IaaS} & \textbf{I}nfrastructure \textbf{a}s \textbf{a} \textbf{S}ervice\\
-\textbf{PaaS} & \textbf{P}latform \textbf{a}s \textbf{a} \textbf{S}ervice\\
-\textbf{SaaS} & \textbf{S}oftware \textbf{a}s \textbf{a} \textbf{S}ervice\\
-\textbf{DDoS} & \textbf{D}istributed \textbf{D}enial of \textbf{S}ervice\\
-\textbf{FQDN} & \textbf{F}ully \textbf{Q}ualified \textbf{D}omain \textbf{N}ame\\
 \textbf{TOGAF} & \textbf{T}he \textbf{O}pen \textbf{G}roup \textbf{A}rchitecture \textbf{F}ramework\\
-\textbf{FastCGI} & \textbf{F}ast \textbf{C}ommon \textbf{G}ateway \textbf{I}nterface
+\textbf{VM} & \textbf{V}irtual \textbf{M}achine\\
+\textbf{VU} & \textbf{V}irtual \textbf{U}ser\\
 
 \end{abbreviations}
 

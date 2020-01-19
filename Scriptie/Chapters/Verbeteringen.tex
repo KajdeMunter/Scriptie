@@ -21,7 +21,7 @@ Een kubernetes cluster net namespaces valt af, dit heeft te maken met het onderh
 Er zijn twee opties voor het maken van feature environments met een reverse proxy. Het gebruik maken van aparte VM's versus het aanmaken van docker netwerken. Het zusterbedrijf van Developers.nl -- Gemvision -- maakt gebruik van Proxmox om hun Virtual Machines te beheren. Hier heeft Developers.nl ook toegang toe. Hoewel Proxmox een goede tool is om de VM's te beheren, is het echt gericht op enterprise applicaties. Dit maakt het lastiger voor andere ontwikkelaars om goed gebruik te maken van deze tool. Aangezien Docker netwerken al geïntegreerd zijn in Docker voegt deze oplossing veel minder overhead toe. Dit is dus de beste optie. Er zijn verschillende reverse proxies, relevante voor dit onderzoek zijn:
 \begin{itemize}
 	\item Traefik
-	\item jwilder/Nginx-Proxy\footnote{https://github.com/jwilder/nginx-proxy}
+	\item jwilder/Nginx-Proxy
 	\item HAProxy	
 \end{itemize}
 
